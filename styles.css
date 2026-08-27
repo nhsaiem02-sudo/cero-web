@@ -6,6 +6,37 @@
    4. Buttons         8. Responsive
    ═══════════════════════════════════════════════════════════ */
 
+/* ── Self-hosted fonts ──────────────────────────────────────
+   Both families are served from assets/fonts rather than Google's CDN. The old
+   setup cost a DNS lookup, a TLS handshake and a stylesheet round trip to
+   fonts.googleapis.com before the browser even learned which font files it
+   needed, then a second connection to fonts.gstatic.com to fetch them. That
+   chain sat directly in front of first paint.
+
+   These are the variable versions, so one file covers every weight the site
+   uses: 400 to 600 for body copy, 500 to 800 for headings. Latin subset only,
+   which is all the site's copy needs; unicode-range lets the browser fall back
+   per character for anything outside it rather than rendering tofu.
+
+   font-display:swap keeps text visible in a fallback face from first paint and
+   swaps when the real font arrives, so a slow font never blocks content. */
+@font-face{
+  font-family:'Manrope';
+  font-style:normal;
+  font-weight:500 800;
+  font-display:swap;
+  src:url('assets/fonts/manrope-var-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Schibsted Grotesk';
+  font-style:normal;
+  font-weight:400 600;
+  font-display:swap;
+  src:url('assets/fonts/schibsted-grotesk-var-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ── 1. Tokens ───────────────────────────────────────────── */
 :root {
   --navy-900:#060B1C;
@@ -693,6 +724,11 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
   border-color:rgba(236,196,64,.5);
   box-shadow:0 46px 92px -34px rgba(0,0,0,.92);
 }
+/* <picture> is inline by default, which would put a baseline gap under every
+   converted image. It carries no styling of its own here, so it is taken out of
+   the box tree entirely and the existing ".img-card img" / ".svc-row__banner img"
+   descendant rules keep matching exactly as before. */
+picture{display:contents}
 .svc-row__banner{display:block;line-height:0}
 .svc-row__banner img{display:block;width:100%;height:auto;aspect-ratio:1600 / 648}
 

@@ -113,9 +113,16 @@ parallax layers, runs through a single rAF-throttled listener.
 **Motion preferences** are respected throughout: `prefers-reduced-motion` disables the parallax,
 the cursor dot, the counters and every transition, and reveals resolve immediately.
 
-**Fonts** load asynchronously (Manrope for headings, Inter for body) with a `noscript` fallback,
-so text renders in a system sans immediately and never blocks paint. To go fully self-hosted,
-drop the woff2 files into `assets/` and swap the Google Fonts link for an `@font-face` block.
+**Fonts are self-hosted** from `assets/fonts`, declared in the `@font-face` block at the top
+of `styles.css`. Both are the variable versions, so one file covers every weight the site uses
+(400 to 600 body, 500 to 800 headings), latin subset only, `font-display:swap`. The two files
+are preloaded from each document with `crossorigin`, which a font preload needs even
+same-origin or the browser fetches the file twice.
+
+This was the single biggest performance win on the site. The Google Fonts setup cost a DNS
+lookup, a TLS handshake and a stylesheet round trip before the browser even learned which font
+files it needed, then a second connection to fetch them, all in front of first paint. Removing
+that chain took FCP from 2.9s to 1.2s.
 
 **Accessibility**: skip link, visible focus rings, real `<button>` elements for the FAQ with
 `aria-expanded` / `aria-controls`, a decorative cursor dot that is `aria-hidden` and pointer-inert,
@@ -1030,3 +1037,60 @@ threw a ReferenceError partway down its list and **everything below it stopped
 running**: the back links, the cursor dot, the navbar scroll state and the
 parallax, on all three pages. The files parsed, `node --check` passed, and the
 pages looked normal. Only tracing markers through `init()` found it.
+
+## Performance
+
+Measured with Lighthouse, mobile emulation, medians of three runs. Run these
+interleaved if you repeat them: this machine's load swings Total Blocking Time
+by seconds, and a single run can read 20 points low.
+
+| | score | FCP | LCP | transfer |
+| --- | --- | --- | --- | --- |
+| original | 77 | 2.9s | 4.7s | 5375 KB |
+| after WebP + fetchpriority | 81 | 2.9s | 4.1s | 550 KB |
+| after self-hosted fonts + posters | **93** | **1.2s** | **3.2s** | **490 KB** |
+
+Three changes got there:
+
+**`scripts/build-webp.py`** resizes the four service banners and four problem
+cards to 1100px, which is 2x their measured 535px render, and writes WebP at q80.
+8.9 MB becomes 0.41 MB. They render through `<picture>` with the source PNG as
+the fallback; a WebP-capable browser never requests it. `picture{display:contents}`
+keeps the wrapper out of the box tree so the existing descendant rules still match
+and nothing shifts.
+
+**Self-hosted fonts**, described above. This is what moved FCP.
+
+**Posters at display size.** `scripts/build-videos.py` used to write a full 1920px
+first frame, 115 KB, which was the page's largest contentful paint. Now 1100px,
+82 KB and 24 KB.
+
+The quality dial stayed high on purpose. Measured as PSNR against the lossless
+frame at the same 1100px scale:
+
+| | custom-ai-agent | ai-commercial-oreo |
+| --- | --- | --- |
+| 1920px q:v 4 (what it replaced) | 40.8 dB, 114 KB | 43.2 dB, 34 KB |
+| 1100px q:v 6 (first attempt) | 38.1 dB, 47 KB | 42.2 dB, 11 KB |
+| **1100px q:v 2 (shipped)** | **41.0 dB, 82 KB** | **43.2 dB, 24 KB** |
+
+q:v 6 was a real 2.7 dB regression on the first poster for 35 KB. The resize is
+where the saving comes from; the quality dial is not worth spending. What ships
+now measures slightly *better* than the original while still being 28% smaller.
+
+There is no `<picture>` fallback available for a video poster: the attribute
+takes a single URL, so WebP would simply show nothing on a browser that cannot
+decode it. These stay JPEG.
+
+`fetchpriority="low"` is on every below-fold image. The navbar logo keeps
+`fetchpriority="high"`.
+
+**There is no minification step, deliberately.** It was tried and reverted: it
+saved about 30 KB and cost a build step that silently swallowed edits to
+`styles.css` and `main.js`. Those two files remain the ones you edit and the ones
+the browser downloads.
+
+### What is left
+
+FCP is now bound by the CSS itself, LCP by the first poster. Lighthouse still
+reports about 15 KB of unused CSS. Neither is worth chasing yet.

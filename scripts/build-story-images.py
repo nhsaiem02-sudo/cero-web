@@ -9,6 +9,15 @@ references. Originals are never modified.
 
 The story blocks render at roughly 520px CSS wide, so 1000px covers a 2x screen.
 
+NOTE: several of the sources below were pruned from the repo in a later cleanup,
+so this script now prints "SKIP (missing)" for them. That is expected, not a
+fault. The PAIRS table is kept because it is the record of where each derivative
+came from. Three of the pruned sources were byte-identical to their derivative,
+so nothing was lost; the rest were higher-resolution masters. Every one of them
+is still in the first commit and can be brought back with:
+
+    git checkout 013ec8e -- "assets/<name>"
+
 Usage:  python3 scripts/build-story-images.py     (run from the project root)
 Requires: Pillow
 """
@@ -33,7 +42,9 @@ PAIRS = [
     # Co-founder story (/co-founder). Note "ceor" in the third source name is
     # the file as delivered, not a typo here; it is a different photograph from
     # "when start cero.png", which belongs to the founder page.
-    ("with cero founder in winter.jpg",     "zihadul-roots.jpg"),
+    # ("with cero founder in winter.jpg", "zihadul-roots.jpg") was dropped: the
+    # co-founder page swapped that slot for founders-together.jpg, so the
+    # derivative had no referrer. The source stays as a master.
     ("after ssc.jpg",                       "zihadul-ssc.jpg"),
     ("when start ceor.png",                 "zihadul-cero.jpg"),
 

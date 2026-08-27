@@ -24,13 +24,17 @@
 <link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" /></noscript>
+<!-- Fonts are self-hosted, see the @font-face block at the top of styles.css.
+     Preloaded because the stylesheet only reveals them once it has parsed, and
+     these two are on the critical path for text. crossorigin is required on a
+     font preload even same-origin: fonts are fetched in CORS mode, and without
+     it the browser downloads the file twice. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/schibsted-grotesk-var-latin.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/manrope-var-latin.woff2" />
 
-<link rel="stylesheet" href="styles.css?v=1787830395" />
+<link rel="stylesheet" href="styles.css?v=1787851803" />
 
 <script type="application/ld+json">
 {
@@ -130,7 +134,7 @@
       <li class="story__ch story__ch--media" data-reveal>
         <span class="story__node" aria-hidden="true"></span>
         <figure class="story__fig">
-          <img src="assets/school-days.jpeg" width="486" height="720" loading="lazy" decoding="async"
+          <img src="assets/school-days.jpeg" width="486" height="720" loading="lazy" fetchpriority="low" decoding="async"
                alt="Saiem during his school days in Pipulia" />
         </figure>
         <div class="story__body">
@@ -148,7 +152,7 @@
       <li class="story__ch story__ch--media story__ch--flip" data-reveal>
         <span class="story__node" aria-hidden="true"></span>
         <figure class="story__fig">
-          <img src="assets/after-school-when-move-dhaka.jpeg" width="864" height="1152" loading="lazy" decoding="async"
+          <img src="assets/after-school-when-move-dhaka.jpeg" width="864" height="1152" loading="lazy" fetchpriority="low" decoding="async"
                alt="Saiem around the time he moved to Dhaka in 2023" />
         </figure>
         <div class="story__body">
@@ -179,7 +183,7 @@
       <li class="story__ch story__ch--media story__ch--flip" data-reveal>
         <span class="story__node" aria-hidden="true"></span>
         <figure class="story__fig">
-          <img src="assets/travel-time.webp" width="1000" height="976" loading="lazy" decoding="async"
+          <img src="assets/travel-time.webp" width="1000" height="976" loading="lazy" fetchpriority="low" decoding="async"
                alt="Saiem sitting on a swing overlooking the shore" />
         </figure>
         <div class="story__body">
@@ -197,7 +201,7 @@
       <li class="story__ch story__ch--media" data-reveal>
         <span class="story__node" aria-hidden="true"></span>
         <figure class="story__fig story__fig--wide">
-          <img src="assets/founders-together.jpg" width="1000" height="750" loading="lazy" decoding="async"
+          <img src="assets/founders-together.jpg" width="1000" height="750" loading="lazy" fetchpriority="low" decoding="async"
                alt="Saiem and Zihadul Islam outdoors in Kishoreganj" />
         </figure>
         <div class="story__body">
@@ -245,7 +249,7 @@
       <li class="story__ch story__ch--media story__ch--flip" data-reveal>
         <span class="story__node" aria-hidden="true"></span>
         <figure class="story__fig">
-          <img src="assets/when-start-cero.jpg" width="1000" height="1333" loading="lazy" decoding="async"
+          <img src="assets/when-start-cero.jpg" width="1000" height="1333" loading="lazy" fetchpriority="low" decoding="async"
                alt="Saiem around the founding of CERO Studio in July 2026" />
         </figure>
         <div class="story__body">
@@ -295,7 +299,7 @@
     <div class="footer__brand">
       <a class="logo logo--footer" href="index.html" aria-label="CERO Studio home">
         <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
-             alt="CERO Studio" loading="lazy" />
+             alt="CERO Studio" loading="lazy" fetchpriority="low" />
       </a>
       <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
     </div>

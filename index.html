@@ -24,13 +24,17 @@
 <link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" /></noscript>
+<!-- Fonts are self-hosted, see the @font-face block at the top of styles.css.
+     Preloaded because the stylesheet only reveals them once it has parsed, and
+     these two are on the critical path for text. crossorigin is required on a
+     font preload even same-origin: fonts are fetched in CORS mode, and without
+     it the browser downloads the file twice. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/schibsted-grotesk-var-latin.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/manrope-var-latin.woff2" />
 
-<link rel="stylesheet" href="styles.css?v=1787830395" />
+<link rel="stylesheet" href="styles.css?v=1787851803" />
 
 <script type="application/ld+json">
 {
@@ -257,20 +261,32 @@
          reads as a light card against the navy page (see README). -->
     <ul class="img-grid img-grid--problem">
       <li class="img-card" data-reveal>
-        <img src="assets/problem-01-manual-work.png" width="1402" height="1122"
-             loading="lazy" decoding="async" alt="Too much manual work. Repetitive tasks across sales, support and operations quietly eat your team's time every single day." />
+        <picture>
+          <source type="image/webp" srcset="assets/problem-01-manual-work.webp" />
+          <img src="assets/problem-01-manual-work.png" width="1402" height="1122"
+               loading="lazy" fetchpriority="low" decoding="async" alt="Too much manual work. Repetitive tasks across sales, support and operations quietly eat your team's time every single day." />
+        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:100ms">
-        <img src="assets/problem-02-production-cost.png" width="1402" height="1122"
-             loading="lazy" decoding="async" alt="Production costs too much, too slow. Traditional commercials mean big budgets, big crews and weeks of waiting, out of reach for most growing brands." />
+        <picture>
+          <source type="image/webp" srcset="assets/problem-02-production-cost.webp" />
+          <img src="assets/problem-02-production-cost.png" width="1402" height="1122"
+               loading="lazy" fetchpriority="low" decoding="async" alt="Production costs too much, too slow. Traditional commercials mean big budgets, big crews and weeks of waiting, out of reach for most growing brands." />
+        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:200ms">
-        <img src="assets/problem-03-visibility.png" width="1402" height="1122"
-             loading="lazy" decoding="async" alt="No time to stay visible. Founders know they need to show up online consistently, but scripting, filming and editing take hours they don't have." />
+        <picture>
+          <source type="image/webp" srcset="assets/problem-03-visibility.webp" />
+          <img src="assets/problem-03-visibility.png" width="1402" height="1122"
+               loading="lazy" fetchpriority="low" decoding="async" alt="No time to stay visible. Founders know they need to show up online consistently, but scripting, filming and editing take hours they don't have." />
+        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:300ms">
-        <img src="assets/problem-04-website.png" width="1402" height="1122"
-             loading="lazy" decoding="async" alt="Your website isn't keeping up. Visitors bounce, and AI shopping agents can't read a site that wasn't built to be understood by them." />
+        <picture>
+          <source type="image/webp" srcset="assets/problem-04-website.webp" />
+          <img src="assets/problem-04-website.png" width="1402" height="1122"
+               loading="lazy" fetchpriority="low" decoding="async" alt="Your website isn't keeping up. Visitors bounce, and AI shopping agents can't read a site that wasn't built to be understood by them." />
+        </picture>
       </li>
     </ul>
   </div>
@@ -291,8 +307,11 @@
     <ul class="svc-rows">
       <li class="svc-row" data-reveal>
         <div class="svc-row__banner">
-          <img src="assets/service-01-banner.png" width="1600" height="648"
-               loading="lazy" decoding="async" alt="Dashboards, an agent chat transcript and a research-to-publish agent workflow." />
+          <picture>
+            <source type="image/webp" srcset="assets/service-01-banner.webp" />
+            <img src="assets/service-01-banner.png" width="1600" height="648"
+                 loading="lazy" fetchpriority="low" decoding="async" alt="Dashboards, an agent chat transcript and a research-to-publish agent workflow." />
+          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -310,8 +329,11 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:90ms">
         <div class="svc-row__banner">
-          <img src="assets/service-02-banner.png" width="1600" height="648"
-               loading="lazy" decoding="async" alt="Automotive and fragrance commercial stills beside a traditional-versus-AI production comparison." />
+          <picture>
+            <source type="image/webp" srcset="assets/service-02-banner.webp" />
+            <img src="assets/service-02-banner.png" width="1600" height="648"
+                 loading="lazy" fetchpriority="low" decoding="async" alt="Automotive and fragrance commercial stills beside a traditional-versus-AI production comparison." />
+          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -329,8 +351,11 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:180ms">
         <div class="svc-row__banner">
-          <img src="assets/service-03-banner.png" width="1600" height="648"
-               loading="lazy" decoding="async" alt="Social video posts of a founder avatar alongside a voice-cloning waveform." />
+          <picture>
+            <source type="image/webp" srcset="assets/service-03-banner.webp" />
+            <img src="assets/service-03-banner.png" width="1600" height="648"
+                 loading="lazy" fetchpriority="low" decoding="async" alt="Social video posts of a founder avatar alongside a voice-cloning waveform." />
+          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -348,8 +373,11 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:270ms">
         <div class="svc-row__banner">
-          <img src="assets/service-04-banner.png" width="1600" height="648"
-               loading="lazy" decoding="async" alt="A product storefront with a conversion funnel, structured-product data and an AI shopping assistant." />
+          <picture>
+            <source type="image/webp" srcset="assets/service-04-banner.webp" />
+            <img src="assets/service-04-banner.png" width="1600" height="648"
+                 loading="lazy" fetchpriority="low" decoding="async" alt="A product storefront with a conversion funnel, structured-product data and an AI shopping assistant." />
+          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -533,7 +561,7 @@
         <p class="msg__attrib">Saiem, Founder &amp; CEO</p>
       </div>
       <figure class="msg__photo">
-        <img src="assets/founder-ceo.jpg" width="760" height="1013" loading="lazy" decoding="async" alt="Saiem, Founder and CEO of CERO Studio" />
+        <img src="assets/founder-ceo.jpg" width="760" height="1013" loading="lazy" fetchpriority="low" decoding="async" alt="Saiem, Founder and CEO of CERO Studio" />
       </figure>
     </article>
     <article class="msg msg--linked" data-reveal style="--rd:120ms">
@@ -547,7 +575,7 @@
         <p class="msg__attrib">Zihadul Islam, Co-founder &amp; COO</p>
       </div>
       <figure class="msg__photo">
-        <img src="assets/co-founder-coo.jpg" width="760" height="1013" loading="lazy" decoding="async" alt="Zihadul Islam, Co-founder and COO of CERO Studio" />
+        <img src="assets/co-founder-coo.jpg" width="760" height="1013" loading="lazy" fetchpriority="low" decoding="async" alt="Zihadul Islam, Co-founder and COO of CERO Studio" />
       </figure>
     </article>
   </div>
@@ -719,7 +747,7 @@
     <div class="footer__brand">
       <a class="logo logo--footer" href="#top" aria-label="CERO Studio, back to top">
         <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
-             alt="CERO Studio" loading="lazy" />
+             alt="CERO Studio" loading="lazy" fetchpriority="low" />
       </a>
       <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
     </div>

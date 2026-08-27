@@ -51,10 +51,25 @@ def main():
              "-movflags", "+faststart",
              str(out)])
 
+        # Poster: frame one, scaled to 1100px, because the card renders at about
+        # 537px and 1100 covers a 2x screen. The first version wrote a full
+        # 1920px frame at 115 KB, which was the page's largest contentful paint.
+        #
+        # q:v 2, not a thriftier number. Measured as PSNR against the lossless
+        # frame at the same 1100px scale, q:v 6 came to 38.1 dB on the first
+        # poster while the 1920px original it replaced measured 40.8 dB: a real
+        # 2.7 dB regression for 35 KB. q:v 2 reaches 41.0 dB, marginally better
+        # than what shipped before, and still 28% smaller than the original.
+        # The resize is where the saving comes from; the quality dial is not
+        # worth spending.
+        #
+        # These stay JPEG. There is no <picture> fallback available for a poster
+        # attribute: it takes a single URL, so WebP would simply show nothing on
+        # a browser that cannot decode it.
         poster = out.with_name(out.stem + "-poster.jpg")
         run(["ffmpeg", "-y", "-i", str(src),
-             "-vf", "select=eq(n\\,0)", "-vframes", "1", "-q:v", "4",
-             str(poster)])
+             "-vf", "select=eq(n\\,0),scale=1100:-2", "-vframes", "1",
+             "-q:v", "2", str(poster)])
 
         before = src.stat().st_size / 1024 / 1024
         after = out.stat().st_size / 1024 / 1024
