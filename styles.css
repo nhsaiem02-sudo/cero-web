@@ -818,35 +818,6 @@ picture{display:contents}
   line-height:1.62;max-width:52ch;text-wrap:pretty;
 }
 
-/* ── Trailing cursor dot ─────────────────────────────────────
-   Sits above everything, ignores pointer events entirely, and is only made
-   visible by main.js on devices that actually have a pointer. */
-/* Moved only through transform, from a fixed origin at the viewport's top left.
-   The negative margin centres the dot on the pointer, so the rAF loop can write
-   the raw clientX/clientY with no arithmetic of its own. No transition on
-   transform: the easing is the loop's job, and a transition on top of a lerp is
-   what makes a trailing dot feel rubbery. */
-.cursor-dot{
-  position:fixed;top:0;left:0;z-index:9999;
-  width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
-  border-radius:50%;
-  background:rgba(236,196,64,.62);
-  box-shadow:0 0 12px 2px rgba(236,196,64,.3);
-  pointer-events:none;opacity:0;
-  transform:translate3d(-100px,-100px,0);
-  scale:1;
-  transition:opacity 240ms var(--ease),scale 220ms var(--ease),
-             background-color 220ms var(--ease);
-  will-change:transform;
-}
-.cursor-dot.is-on{opacity:1}
-.cursor-dot.is-over{
-  scale:2.1;
-  background:rgba(236,196,64,.26);
-}
-@media (hover:none),(pointer:coarse){
-  .cursor-dot{display:none}
-}
 
 /* ── Comparison ──────────────────────────────────────────── */
 .compare{

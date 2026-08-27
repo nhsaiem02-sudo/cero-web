@@ -155,10 +155,16 @@
     var onChange = function (e) { if (e.matches) closeMenu(); };
     mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
 
-    /* active section highlighting */
+    /* active section highlighting. A bad or cross-page href (anything not a
+       plain #id on this document) must not throw and take the rest of boot
+       down with it — this call sits ahead of initReveal in init(). */
     var navLinks = $$('.nav__link', links);
     var sections = navLinks
-      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .map(function (a) {
+        var href = a.getAttribute('href') || '';
+        if (href.charAt(0) !== '#') return null;
+        try { return document.querySelector(href); } catch (e) { return null; }
+      })
       .filter(Boolean);
 
     if ('IntersectionObserver' in window && sections.length) {
@@ -320,73 +326,6 @@
     })();
   }
 
-  /* ── Trailing cursor dot ────────────────────────────────────
-     A decorative layer on top of the native cursor, which is never hidden.
-
-     One rAF loop, running continuously, lerping the dot toward the pointer at a
-     fixed rate. The previous version parked the loop once it caught up and woke
-     it on the next mousemove; that saved a few frames but meant a slow drag
-     restarted the loop over and over, and every restart showed as a hitch. A
-     single uninterrupted loop is what makes it feel smooth.
-
-     Position is written only through translate3d, so the dot lives on the
-     compositor and never triggers layout. The 4.5px centring offset is CSS
-     (a negative margin), not arithmetic in the loop.
-
-     Never starts on touch devices or under prefers-reduced-motion.            */
-  function initCursor() {
-    var dot = $('#cursorDot');
-    if (!dot) return;
-    if (reduced) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-    var mouseX = 0, mouseY = 0;   // where the pointer is
-    var dotX = 0, dotY = 0;       // where the dot has got to
-    var SPEED = 0.15;             // lower = longer trail
-    var seen = false;
-    var awake = true;
-
-    document.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!seen) {                // first sighting: appear in place, do not fly in
-        seen = true;
-        dotX = mouseX; dotY = mouseY;
-        dot.classList.add('is-on');
-      }
-    }, { passive: true });
-
-    function animate() {
-      dotX += (mouseX - dotX) * SPEED;
-      dotY += (mouseY - dotY) * SPEED;
-      dot.style.transform = 'translate3d(' + dotX.toFixed(2) + 'px,' + dotY.toFixed(2) + 'px,0)';
-      if (awake) requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-
-    // A hidden tab throttles rAF to a crawl anyway; stopping outright means the
-    // dot is not mid-interpolation toward a stale point when the tab returns.
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-        awake = false;
-      } else if (!awake) {
-        awake = true;
-        dotX = mouseX; dotY = mouseY;
-        requestAnimationFrame(animate);
-      }
-    });
-
-    // Grow over anything clickable, so the dot reads as a pointer cue. Scale is
-    // its own property, so this never disturbs the transform the loop owns.
-    document.addEventListener('mouseover', function (e) {
-      var hit = e.target.closest && e.target.closest('a,button,input,textarea,select,summary,[role="tab"]');
-      dot.classList.toggle('is-over', !!hit);
-    }, { passive: true });
-
-    document.addEventListener('mouseleave', function () { dot.classList.remove('is-on'); });
-    document.addEventListener('mouseenter', function () { if (seen) dot.classList.add('is-on'); });
-  }
-
   /* ── "Back to CERO Studio" ──────────────────────────────────
      Following the href would be a forward navigation: a brand new history entry
      for the homepage, which lands at the top and leaves the entry the reader
@@ -425,11 +364,11 @@
     var onParallax = initParallax();
 
     /* Each piece is independent, so one throwing must not take the rest of the
-       page down with it. It cost the cursor dot, the back links, the navbar
-       scroll state and the parallax once already: a single ReferenceError in
-       the middle of this list silently killed everything below it. */
+       page down with it. It cost the back links, the navbar scroll state and
+       the parallax once already: a single ReferenceError in the middle of
+       this list silently killed everything below it. */
     [initReveal, initCounters, initMarquee, initFaq, initAnchors, initSplash,
-     initScrollMemory, initBackLinks, initCursor].forEach(function (fn) {
+     initScrollMemory, initBackLinks].forEach(function (fn) {
       try { fn(); } catch (e) { if (window.console) console.error(e); }
     });
     initScrollLoop([onNavScroll, onParallax]);
