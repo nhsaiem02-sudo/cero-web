@@ -1,0 +1,52 @@
+# ── Dependencies ────────────────────────────────────────────
+node_modules/
+.pnp/
+.pnp.js
+jspm_packages/
+
+# ── Environment and secrets ─────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── Build output ────────────────────────────────────────────
+# This site has no build step: index.html, styles.css and main.js are the
+# deployable artefacts and must stay tracked. These cover the usual framework
+# output folders in case the project ever grows one.
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.cache/
+.parcel-cache/
+.vercel/
+.netlify/
+
+# ── Tooling noise ───────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# ── Editor and OS ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.swp
+*.swo
+.vscode/*
+!.vscode/settings.json
+
+# ── Local scratch ───────────────────────────────────────────
+# Probe pages written during layout testing, never part of the site.
+_*.html
+_*.js

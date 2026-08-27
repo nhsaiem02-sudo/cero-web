@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>CERO Studio | AI Agency</title>
+<meta name="description" content="CERO Studio builds AI voice agents, appointment automation and AI-generated video for dental clinics and local service businesses in the UK and US. Never miss another lead." />
+<link rel="canonical" href="https://cerostudio.co/" />
+<meta name="theme-color" content="#0A1128" />
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cerostudio.co/" />
+<meta property="og:title" content="CERO Studio | AI Voice Agents &amp; Automation for Local Businesses" />
+<meta property="og:description" content="Voice agents that answer 24/7, reminders that cut no-shows, and AI video that keeps you visible. One AI partner for your brand." />
+<meta property="og:image" content="https://cerostudio.co/assets/og-image.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CERO Studio | AI for Local Businesses" />
+<meta name="twitter:description" content="Never miss another lead. AI voice agents, automation and video for dental clinics and local service brands." />
+<meta name="twitter:image" content="https://cerostudio.co/assets/og-image.svg" />
+
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" /></noscript>
+
+<link rel="stylesheet" href="styles.css?v=1787830395" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "CERO Studio",
+  "url": "https://cerostudio.co/",
+  "description": "AI agency building voice agents, automation systems and AI-generated video for local service businesses in the UK and US.",
+  "areaServed": ["GB", "US"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+  "email": "cerostudio40@gmail.com",
+  "founder": { "@type": "Person", "name": "Saiem" },
+  "telephone": "+8801913254028",
+  "sameAs": ["https://www.instagram.com/cerostudioco/", "https://www.linkedin.com/company/cero-studio-co/", "https://x.com/CeroStudio40"]
+}
+</script>
+<script>
+/* Splash gate. Runs before first paint so the page never flashes behind it.
+   Plays on every document load; anchor navigation inside the page does not
+   reload, so it never replays mid-session. Skipped under reduced motion, and if
+   this script never runs the markup stays hidden and the site loads normally. */
+(function () {
+  try {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Skip it when arriving back through history. Replaying a full-screen
+    // animation on a Back press reads as a reload, and it covers the moment the
+    // scroll position is being put back.
+    var nav = performance.getEntriesByType('navigation')[0];
+    if (nav ? nav.type === 'back_forward'
+            : (performance.navigation && performance.navigation.type === 2)) return;
+  } catch (e) { /* matchMedia or performance missing: just play it */ }
+  document.documentElement.className += ' splash-on';
+})();
+</script>
+</head>
+<body>
+<!-- Load splash. Hidden unless <html> carries .splash-on, so no-JS never sees
+     it. The mark is drawn twice through a mask of the lockup: a faint ghost
+     underneath, and a gold-gradient fill on top that is clipped to nothing and
+     wiped upward. Filling with brand gold rather than the asset's own colours
+     is deliberate: the artwork is half navy, which would vanish on navy. -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash__halo"></div>
+  <div class="splash__mark">
+    <span class="splash__ghost"></span>
+    <span class="splash__fill"></span>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- One page-wide background. Fixed, so it never scrolls out from under a
+     section and there is no seam anywhere between them. Every section is
+     transparent; this is the only painted ground on the page. -->
+<div class="page-bg" aria-hidden="true">
+  <div class="page-bg__glow page-bg__glow--a" data-parallax="0.05"></div>
+  <div class="page-bg__glow page-bg__glow--b"></div>
+  <div class="page-bg__veins"></div>
+  <div class="page-bg__sparkle"></div>
+  <div class="page-bg__grain"></div>
+</div>
+
+<!-- Trailing cursor dot. Purely decorative and added on top of the native
+     cursor, never replacing it. main.js only shows this on devices with a
+     real pointer, and leaves it hidden under prefers-reduced-motion. -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="logo" href="#top" aria-label="CERO Studio home">
+      <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
+           alt="CERO Studio" fetchpriority="high" />
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#services" class="nav__link">Services</a>
+      <a href="#why-us" class="nav__link">Why Us</a>
+      <a href="#process" class="nav__link">Process</a>
+      <a href="#work" class="nav__link">Our Work</a>
+      <a href="#faq" class="nav__link">FAQ</a>
+      <a href="https://cal.com/cerostudio/free-automation-audit" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Automation Audit</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero section--dark" id="top">
+
+  <!-- Drifting service mockups. Decorative, pointer-inert and pinned to the hero
+       edges so nothing sits behind the headline; hidden below 1120px where the
+       text column would reach them. -->
+  <div class="hero__float" aria-hidden="true">
+    <div class="float-card float-card--voice">
+      <span class="fc-top"><i class="fc-live"></i>Incoming call</span>
+      <span class="fc-name">Bright Smile Dental</span>
+      <span class="fc-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="fc-line">"Booking confirmed for Thursday 2pm"</span>
+    </div>
+
+    <div class="float-card float-card--video">
+      <span class="fc-frame">
+        <span class="fc-tag">AI Generated</span>
+        <span class="fc-play"></span>
+        <span class="fc-dur">0:24</span>
+      </span>
+      <span class="fc-strip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <div class="float-card float-card--avatar">
+      <span class="fc-portrait">
+        <span class="fc-silhouette"></span>
+        <span class="fc-play fc-play--sm"></span>
+        <span class="fc-rec"><i></i>REC</span>
+      </span>
+      <span class="fc-wave fc-wave--sm"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <div class="float-card float-card--site">
+      <span class="fc-chrome"><i></i><i></i><i></i><b></b></span>
+      <span class="fc-hero"></span>
+      <span class="fc-bar"></span>
+      <span class="fc-bar fc-bar--short"></span>
+      <span class="fc-cta"></span>
+    </div>
+  </div>
+
+  <div class="container hero__inner">
+    <p class="hero__badge" data-reveal>
+      <span class="hero__badge-dot" aria-hidden="true"></span>
+      AI Agency
+    </p>
+
+    <h1 class="hero__title" data-reveal style="--rd:80ms">
+      Every practical way AI can
+      <span class="gold-text">earn its keep</span>
+      in your business
+    </h1>
+
+    <p class="hero__sub" data-reveal style="--rd:160ms">
+      Start with the one that's costing you most. Add the rest as you grow. It's all
+      one system, not seven subscriptions.
+    </p>
+
+    <div class="hero__actions" data-reveal style="--rd:240ms">
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">Book a Free Call</a>
+      <a href="#work" class="btn btn--ghost btn--lg">
+        Our Work
+        <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <ul class="hero__ticks" data-reveal style="--rd:320ms">
+      <li>No lock-in contracts</li>
+      <li>Live in weeks, not months</li>
+      <li>Built for non-technical owners</li>
+    </ul>
+  </div>
+
+  <p class="hero__scroll" aria-hidden="true"><span></span>Scroll</p>
+</section>
+
+<!-- ═══════════════════ STATS ═══════════════════ -->
+<section class="stats section--dark section--tight" aria-label="What we build toward">
+  <div class="container">
+    <div class="stats__grid">
+      <div class="stat" data-reveal>
+        <p class="stat__num"><span data-count="24">24</span><em>/7</em></p>
+        <p class="stat__label">AI coverage across calls, messages and bookings</p>
+      </div>
+      <div class="stat" data-reveal style="--rd:100ms">
+        <p class="stat__num"><span data-count="70">70</span><em>%</em></p>
+        <p class="stat__label">Lower cost than traditional studio production <span class="stat__tag">Goal</span></p>
+      </div>
+      <div class="stat" data-reveal style="--rd:200ms">
+        <p class="stat__num"><span data-count="0">0</span><em> hrs</em></p>
+        <p class="stat__label">Camera time needed for weekly content</p>
+      </div>
+      <div class="stat" data-reveal style="--rd:300ms">
+        <p class="stat__num"><em class="stat__pre">&lt;</em><span data-count="1">1</span><em>s</em></p>
+        <p class="stat__label">Site load time, built for humans and AI shopping agents <span class="stat__tag">Goal</span></p>
+      </div>
+    </div>
+    <p class="stats__note" data-reveal>
+      CERO Studio is a young studio, so these are the targets we build and measure against, drawn from
+      industry benchmarks, not claimed client averages. In your audit we'll model the numbers for
+      <em>your</em> business, then prove them in a pilot.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ MARQUEE ═══════════════════ -->
+<section class="marquee-wrap section--dark" aria-label="Tools we build with">
+  <p class="marquee__label container" data-reveal>Built on the tools your business already trusts</p>
+  <div class="marquee" id="marquee">
+    <ul class="marquee__track">
+      <li>n8n</li><li>Make.com</li><li>Twilio</li><li>WhatsApp Business</li><li>ElevenLabs</li>
+      <li>Google Calendar</li><li>HubSpot</li><li>Stripe</li><li>Zapier</li><li>Slack</li>
+      <li>Airtable</li><li>Vapi</li><li>Retell AI</li><li>Notion</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROBLEM ═══════════════════ -->
+<section class="section section--alt" id="problem">
+  <div class="container">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>The problem</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">The Hidden Cost of Doing It Manually</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        None of this feels like a crisis on any single day. It just quietly leaks
+        revenue, week after week, while you're with a client.
+      </p>
+    </header>
+
+    <!-- Finished card artwork: icon, headline and copy are baked in, so the alt
+         text carries the wording. These are white-on-white cards, so each one
+         reads as a light card against the navy page (see README). -->
+    <ul class="img-grid img-grid--problem">
+      <li class="img-card" data-reveal>
+        <img src="assets/problem-01-manual-work.png" width="1402" height="1122"
+             loading="lazy" decoding="async" alt="Too much manual work. Repetitive tasks across sales, support and operations quietly eat your team's time every single day." />
+      </li>
+      <li class="img-card" data-reveal style="--rd:100ms">
+        <img src="assets/problem-02-production-cost.png" width="1402" height="1122"
+             loading="lazy" decoding="async" alt="Production costs too much, too slow. Traditional commercials mean big budgets, big crews and weeks of waiting, out of reach for most growing brands." />
+      </li>
+      <li class="img-card" data-reveal style="--rd:200ms">
+        <img src="assets/problem-03-visibility.png" width="1402" height="1122"
+             loading="lazy" decoding="async" alt="No time to stay visible. Founders know they need to show up online consistently, but scripting, filming and editing take hours they don't have." />
+      </li>
+      <li class="img-card" data-reveal style="--rd:300ms">
+        <img src="assets/problem-04-website.png" width="1402" height="1122"
+             loading="lazy" decoding="async" alt="Your website isn't keeping up. Visitors bounce, and AI shopping agents can't read a site that wasn't built to be understood by them." />
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section class="section section--dark" id="services">
+  <div class="container">
+    <header class="sec-head sec-head--center">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Services</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Our Services for Businesses</h2>
+    </header>
+
+    <!-- Editorial rows: banner on top, then real HTML title/copy/chips. The
+         banners are collage-only crops of the full card artwork, generated by
+         scripts/build-banners.py, so the wording below is not duplicated in
+         the pixels, so it stays selectable, translatable and legible at any width. -->
+    <ul class="svc-rows">
+      <li class="svc-row" data-reveal>
+        <div class="svc-row__banner">
+          <img src="assets/service-01-banner.png" width="1600" height="648"
+               loading="lazy" decoding="async" alt="Dashboards, an agent chat transcript and a research-to-publish agent workflow." />
+        </div>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <p class="svc-row__no">Service 01</p>
+            <h3 class="svc-row__title">Custom AI Agents</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Autonomous agents wired into the work you already do: routing, replying, reconciling. We map the workflow, then let it run itself.</p>
+            <ul class="svc-row__chips">
+              <li>Workflow Mapping</li>
+              <li>24/7 Autonomy</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:90ms">
+        <div class="svc-row__banner">
+          <img src="assets/service-02-banner.png" width="1600" height="648"
+               loading="lazy" decoding="async" alt="Automotive and fragrance commercial stills beside a traditional-versus-AI production comparison." />
+        </div>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <p class="svc-row__no">Service 02</p>
+            <h3 class="svc-row__title">AI Commercial Production</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Studio-quality ads and commercials, produced with AI at a fraction of the traditional cost, and in days rather than weeks.</p>
+            <ul class="svc-row__chips">
+              <li>Fast Turnaround</li>
+              <li>70% Lower Cost</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:180ms">
+        <div class="svc-row__banner">
+          <img src="assets/service-03-banner.png" width="1600" height="648"
+               loading="lazy" decoding="async" alt="Social video posts of a founder avatar alongside a voice-cloning waveform." />
+        </div>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <p class="svc-row__no">Service 03</p>
+            <h3 class="svc-row__title">AI Founder Avatar</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Content is the new currency. We help founders show up online consistently, in your face and your cloned voice, without spending hours on camera.</p>
+            <ul class="svc-row__chips">
+              <li>Your Face, Your Voice</li>
+              <li>Zero Camera Time</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:270ms">
+        <div class="svc-row__banner">
+          <img src="assets/service-04-banner.png" width="1600" height="648"
+               loading="lazy" decoding="async" alt="A product storefront with a conversion funnel, structured-product data and an AI shopping assistant." />
+        </div>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <p class="svc-row__no">Service 04</p>
+            <h3 class="svc-row__title">AI-Agent-Friendly Website</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">A website built to convert, and built for the AI agents your customers now shop with, so your products stay readable as search changes.</p>
+            <ul class="svc-row__chips">
+              <li>AI-Readable</li>
+              <li>Future-Proofed</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ COMPARISON ═══════════════════ -->
+<section class="section section--alt" id="why-us">
+  <div class="container container--narrow">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Why us</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">CERO vs. The Old Way</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        Same business, same team, same phone number. Different amount of it slipping through the cracks.
+      </p>
+    </header>
+
+    <div class="compare" data-reveal style="--rd:200ms">
+      <div class="compare__head">
+        <p class="compare__col compare__col--old"><span class="compare__mark compare__mark--x" aria-hidden="true">✕</span> The Old Way</p>
+        <p class="compare__col compare__col--new"><span class="compare__mark compare__mark--check" aria-hidden="true">✓</span> CERO Studio</p>
+      </div>
+
+      <div class="compare__row" data-reveal>
+        <div class="compare__cell compare__cell--old"><span class="compare__label">The Old Way</span>Hiring full-time staff to cover basic, repetitive tasks</div>
+        <div class="compare__cell compare__cell--new"><span class="compare__label">CERO Studio</span>One AI system doing it around the clock, for a fraction of the cost</div>
+      </div>
+      <div class="compare__row" data-reveal style="--rd:80ms">
+        <div class="compare__cell compare__cell--old"><span class="compare__label">The Old Way</span>Studio shoots that cost thousands and take weeks to turn around</div>
+        <div class="compare__cell compare__cell--new"><span class="compare__label">CERO Studio</span>Studio-quality AI commercials at a fraction of the cost, days not weeks</div>
+      </div>
+      <div class="compare__row" data-reveal style="--rd:160ms">
+        <div class="compare__cell compare__cell--old"><span class="compare__label">The Old Way</span>Founder either avoids the camera or burns hours filming content every week</div>
+        <div class="compare__cell compare__cell--new"><span class="compare__label">CERO Studio</span>AI avatar delivers on-brand video content without touching a camera</div>
+      </div>
+      <div class="compare__row" data-reveal style="--rd:240ms">
+        <div class="compare__cell compare__cell--old"><span class="compare__label">The Old Way</span>A website only humans can browse, invisible to the AI agents now doing the shopping</div>
+        <div class="compare__cell compare__cell--new"><span class="compare__label">CERO Studio</span>A site built to convert both human visitors and AI shopping agents</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROCESS ═══════════════════ -->
+<section class="section section--dark" id="process">
+  <div class="container">
+    <header class="sec-head sec-head--center sec-head--tight">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>How it works</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Five steps. No jargon.</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        You don't need to understand the tech. You need to know what changes on Monday morning. That's
+        what we walk you through.
+      </p>
+    </header>
+
+    <!-- Plain vertical timeline: numbered marker + a connecting rule drawn from
+         each marker down to the next. Ordinary page scroll, no pinning. -->
+    <ol class="steps">
+      <li class="steps__item" data-reveal style="--rd:80ms">
+        <span class="steps__num" aria-hidden="true">01</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Free Discovery Call</h3>
+          <p class="steps__text">30 minutes to find where leads slip through and what it's actually costing you. No pressure, no pitch.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:180ms">
+        <span class="steps__num" aria-hidden="true">02</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Custom AI Strategy</h3>
+          <p class="steps__text">We map what to automate first based on payback, not what's flashy, and hand you the plan in writing.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:280ms">
+        <span class="steps__num" aria-hidden="true">03</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Build &amp; Integrate</h3>
+          <p class="steps__text">We build it and connect it to your calendar, phone and CRM. Live in 2&ndash;4 weeks for the first system.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:380ms">
+        <span class="steps__num" aria-hidden="true">04</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Launch &amp; Support</h3>
+          <p class="steps__text">We go live with you, watch the first real calls closely, and tune it until it sounds right.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:480ms">
+        <span class="steps__num" aria-hidden="true">05</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Scale</h3>
+          <p class="steps__text">Once the first system pays for itself, we add the next: more channels, more locations, less manual work.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════════════ OUR WORK ═══════════════════ -->
+<section class="section section--alt" id="work">
+  <div class="container">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Our work</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">How It Actually Works</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        Short walkthroughs of what each system does, how it saves time, and where the cost
+        comes down, before you ever get on a call.
+      </p>
+    </header>
+
+    <!-- Two case studies, each a real HTML5 player. .work__slot owns the 16:9
+         box, the rounding and the gold hairline, so the player inherits all of
+         it and needs no styling of its own.
+
+         preload="metadata" is deliberate: these run to several megabytes each,
+         and without it every visitor pays for both on page load whether or not
+         they ever press play. The sources are also remuxed with faststart, see
+         scripts/build-videos.py, so playback starts before the whole file has
+         arrived. The originals had their index at the end of the file, which
+         makes a browser download all 40 MB before showing a single frame. -->
+    <ul class="work-grid">
+      <li class="work__item" data-reveal>
+        <div class="work__slot">
+          <video class="work__media" controls preload="metadata" playsinline
+                 poster="assets/custom-ai-agent-poster.jpg">
+            <source src="assets/custom-ai-agent.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+            <a href="assets/custom-ai-agent.mp4">Download it instead.</a>
+          </video>
+        </div>
+        <h3 class="work__title">Custom AI Agent</h3>
+        <p class="work__desc">
+          Your business runs on repetitive, manual tasks that eat up your time every
+          single day. This custom AI agent automates those workflows, saving you both time
+          and money while you focus on what actually matters.
+        </p>
+      </li>
+      <li class="work__item" data-reveal style="--rd:100ms">
+        <div class="work__slot">
+          <video class="work__media" controls preload="metadata" playsinline
+                 poster="assets/ai-commercial-oreo-poster.jpg">
+            <source src="assets/ai-commercial-oreo.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+            <a href="assets/ai-commercial-oreo.mp4">Download it instead.</a>
+          </video>
+        </div>
+        <h3 class="work__title">AI Commercial Production</h3>
+        <p class="work__desc">
+          A studio quality commercial for Oreo, created entirely through AI prompts. No
+          camera crew, no studio rental, no production costs. Just a prompt and a finished
+          ad ready to run.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOUNDERS ═══════════════════ -->
+<section class="section section--alt" id="founder">
+  <div class="container">
+    <article class="msg msg--linked" data-reveal>
+      <div class="msg__body">
+        <p class="msg__badge"><span class="eyebrow__dot" aria-hidden="true"></span>Founder's Message</p>
+        <p class="msg__role">Founder &amp; CEO</p>
+        <h3 class="msg__name"><a class="msg__link" href="founder.html" aria-label="Saiem, read his full story">Saiem</a></h3>
+        <blockquote class="msg__quote">
+          <p>You don't need seven AI tools and no time to run them. You need one system that actually works while you sleep. That's the only thing we build.</p>
+        </blockquote>
+        <p class="msg__attrib">Saiem, Founder &amp; CEO</p>
+      </div>
+      <figure class="msg__photo">
+        <img src="assets/founder-ceo.jpg" width="760" height="1013" loading="lazy" decoding="async" alt="Saiem, Founder and CEO of CERO Studio" />
+      </figure>
+    </article>
+    <article class="msg msg--linked" data-reveal style="--rd:120ms">
+      <div class="msg__body">
+        <p class="msg__badge"><span class="eyebrow__dot" aria-hidden="true"></span>Co-founder's Message</p>
+        <p class="msg__role">Co-founder &amp; COO</p>
+        <h3 class="msg__name"><a class="msg__link" href="co-founder.html" aria-label="Zihadul Islam, read his full story">Zihadul Islam</a></h3>
+        <blockquote class="msg__quote">
+          <p>Most agencies sell you a tool and disappear. We stay in the system, watching what breaks, fixing it before you notice, and making sure it actually runs your business, not just sits there.</p>
+        </blockquote>
+        <p class="msg__attrib">Zihadul Islam, Co-founder &amp; COO</p>
+      </div>
+      <figure class="msg__photo">
+        <img src="assets/co-founder-coo.jpg" width="760" height="1013" loading="lazy" decoding="async" alt="Zihadul Islam, Co-founder and COO of CERO Studio" />
+      </figure>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="section section--alt section--faq" id="faq">
+  <div class="container container--narrow">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>FAQ</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Questions worth asking</h2>
+    </header>
+
+    <div class="faq" id="faqList">
+
+      <div class="faq__item" data-reveal>
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa1" id="fq1">
+            <span>What exactly does CERO Studio do?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa1" role="region" aria-labelledby="fq1" hidden>
+          <div class="faq__a-inner">
+            <p>
+              We're an AI studio that covers four things: AI agents that answer every enquiry
+              across calls, chat, and messages; studio-quality AI video for ads and commercials;
+              an AI avatar of you for content you don't have to film; and websites built to
+              convert both human visitors and AI shopping agents. Most clients start with the
+              one costing them the most, then add the rest as it pays for itself.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:60ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa2" id="fq2">
+            <span>Do I need any technical knowledge to get started?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa2" role="region" aria-labelledby="fq2" hidden>
+          <div class="faq__a-inner">
+            <p>
+              None. We build and run everything. You approve how it sounds, looks, and reads.
+              If you can describe how your business currently handles calls, content, or your
+              website, you can brief us. Everything we hand over is documented in plain
+              language, with no dashboard you're obliged to learn.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:120ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa3" id="fq3">
+            <span>How long does setup take?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa3" role="region" aria-labelledby="fq3" hidden>
+          <div class="faq__a-inner">
+            <p>
+              It depends on the service. An AI agent or reminder sequence is typically live in
+              2–4 weeks from kickoff; a commercial or avatar video usually turns around in days
+              once we have your brief and assets; a website build runs 3–6 weeks depending on
+              scope. Multi-service builds are staged so the first piece is earning while we
+              build the next.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:180ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">
+            <span>What's included in the free audit call?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa4" role="region" aria-labelledby="fq4" hidden>
+          <div class="faq__a-inner">
+            <p>
+              About 30 minutes, no pitch deck. We map where you're losing time or visibility:
+              missed enquiries, outdated content, an underperforming site. Then we estimate what
+              that's costing you monthly, and tell you which one or two things to fix first. You get
+              that summary in writing afterwards, yours to keep, whether you work with us or
+              not.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:240ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa5" id="fq5">
+            <span>What kind of businesses do you work with?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa5" role="region" aria-labelledby="fq5" hidden>
+          <div class="faq__a-inner">
+            <p>
+              Any business where missed enquiries, outdated content, or a slow website costs
+              real money. That covers appointment-led local businesses and product or e-commerce
+              brands that need ongoing ad and content production. If growth depends on people
+              reaching you, seeing you, or buying from you, we can help.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:300ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa6" id="fq6">
+            <span>What's the pricing structure?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="fa6" role="region" aria-labelledby="fq6" hidden>
+          <div class="faq__a-inner">
+            <p>
+              It depends on the service. AI agents and automation are a one-off build fee plus a
+              monthly fee for hosting, usage, and ongoing tweaks. Video production is typically
+              priced per project or as a monthly content retainer. Websites are a one-off build
+              fee with an optional maintenance plan. We quote everything in full after the audit
+              call. No long lock-in, month-to-month once you're live.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+<section class="cta section--dark" id="contact">
+  <div class="container container--narrow cta__inner">
+    <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Let's talk</p>
+    <h2 class="cta__title" data-reveal style="--rd:80ms">
+      Somewhere Right Now, Someone's<br class="br-md" />
+      <span class="gold-text">Trying to Reach You.</span>
+    </h2>
+    <p class="cta__sub" data-reveal style="--rd:160ms">
+      Whether it's a call, a message, or a customer scrolling past your competitor's ad instead
+      of yours. We fix that. Book a free automation audit, 30 minutes, no obligation, and you
+      keep the plan either way.
+    </p>
+    <div class="cta__actions" data-reveal style="--rd:240ms">
+      <a href="https://cal.com/cerostudio/free-automation-audit" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+        Book a Free Automation Audit
+      </a>
+      <a href="mailto:cerostudio40@gmail.com" class="btn btn--ghost btn--lg">cerostudio40@gmail.com</a>
+      <a href="https://wa.me/8801913254028" class="btn btn--ghost btn--lg" rel="noopener noreferrer" target="_blank">
+        <span class="btn__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 12.1a8.2 8.2 0 0 1-12.2 7.1L3.7 20.4l1.2-4.3a8.2 8.2 0 1 1 15.4-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.3 8.4c.5-.1.8 0 1 .4l.6 1.3c.1.3 0 .5-.2.7l-.4.4a.5.5 0 0 0-.1.6 5 5 0 0 0 2.3 2.3c.2.1.4 0 .6-.1l.4-.5c.2-.2.4-.3.7-.2l1.3.6c.4.2.5.5.4 1a2 2 0 0 1-1.9 1.4c-1 0-2.6-.7-3.9-2s-2-2.9-2-3.9a2 2 0 0 1 1.2-2Z" fill="currentColor"/></svg></span>
+        WhatsApp 01913254028
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer section--dark">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="#top" aria-label="CERO Studio, back to top">
+        <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
+             alt="CERO Studio" loading="lazy" />
+      </a>
+      <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <p class="footer__h">Explore</p>
+      <a href="#services">Services</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#process">Process</a>
+      <a href="#work">Our Work</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="footer__nav">
+      <p class="footer__h">Contact</p>
+      <a href="mailto:cerostudio40@gmail.com">cerostudio40@gmail.com</a>
+      <a href="https://wa.me/8801913254028" rel="noopener noreferrer" target="_blank">WhatsApp 01913254028</a>
+      <a href="https://cal.com/cerostudio/free-automation-audit" target="_blank" rel="noopener noreferrer">Book a free audit</a>
+      <span class="footer__meta">Dhaka, Bangladesh</span>
+    </div>
+
+    <div class="footer__nav">
+      <p class="footer__h">Social</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/cerostudioco/" aria-label="CERO Studio on Instagram" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/company/cero-studio-co/" aria-label="CERO Studio on LinkedIn" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V17M8 7.4v.1M12 17v-3.6a2.2 2.2 0 0 1 4.4 0V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+        <a href="https://x.com/CeroStudio40" aria-label="CERO Studio on X" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 4h3.9l4 5.6L17.2 4h2.4l-5.9 7.2L20 20h-3.9l-4.3-6-5 6H4.4l6.3-7.6Z" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/cerostudioco" aria-label="CERO Studio on Facebook" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H16.7V3.96A20 20 0 0 0 14.38 3.84c-2.3 0-3.88 1.4-3.88 3.98V10H7.8v3h2.7v8Z" fill="currentColor"/></svg></a>
+        <a href="https://wa.me/8801913254028" aria-label="Message CERO Studio on WhatsApp" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 12.1a8.2 8.2 0 0 1-12.2 7.1L3.7 20.4l1.2-4.3a8.2 8.2 0 1 1 15.4-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.3 8.4c.5-.1.8 0 1 .4l.6 1.3c.1.3 0 .5-.2.7l-.4.4a.5.5 0 0 0-.1.6 5 5 0 0 0 2.3 2.3c.2.1.4 0 .6-.1l.4-.5c.2-.2.4-.3.7-.2l1.3.6c.4.2.5.5.4 1a2 2 0 0 1-1.9 1.4c-1 0-2.6-.7-3.9-2s-2-2.9-2-3.9a2 2 0 0 1 1.2-2Z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> CERO Studio. All rights reserved.</p>
+    <p>cerostudio.co</p>
+  </div>
+</footer>
+
+<script src="main.js?v=1787822762" defer></script>
+</body>
+</html>
