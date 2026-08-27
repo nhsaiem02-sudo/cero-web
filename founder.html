@@ -34,7 +34,28 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin
       href="assets/fonts/manrope-var-latin.woff2" />
 
-<link rel="stylesheet" href="styles.css?v=1787851803" />
+<!-- Reveal gate. Every [data-reveal] element starts invisible and main.js is
+     what makes it visible. That means any failure to load or execute main.js,
+     a bad deploy, a blocked request, an extension, leaves the page blank except
+     for the navbar, which is the one block carrying no data-reveal.
+
+     Two independent safety nets, because main.js cannot rescue itself:
+       - the .js class: without scripting the hiding rule never applies at all
+       - a 2.5s timer: if main.js has not taken over by then, show everything.
+         main.js clears this the moment it boots, so a healthy page still gets
+         its scroll reveals. -->
+<script>
+(function () {
+  var d = document.documentElement;
+  d.className += ' js';
+  window.__revealFailsafe = setTimeout(function () {
+    d.className += ' reveal-fallback';
+  }, 2500);
+})();
+</script>
+<noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
+
+<link rel="stylesheet" href="styles.css?v=1787853690" />
 
 <script type="application/ld+json">
 {
@@ -339,6 +360,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=1787822762" defer></script>
+<script src="main.js?v=1787853761" defer></script>
 </body>
 </html>

@@ -21,12 +21,28 @@
 
   /* ── Scroll reveal (stagger comes from inline --rd) ─────── */
   function initReveal() {
+    // Stands down the head gate's failsafe timer. Deliberately NOT called just
+    // because this file loaded: that would only prove the script arrived, and
+    // an observer that never fires would still leave the page blank. It is
+    // called once the reveal mechanism has demonstrably worked.
+    function standDown() {
+      if (window.__revealFailsafe) {
+        clearTimeout(window.__revealFailsafe);
+        window.__revealFailsafe = null;
+      }
+    }
+
     var items = $$('[data-reveal]');
     if (reduced || !('IntersectionObserver' in window)) {
       items.forEach(function (el) { el.classList.add('is-in'); });
+      standDown();
       return;
     }
     var io = new IntersectionObserver(function (entries) {
+      // An observer invokes its callback once for every target shortly after
+      // observe(), intersecting or not. Reaching here at all is the proof that
+      // the mechanism is alive, which is the right moment to drop the net.
+      standDown();
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         e.target.classList.add('is-in');

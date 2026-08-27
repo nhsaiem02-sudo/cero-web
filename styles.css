@@ -1110,12 +1110,18 @@ picture{display:contents}
 }
 
 /* ── 7. Animation ────────────────────────────────────────── */
-[data-reveal]{
+/* Scoped to .js, which the gate in each document's head sets. Without scripting
+   the rule never applies and the content is simply visible, rather than hidden
+   forever waiting for a reveal that will never come. */
+.js [data-reveal]{
   opacity:0;transform:translateY(26px);
   transition:opacity 760ms var(--ease),transform 760ms var(--ease);
   transition-delay:var(--rd,0ms);
 }
 [data-reveal].is-in{opacity:1;transform:none}
+/* The failsafe. Same (0,2,0) specificity as .is-in and deliberately placed
+   after it, so whichever applies, the element ends up visible. */
+.reveal-fallback [data-reveal]{opacity:1;transform:none}
 
 @keyframes scroll-x{from{transform:translate3d(0,0,0)}to{transform:translate3d(-100%,0,0)}}
 @keyframes float{
