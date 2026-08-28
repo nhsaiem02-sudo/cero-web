@@ -1221,12 +1221,31 @@ picture{display:contents}
    and text shadow it used to carry existed only to lift it clear of a bank of
    photographs behind it; on a flat navy ground they are dead weight. */
 .story__lede{
-  max-width:16ch;margin:0 auto clamp(30px,4.4vw,58px);
+  max-width:30ch;margin:0 auto clamp(20px,2.6vw,34px);
   text-align:center;
   font-family:var(--f-head);font-weight:800;
-  font-size:clamp(30px,3.4vw + 16px,60px);
   line-height:1.06;letter-spacing:-.035em;
-  color:var(--on-dark);text-wrap:balance;
+  color:var(--on-dark);
+}
+/* Two-line entity headline: the person's name, largest, then their role at
+   the studio underneath in a smaller weight. The gold gradient lives on just
+   the role's job-title span, set on .story__lede-role's markup, not here. */
+.story__lede-name{
+  display:block;text-wrap:balance;
+  font-size:clamp(34px,3.6vw + 18px,64px);
+}
+.story__lede-role{
+  display:block;margin-top:.32em;text-wrap:balance;
+  font-size:clamp(17px,.9vw + 12px,26px);
+  font-weight:700;letter-spacing:-.02em;
+}
+
+.story__intro{
+  max-width:60ch;margin:0 auto clamp(40px,5vw,72px);
+  text-align:center;
+  color:var(--on-dark-2);
+  font-size:clamp(15.5px,.45vw + 14px,17.5px);
+  line-height:1.72;
 }
 
 .story{
@@ -1360,6 +1379,10 @@ picture{display:contents}
   display:flex;flex-wrap:wrap;gap:var(--sp-3);justify-content:center;
 }
 
+.story__faq{margin-top:clamp(64px,9vw,128px)}
+.story__faq .faq{max-width:760px;margin-inline:auto}
+.story__social{display:flex;justify-content:center;margin-top:clamp(36px,5vw,56px)}
+
 /* Single column: the spine moves to the left edge and every chapter stacks,
    photograph first. .story__ch--solo drops its centring so the two kinds of
    chapter share one left-aligned rhythm. */
@@ -1375,5 +1398,5 @@ picture{display:contents}
   .story__ch .story__body{grid-column:1;grid-row:auto}
   .story__node{left:-29px;top:14px;transform:none}
   .story__fig img{aspect-ratio:3 / 2}
-  .story__lede{max-width:20ch}
+  .story__lede{max-width:22ch}
 }
