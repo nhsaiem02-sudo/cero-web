@@ -150,7 +150,7 @@
        </div>
 
      preload="none" is what keeps this page cheap: there are nine players here and
-     roughly 28 MB behind them, and nothing is fetched until someone presses play
+     roughly 30 MB behind them, and nothing is fetched until someone presses play
      or the vertical autoplay observer reaches one. The sources are remuxed with
      faststart, see scripts/build-videos.py, so playback starts before the whole
      file has arrived. They are served from /assets/videos/ to pick up the
@@ -183,7 +183,7 @@
         </li>
         <li class="work__item" data-reveal style="--rd:100ms">
           <div class="work__slot">
-            <video class="work__media" controls preload="none" playsinline muted
+            <video class="work__media" controls preload="none" playsinline
                    poster="/assets/videos/automation-compressed-poster.webp">
               <source src="/assets/videos/automation-compressed.mp4" type="video/mp4" />
               Your browser cannot play this video.
@@ -197,7 +197,7 @@
         </li>
         <li class="work__item" data-reveal style="--rd:200ms">
           <div class="work__slot">
-            <video class="work__media" controls preload="none" playsinline muted
+            <video class="work__media" controls preload="none" playsinline
                    poster="/assets/videos/chatbot-compressed-poster.webp">
               <source src="/assets/videos/chatbot-compressed.mp4" type="video/mp4" />
               Your browser cannot play this video.
