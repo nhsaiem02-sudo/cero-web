@@ -89,13 +89,13 @@ A short list of things that need your real details:
 
 1. **Email**, no longer shown anywhere on the site. `cerostudio40@gmail.com` survives only in
    the Organization JSON-LD on `index.html`, where it is machine-readable for search engines
-   and never rendered. Enquiries are routed through Cal.com and WhatsApp instead.
+   and never rendered. Enquiries are routed through Cal.com. WhatsApp is gone site-wide.
 2. **Social links**, Instagram and LinkedIn URLs in the footer and JSON-LD are placeholders
    (`/cerostudio`). Point them at the real profiles.
 3. **Founder photos**, done. The Founder / Co-founder section uses
    `assets/founder-ceo.jpg` and `assets/co-founder-coo.jpg`; the monogram placeholder is gone.
 4. **Booking links**, done. There is exactly **one** booking pathway across the whole site:
-   every CTA reads "Book a Free Call" and points at `/cerostudio/free-discovery-call`, opening
+   every CTA reads "Book a Free Strategy Call" and points at `/cerostudio/free-discovery-call`, opening
    in a new tab. The old `/cerostudio/free-automation-audit` link and every "Automation Audit"
    label are gone; do not reintroduce a second pathway. `initAnchors` only intercepts
    `href^="#"`, so absolute URLs are never hijacked by the smooth-scroll handler.
@@ -105,15 +105,13 @@ A short list of things that need your real details:
    rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png
    # or: npx sharp-cli -i assets/og-image.svg -o assets/og-image.png resize 1200 630
    ```
-6. **Founder video**, the "Meet the Founder" section on `index.html` expects two files that are
-   not in the repo yet: `assets/videos/founder-intro.mp4` and
-   `assets/videos/founder-intro-poster.jpg`. Until
-   they land the frame renders as an empty player, which is expected. Remux the mp4 with
-   faststart (see `scripts/build-videos.py`) so playback starts before the whole file arrives.
-7. **Portfolio**, `portfolio.html` ships with eight empty 16:9 slots marked "In Production".
-   Each one becomes a real card by dropping a `<video>` into the slot and deleting the badge;
-   the paste-in markup is in a comment at the top of the section. The stats bar that used to
-   sit under the hero is gone, replaced by the founder video CTA.
+6. **Founder video**, done. The "Meet the Founder" section on `index.html` plays
+   `assets/videos/founder-intro.mp4` behind `assets/videos/founder-intro-poster.webp`. The stats
+   bar that used to sit under the hero is gone, replaced by this CTA.
+7. **Portfolio**, `portfolio.html` now runs nine real players and a single empty 16:9 slot still
+   marked "In Production", which keeps the automation grid an even 2x2. That last slot becomes a
+   real card by dropping a `<video>` into it and deleting the badge; the paste-in markup is in a
+   comment at the top of the section.
 
 ## Notes on the build
 

@@ -149,8 +149,8 @@
          </video>
        </div>
 
-     preload="none" is what keeps this page cheap: there are seven players here and
-     roughly 30 MB behind them, and nothing is fetched until someone presses play
+     preload="none" is what keeps this page cheap: there are nine players here and
+     roughly 28 MB behind them, and nothing is fetched until someone presses play
      or the vertical autoplay observer reaches one. The sources are remuxed with
      faststart, see scripts/build-videos.py, so playback starts before the whole
      file has arrived. They are served from /assets/videos/ to pick up the
@@ -182,14 +182,32 @@
           </p>
         </li>
         <li class="work__item" data-reveal style="--rd:100ms">
-          <div class="work__slot work__slot--empty">
-            <span class="work__badge"><span class="eyebrow__dot" aria-hidden="true"></span>In Production</span>
+          <div class="work__slot">
+            <video class="work__media" controls preload="none" playsinline muted
+                   poster="/assets/videos/automation-compressed-poster.webp">
+              <source src="/assets/videos/automation-compressed.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/automation-compressed.mp4">Download it instead.</a>
+            </video>
           </div>
+          <h3 class="work__title">AI Automation System</h3>
+          <p class="work__desc">
+            Missed call text-back and smart appointment booking, fully automated.
+          </p>
         </li>
         <li class="work__item" data-reveal style="--rd:200ms">
-          <div class="work__slot work__slot--empty">
-            <span class="work__badge"><span class="eyebrow__dot" aria-hidden="true"></span>In Production</span>
+          <div class="work__slot">
+            <video class="work__media" controls preload="none" playsinline muted
+                   poster="/assets/videos/chatbot-compressed-poster.webp">
+              <source src="/assets/videos/chatbot-compressed.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/chatbot-compressed.mp4">Download it instead.</a>
+            </video>
           </div>
+          <h3 class="work__title">AI Chatbot</h3>
+          <p class="work__desc">
+            AI-powered chatbot that handles customer queries around the clock.
+          </p>
         </li>
         <li class="work__item" data-reveal style="--rd:300ms">
           <div class="work__slot work__slot--empty">
