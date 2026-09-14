@@ -60,7 +60,7 @@
 </script>
 <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
-<link rel="stylesheet" href="styles.css?v=1787934449" />
+<link rel="stylesheet" href="styles.min.css?v=1789376229" />
 
 <script type="application/ld+json">
 {
@@ -70,7 +70,7 @@
   "name": "CERO Studio Co.",
   "alternateName": ["CERO Studio", "Cero Studio Co"],
   "url": "https://cerostudio.co/",
-  "logo": "https://cerostudio.co/assets/logo-navbar.png",
+  "logo": "https://cerostudio.co/assets/logo-navbar.webp",
   "image": "https://cerostudio.co/assets/og-image.jpg",
   "description": "CERO Studio Co. is an AI agency that builds custom AI agents, AI commercial production, AI founder avatars and AI-agent-friendly websites.",
   "email": "cerostudio40@gmail.com",
@@ -84,16 +84,21 @@
     "https://www.instagram.com/cerostudioco/",
     "https://www.linkedin.com/company/cero-studio-co/",
     "https://x.com/CeroStudio40",
-    "https://www.facebook.com/cerostudioco",
-    "https://wa.me/8801913254028"
+    "https://www.facebook.com/cerostudioco"
   ]
 }
 </script>
 <script>
 /* Splash gate. Runs before first paint so the page never flashes behind it.
-   Plays on every document load; anchor navigation inside the page does not
-   reload, so it never replays mid-session. Skipped under reduced motion, and if
-   this script never runs the markup stays hidden and the site loads normally. */
+
+   Plays ONCE PER BROWSER SESSION, not on every load. A full-screen overlay is
+   the single largest cost to Speed Index and to how fast the site feels, and a
+   visitor who has already seen the mark gains nothing from watching it again on
+   their second page view. Total run is now ~640ms (was 1500ms).
+
+   Skipped entirely under reduced motion and on back/forward navigation. If this
+   script never runs the markup stays hidden and the site loads normally, so
+   nothing here is load-bearing. */
 (function () {
   try {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -103,7 +108,11 @@
     var nav = performance.getEntriesByType('navigation')[0];
     if (nav ? nav.type === 'back_forward'
             : (performance.navigation && performance.navigation.type === 2)) return;
-  } catch (e) { /* matchMedia or performance missing: just play it */ }
+    // Once per session. sessionStorage throws in some privacy modes, so a
+    // failure here falls through to playing it rather than breaking the gate.
+    if (sessionStorage.getItem('cero_splash_shown')) return;
+    sessionStorage.setItem('cero_splash_shown', '1');
+  } catch (e) { /* matchMedia, performance or storage missing: just play it */ }
   document.documentElement.className += ' splash-on';
 })();
 </script>
@@ -143,7 +152,7 @@
 <header class="nav" id="nav">
   <div class="nav__inner container">
     <a class="logo" href="#top" aria-label="CERO Studio home">
-      <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
+      <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
            alt="CERO Studio" fetchpriority="high" />
     </a>
 
@@ -151,9 +160,9 @@
       <a href="#services" class="nav__link">Services</a>
       <a href="#why-us" class="nav__link">Why Us</a>
       <a href="#process" class="nav__link">Process</a>
-      <a href="#work" class="nav__link">Our Work</a>
+      <a href="portfolio.html" class="nav__link">Our Work</a>
       <a href="#faq" class="nav__link">FAQ</a>
-      <a href="https://cal.com/cerostudio/free-automation-audit" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Automation Audit</a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
     </nav>
 
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -206,31 +215,31 @@
   </div>
 
   <div class="container hero__inner">
-    <p class="hero__badge" data-reveal>
+    <p class="hero__badge">
       <span class="hero__badge-dot" aria-hidden="true"></span>
       AI Agency
     </p>
 
-    <h1 class="hero__title" data-reveal style="--rd:80ms">
+    <h1 class="hero__title">
       Every practical way AI can
       <span class="gold-text">earn its keep</span>
       in your business
     </h1>
 
-    <p class="hero__sub" data-reveal style="--rd:160ms">
+    <p class="hero__sub">
       Start with the one that's costing you most. Add the rest as you grow. It's all
       one system, not seven subscriptions.
     </p>
 
-    <div class="hero__actions" data-reveal style="--rd:240ms">
-      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">Book a Free Call</a>
-      <a href="#work" class="btn btn--ghost btn--lg">
+    <div class="hero__actions">
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+      <a href="portfolio.html" class="btn btn--ghost btn--lg">
         Our Work
         <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
 
-    <ul class="hero__ticks" data-reveal style="--rd:320ms">
+    <ul class="hero__ticks">
       <li>No lock-in contracts</li>
       <li>Live in weeks, not months</li>
       <li>Built for non-technical owners</li>
@@ -240,32 +249,37 @@
   <p class="hero__scroll" aria-hidden="true"><span></span>Scroll</p>
 </section>
 
-<!-- ═══════════════════ STATS ═══════════════════ -->
-<section class="stats section--dark section--tight" aria-label="What we build toward">
-  <div class="container">
-    <div class="stats__grid">
-      <div class="stat" data-reveal>
-        <p class="stat__num"><span data-count="24">24</span><em>/7</em></p>
-        <p class="stat__label">AI coverage across calls, messages and bookings</p>
-      </div>
-      <div class="stat" data-reveal style="--rd:100ms">
-        <p class="stat__num"><span data-count="70">70</span><em>%</em></p>
-        <p class="stat__label">Lower cost than traditional studio production <span class="stat__tag">Goal</span></p>
-      </div>
-      <div class="stat" data-reveal style="--rd:200ms">
-        <p class="stat__num"><span data-count="0">0</span><em> hrs</em></p>
-        <p class="stat__label">Camera time needed for weekly content</p>
-      </div>
-      <div class="stat" data-reveal style="--rd:300ms">
-        <p class="stat__num"><em class="stat__pre">&lt;</em><span data-count="1">1</span><em>s</em></p>
-        <p class="stat__label">Site load time, built for humans and AI shopping agents <span class="stat__tag">Goal</span></p>
-      </div>
+<!-- ═══════════════════ FOUNDER CTA ═══════════════════
+     Replaces the old stats block. One centred column: overline, the founder's
+     intro video, then the ask. The player is a plain HTML5 element with native
+     controls and no autoplay, so nothing downloads until someone presses play
+     (preload="none" fetches nothing at all) and the poster carries the
+     frame until then. -->
+<section class="founder-cta section--dark section--tight" aria-labelledby="founder-cta-title">
+  <div class="container founder-cta__inner">
+    <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Meet the Founder</p>
+
+    <div class="founder-cta__slot" data-reveal style="--rd:80ms">
+      <video class="founder-cta__media" controls preload="none" playsinline
+             poster="/assets/videos/founder-intro-poster.webp">
+        <source src="/assets/videos/founder-intro.mp4" type="video/mp4" />
+        Your browser cannot play this video.
+        <a href="/assets/videos/founder-intro.mp4">Download it instead.</a>
+      </video>
     </div>
-    <p class="stats__note" data-reveal>
-      CERO Studio is a young studio, so these are the targets we build and measure against, drawn from
-      industry benchmarks, not claimed client averages. In your audit we'll model the numbers for
-      <em>your</em> business, then prove them in a pilot.
+
+    <h2 class="founder-cta__title" id="founder-cta-title" data-reveal style="--rd:140ms">
+      Ready to <span class="gold-text">Grow with AI?</span>
+    </h2>
+    <p class="founder-cta__sub" data-reveal style="--rd:200ms">
+      Book a free 30-min call and I'll walk you through exactly how AI can scale your business.
     </p>
+    <div class="founder-cta__actions" data-reveal style="--rd:260ms">
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+        Book a Free Strategy Call
+        <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -274,7 +288,7 @@
   <p class="marquee__label container" data-reveal>Built on the tools your business already trusts</p>
   <div class="marquee" id="marquee">
     <ul class="marquee__track">
-      <li>n8n</li><li>Make.com</li><li>Twilio</li><li>WhatsApp Business</li><li>ElevenLabs</li>
+      <li>n8n</li><li>Make.com</li><li>Twilio</li><li>ElevenLabs</li>
       <li>Google Calendar</li><li>HubSpot</li><li>Stripe</li><li>Zapier</li><li>Slack</li>
       <li>Airtable</li><li>Vapi</li><li>Retell AI</li><li>Notion</li>
     </ul>
@@ -298,32 +312,20 @@
          reads as a light card against the navy page (see README). -->
     <ul class="img-grid img-grid--problem">
       <li class="img-card" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/problem-01-manual-work.webp" />
-          <img src="assets/problem-01-manual-work.png" width="1402" height="1122"
+        <img src="assets/problem-01-manual-work.webp" width="1402" height="1122"
                loading="lazy" fetchpriority="low" decoding="async" alt="Too much manual work. Repetitive tasks across sales, support and operations quietly eat your team's time every single day." />
-        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:100ms">
-        <picture>
-          <source type="image/webp" srcset="assets/problem-02-production-cost.webp" />
-          <img src="assets/problem-02-production-cost.png" width="1402" height="1122"
+        <img src="assets/problem-02-production-cost.webp" width="1402" height="1122"
                loading="lazy" fetchpriority="low" decoding="async" alt="Production costs too much, too slow. Traditional commercials mean big budgets, big crews and weeks of waiting, out of reach for most growing brands." />
-        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:200ms">
-        <picture>
-          <source type="image/webp" srcset="assets/problem-03-visibility.webp" />
-          <img src="assets/problem-03-visibility.png" width="1402" height="1122"
+        <img src="assets/problem-03-visibility.webp" width="1402" height="1122"
                loading="lazy" fetchpriority="low" decoding="async" alt="No time to stay visible. Founders know they need to show up online consistently, but scripting, filming and editing take hours they don't have." />
-        </picture>
       </li>
       <li class="img-card" data-reveal style="--rd:300ms">
-        <picture>
-          <source type="image/webp" srcset="assets/problem-04-website.webp" />
-          <img src="assets/problem-04-website.png" width="1402" height="1122"
+        <img src="assets/problem-04-website.webp" width="1402" height="1122"
                loading="lazy" fetchpriority="low" decoding="async" alt="Your website isn't keeping up. Visitors bounce, and AI shopping agents can't read a site that wasn't built to be understood by them." />
-        </picture>
       </li>
     </ul>
   </div>
@@ -344,11 +346,8 @@
     <ul class="svc-rows">
       <li class="svc-row" data-reveal>
         <div class="svc-row__banner">
-          <picture>
-            <source type="image/webp" srcset="assets/service-01-banner.webp" />
-            <img src="assets/service-01-banner.png" width="1600" height="648"
+          <img src="assets/service-01-banner.webp" width="1600" height="648"
                  loading="lazy" fetchpriority="low" decoding="async" alt="Dashboards, an agent chat transcript and a research-to-publish agent workflow." />
-          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -366,11 +365,8 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:90ms">
         <div class="svc-row__banner">
-          <picture>
-            <source type="image/webp" srcset="assets/service-02-banner.webp" />
-            <img src="assets/service-02-banner.png" width="1600" height="648"
+          <img src="assets/service-02-banner.webp" width="1600" height="648"
                  loading="lazy" fetchpriority="low" decoding="async" alt="Automotive and fragrance commercial stills beside a traditional-versus-AI production comparison." />
-          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -388,11 +384,8 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:180ms">
         <div class="svc-row__banner">
-          <picture>
-            <source type="image/webp" srcset="assets/service-03-banner.webp" />
-            <img src="assets/service-03-banner.png" width="1600" height="648"
+          <img src="assets/service-03-banner.webp" width="1600" height="648"
                  loading="lazy" fetchpriority="low" decoding="async" alt="Social video posts of a founder avatar alongside a voice-cloning waveform." />
-          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -410,11 +403,8 @@
       </li>
       <li class="svc-row" data-reveal style="--rd:270ms">
         <div class="svc-row__banner">
-          <picture>
-            <source type="image/webp" srcset="assets/service-04-banner.webp" />
-            <img src="assets/service-04-banner.png" width="1600" height="648"
+          <img src="assets/service-04-banner.webp" width="1600" height="648"
                  loading="lazy" fetchpriority="low" decoding="async" alt="A product storefront with a conversion funnel, structured-product data and an AI shopping assistant." />
-          </picture>
         </div>
         <div class="svc-row__body">
           <div class="svc-row__head">
@@ -528,59 +518,24 @@
 <!-- ═══════════════════ OUR WORK ═══════════════════ -->
 <section class="section section--alt" id="work">
   <div class="container">
-    <header class="sec-head">
+    <!-- A teaser, not a gallery. The two players that used to sit here moved to
+         /portfolio along with the rest of the work, so the homepage carries the
+         invitation and the portfolio carries the evidence. Deliberately centred
+         and short: the section header and one button are the whole section. -->
+    <header class="sec-head sec-head--center">
       <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Our work</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">How It Actually Works</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">See Our Work in Action</h2>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        Short walkthroughs of what each system does, how it saves time, and where the cost
-        comes down, before you ever get on a call.
+        The systems we build, and the creative work we produce &mdash; see it all in our portfolio.
       </p>
     </header>
 
-    <!-- Two case studies, each a real HTML5 player. .work__slot owns the 16:9
-         box, the rounding and the gold hairline, so the player inherits all of
-         it and needs no styling of its own.
-
-         preload="metadata" is deliberate: these run to several megabytes each,
-         and without it every visitor pays for both on page load whether or not
-         they ever press play. The sources are also remuxed with faststart, see
-         scripts/build-videos.py, so playback starts before the whole file has
-         arrived. The originals had their index at the end of the file, which
-         makes a browser download all 40 MB before showing a single frame. -->
-    <ul class="work-grid">
-      <li class="work__item" data-reveal>
-        <div class="work__slot">
-          <video class="work__media" controls preload="metadata" playsinline
-                 poster="assets/custom-ai-agent-poster.jpg">
-            <source src="assets/custom-ai-agent.mp4" type="video/mp4" />
-            Your browser cannot play this video.
-            <a href="assets/custom-ai-agent.mp4">Download it instead.</a>
-          </video>
-        </div>
-        <h3 class="work__title">Custom AI Agent</h3>
-        <p class="work__desc">
-          Your business runs on repetitive, manual tasks that eat up your time every
-          single day. This custom AI agent automates those workflows, saving you both time
-          and money while you focus on what actually matters.
-        </p>
-      </li>
-      <li class="work__item" data-reveal style="--rd:100ms">
-        <div class="work__slot">
-          <video class="work__media" controls preload="metadata" playsinline
-                 poster="assets/ai-commercial-oreo-poster.jpg">
-            <source src="assets/ai-commercial-oreo.mp4" type="video/mp4" />
-            Your browser cannot play this video.
-            <a href="assets/ai-commercial-oreo.mp4">Download it instead.</a>
-          </video>
-        </div>
-        <h3 class="work__title">AI Commercial Production</h3>
-        <p class="work__desc">
-          A studio quality commercial for Oreo, created entirely through AI prompts. No
-          camera crew, no studio rental, no production costs. Just a prompt and a finished
-          ad ready to run.
-        </p>
-      </li>
-    </ul>
+    <div class="work__more" data-reveal style="--rd:200ms">
+      <a href="portfolio.html" class="btn btn--gold btn--lg">
+        See All Our Work
+        <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -690,7 +645,7 @@
       <div class="faq__item" data-reveal style="--rd:180ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">
-            <span>What's included in the free audit call?</span>
+            <span>What's included in the free call?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
@@ -739,7 +694,7 @@
               It depends on the service. AI agents and automation are a one-off build fee plus a
               monthly fee for hosting, usage, and ongoing tweaks. Video production is typically
               priced per project or as a monthly content retainer. Websites are a one-off build
-              fee with an optional maintenance plan. We quote everything in full after the audit
+              fee with an optional maintenance plan. We quote everything in full after the
               call. No long lock-in, month-to-month once you're live.
             </p>
           </div>
@@ -760,17 +715,12 @@
     </h2>
     <p class="cta__sub" data-reveal style="--rd:160ms">
       Whether it's a call, a message, or a customer scrolling past your competitor's ad instead
-      of yours. We fix that. Book a free automation audit, 30 minutes, no obligation, and you
+      of yours. We fix that. Book a free strategy call, 30 minutes, no obligation, and you
       keep the plan either way.
     </p>
     <div class="cta__actions" data-reveal style="--rd:240ms">
-      <a href="https://cal.com/cerostudio/free-automation-audit" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
-        Book a Free Automation Audit
-      </a>
-      <a href="mailto:cerostudio40@gmail.com" class="btn btn--ghost btn--lg">cerostudio40@gmail.com</a>
-      <a href="https://wa.me/8801913254028" class="btn btn--ghost btn--lg" rel="noopener noreferrer" target="_blank">
-        <span class="btn__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 12.1a8.2 8.2 0 0 1-12.2 7.1L3.7 20.4l1.2-4.3a8.2 8.2 0 1 1 15.4-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.3 8.4c.5-.1.8 0 1 .4l.6 1.3c.1.3 0 .5-.2.7l-.4.4a.5.5 0 0 0-.1.6 5 5 0 0 0 2.3 2.3c.2.1.4 0 .6-.1l.4-.5c.2-.2.4-.3.7-.2l1.3.6c.4.2.5.5.4 1a2 2 0 0 1-1.9 1.4c-1 0-2.6-.7-3.9-2s-2-2.9-2-3.9a2 2 0 0 1 1.2-2Z" fill="currentColor"/></svg></span>
-        WhatsApp 01913254028
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+        Book a Free Strategy Call
       </a>
     </div>
   </div>
@@ -783,7 +733,7 @@
   <div class="container footer__inner">
     <div class="footer__brand">
       <a class="logo logo--footer" href="#top" aria-label="CERO Studio, back to top">
-        <img class="logo__img" src="assets/logo-navbar.png" width="476" height="133"
+        <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
              alt="CERO Studio" loading="lazy" fetchpriority="low" />
       </a>
       <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
@@ -794,15 +744,13 @@
       <a href="#services">Services</a>
       <a href="#why-us">Why Us</a>
       <a href="#process">Process</a>
-      <a href="#work">Our Work</a>
+      <a href="portfolio.html">Our Work</a>
       <a href="#faq">FAQ</a>
     </nav>
 
     <div class="footer__nav">
       <p class="footer__h">Contact</p>
-      <a href="mailto:cerostudio40@gmail.com">cerostudio40@gmail.com</a>
-      <a href="https://wa.me/8801913254028" rel="noopener noreferrer" target="_blank">WhatsApp 01913254028</a>
-      <a href="https://cal.com/cerostudio/free-automation-audit" target="_blank" rel="noopener noreferrer">Book a free audit</a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" target="_blank" rel="noopener noreferrer">Book a free strategy call</a>
       <span class="footer__meta">Dhaka, Bangladesh</span>
     </div>
 
@@ -813,7 +761,6 @@
         <a href="https://www.linkedin.com/company/cero-studio-co/" aria-label="CERO Studio on LinkedIn" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V17M8 7.4v.1M12 17v-3.6a2.2 2.2 0 0 1 4.4 0V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
         <a href="https://x.com/CeroStudio40" aria-label="CERO Studio on X" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 4h3.9l4 5.6L17.2 4h2.4l-5.9 7.2L20 20h-3.9l-4.3-6-5 6H4.4l6.3-7.6Z" fill="currentColor"/></svg></a>
         <a href="https://www.facebook.com/cerostudioco" aria-label="CERO Studio on Facebook" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H16.7V3.96A20 20 0 0 0 14.38 3.84c-2.3 0-3.88 1.4-3.88 3.98V10H7.8v3h2.7v8Z" fill="currentColor"/></svg></a>
-        <a href="https://wa.me/8801913254028" aria-label="Message CERO Studio on WhatsApp" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 12.1a8.2 8.2 0 0 1-12.2 7.1L3.7 20.4l1.2-4.3a8.2 8.2 0 1 1 15.4-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.3 8.4c.5-.1.8 0 1 .4l.6 1.3c.1.3 0 .5-.2.7l-.4.4a.5.5 0 0 0-.1.6 5 5 0 0 0 2.3 2.3c.2.1.4 0 .6-.1l.4-.5c.2-.2.4-.3.7-.2l1.3.6c.4.2.5.5.4 1a2 2 0 0 1-1.9 1.4c-1 0-2.6-.7-3.9-2s-2-2.9-2-3.9a2 2 0 0 1 1.2-2Z" fill="currentColor"/></svg></a>
       </div>
     </div>
   </div>
@@ -824,6 +771,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=1787857361" defer></script>
+<script src="main.min.js?v=1789376229" defer></script>
 </body>
 </html>

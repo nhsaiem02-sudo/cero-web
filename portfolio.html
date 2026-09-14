@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Our Work | CERO Studio Co.</title>
+<meta name="description" content="AI automation systems and AI video production built by CERO Studio Co. Custom AI agents, voice receptionists and studio-quality commercials produced entirely through AI." />
+<link rel="canonical" href="https://cerostudio.co/portfolio" />
+<meta name="theme-color" content="#0A1128" />
+
+<!-- Open Graph / social -->
+<meta property="og:site_name" content="CERO Studio Co." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cerostudio.co/portfolio" />
+<meta property="og:title" content="Our Work | CERO Studio Co." />
+<meta property="og:description" content="AI systems we've built and creative work we've produced for our clients." />
+<meta property="og:image" content="https://cerostudio.co/assets/og-image.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="CERO Studio Co. portfolio: AI automation systems and AI video production." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Our Work | CERO Studio Co." />
+<meta name="twitter:description" content="AI systems we've built and creative work we've produced for our clients." />
+<meta name="twitter:image" content="https://cerostudio.co/assets/og-image.jpg" />
+
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+<!-- Fonts are self-hosted, see the @font-face block at the top of styles.css.
+     Preloaded because the stylesheet only reveals them once it has parsed, and
+     these two are on the critical path for text. crossorigin is required on a
+     font preload even same-origin: fonts are fetched in CORS mode, and without
+     it the browser downloads the file twice. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/schibsted-grotesk-var-latin.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/manrope-var-latin.woff2" />
+
+<!-- Reveal gate. Every [data-reveal] element starts invisible and main.js is
+     what makes it visible. That means any failure to load or execute main.js,
+     a bad deploy, a blocked request, an extension, leaves the page blank except
+     for the navbar, which is the one block carrying no data-reveal.
+
+     Two independent safety nets, because main.js cannot rescue itself:
+       - the .js class: without scripting the hiding rule never applies at all
+       - a 2.5s timer: if main.js has not taken over by then, show everything.
+         main.js clears this the moment it boots, so a healthy page still gets
+         its scroll reveals. -->
+<script>
+(function () {
+  var d = document.documentElement;
+  d.className += ' js';
+  window.__revealFailsafe = setTimeout(function () {
+    d.className += ' reveal-fallback';
+  }, 2500);
+})();
+</script>
+<noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
+
+<link rel="stylesheet" href="styles.min.css?v=1789376229" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://cerostudio.co/portfolio#page",
+  "name": "Our Work",
+  "description": "AI systems we've built and creative work we've produced for our clients.",
+  "url": "https://cerostudio.co/portfolio",
+  "isPartOf": { "@id": "https://cerostudio.co/#organization" },
+  "about": { "@id": "https://cerostudio.co/#organization" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Same single fixed ground as the homepage. See the "Page background" note in
+     README. Nothing on this page paints its own background either. -->
+<div class="page-bg" aria-hidden="true">
+  <div class="page-bg__glow page-bg__glow--a" data-parallax="0.05"></div>
+  <div class="page-bg__glow page-bg__glow--b"></div>
+  <div class="page-bg__veins"></div>
+  <div class="page-bg__sparkle"></div>
+  <div class="page-bg__grain"></div>
+</div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<!-- Every in-page anchor is prefixed with index.html: this is a separate
+     document, so a bare #services would scroll to nothing here. "Our Work" is
+     this page, so it carries .is-active outright rather than waiting on the
+     scroll spy, which only tracks same-document #id links. -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="logo" href="index.html" aria-label="CERO Studio home">
+      <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
+           alt="CERO Studio" fetchpriority="high" />
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="index.html#services" class="nav__link">Services</a>
+      <a href="index.html#why-us" class="nav__link">Why Us</a>
+      <a href="index.html#process" class="nav__link">Process</a>
+      <a href="portfolio.html" class="nav__link is-active" aria-current="page">Our Work</a>
+      <a href="index.html#faq" class="nav__link">FAQ</a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="section section--alt section--pagehead">
+  <div class="container">
+    <header class="sec-head sec-head--center">
+      <p class="eyebrow eyebrow--dark"><span class="eyebrow__dot" aria-hidden="true"></span>Portfolio</p>
+      <h1 class="sec-title">Our Work</h1>
+      <p class="sec-sub">
+        AI systems we've built and creative work we've produced for our clients.
+      </p>
+    </header>
+  </div>
+</section>
+
+<!-- ═══════════════════ PORTFOLIO ═══════════════════
+     Two groups, two frame shapes. Automation systems are screen recordings, so
+     they run 16:9 two up; video production is Reels/Shorts work, so that group
+     carries .work-grid--vertical and its slots are 9:16, three up. Both share
+     the same .work__slot / .work__title / .work__desc styles, so a slot holding
+     a real player and one still waiting on a file are the same box. Turning a
+     placeholder into a finished card is a matter of dropping a <video> in and
+     deleting the badge:
+
+       <div class="work__slot">
+         <video class="work__media" controls preload="none" playsinline
+                poster="/assets/videos/NAME-poster.webp">
+           <source src="/assets/videos/NAME.mp4" type="video/mp4" />
+           Your browser cannot play this video.
+           <a href="/assets/videos/NAME.mp4">Download it instead.</a>
+         </video>
+       </div>
+
+     preload="none" is what keeps this page cheap: there are seven players here and
+     roughly 30 MB behind them, and nothing is fetched until someone presses play
+     or the vertical autoplay observer reaches one. The sources are remuxed with
+     faststart, see scripts/build-videos.py, so playback starts before the whole
+     file has arrived. They are served from /assets/videos/ to pick up the
+     one-year immutable Cache-Control header that /assets/* carries. -->
+<section class="section section--alt section--pfwork">
+  <div class="container">
+
+    <section class="pf-group">
+      <header class="pf-group__head">
+        <h2 class="pf-group__title" data-reveal>AI Automation Systems</h2>
+        <p class="pf-group__intro" data-reveal style="--rd:80ms">
+          Custom AI agents and workflow automations that replace manual, repetitive work.
+        </p>
+      </header>
+
+      <ul class="work-grid">
+        <li class="work__item" data-reveal>
+          <div class="work__slot">
+            <video class="work__media" controls preload="none" playsinline
+                   poster="/assets/videos/voice-agent-demo-poster.webp">
+              <source src="/assets/videos/voice-agent-demo.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/voice-agent-demo.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Voice Agent for Veterinary Clinics</h3>
+          <p class="work__desc">
+            24/7 AI receptionist that triages calls, books appointments, and captures every lead.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:100ms">
+          <div class="work__slot work__slot--empty">
+            <span class="work__badge"><span class="eyebrow__dot" aria-hidden="true"></span>In Production</span>
+          </div>
+        </li>
+        <li class="work__item" data-reveal style="--rd:200ms">
+          <div class="work__slot work__slot--empty">
+            <span class="work__badge"><span class="eyebrow__dot" aria-hidden="true"></span>In Production</span>
+          </div>
+        </li>
+        <li class="work__item" data-reveal style="--rd:300ms">
+          <div class="work__slot work__slot--empty">
+            <span class="work__badge"><span class="eyebrow__dot" aria-hidden="true"></span>In Production</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Vertical group. These are Reels/Shorts cuts, so the slot is locked to
+         9:16 by .work-grid--vertical and the grid runs three up rather than two.
+         Each card is capped at 320px so a portrait frame stays a phone-shaped
+         object instead of stretching into a full column, which is what makes a
+         vertical video read as premium rather than upscaled.
+
+         data-autoplay marks these for initReelAutoplay in main.js: muted + loop
+         + play on entering the viewport, pause on leaving. muted is what makes
+         autoplay permissible at all; every browser blocks it with sound. The
+         controls stay, so anyone can scrub or unmute, and the observer backs off
+         for good on a video the visitor pauses by hand. -->
+    <section class="pf-group">
+      <header class="pf-group__head">
+        <h2 class="pf-group__title" data-reveal>AI Video Production</h2>
+        <p class="pf-group__intro" data-reveal style="--rd:80ms">
+          Studio-quality commercial and product videos, produced entirely through AI.
+          Optimized for Reels, Shorts, and vertical feeds.
+        </p>
+      </header>
+
+      <ul class="work-grid work-grid--vertical">
+        <li class="work__item" data-reveal>
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/dior-sauvage-poster.webp">
+              <source src="/assets/videos/dior-sauvage.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/dior-sauvage.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Dior Sauvage</h3>
+          <p class="work__desc">
+            Luxury fragrance ad with cinematic AI visuals.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:100ms">
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/ice-cream-poster.webp">
+              <source src="/assets/videos/ice-cream.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/ice-cream.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Ice Cream Commercial</h3>
+          <p class="work__desc">
+            AI-generated product commercial with cinematic visuals.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:200ms">
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/oreo-poster.webp">
+              <source src="/assets/videos/oreo.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/oreo.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Oreo</h3>
+          <p class="work__desc">
+            Playful snack brand spot with AI-crafted animation.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:300ms">
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/ecom-poster.webp">
+              <source src="/assets/videos/ecom.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/ecom.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">E-commerce Product</h3>
+          <p class="work__desc">
+            AI-produced product showcase for online retail.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:400ms">
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/pathao-poster.webp">
+              <source src="/assets/videos/pathao.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/pathao.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Pathao</h3>
+          <p class="work__desc">
+            Tech brand promo ad built entirely with AI.
+          </p>
+        </li>
+        <li class="work__item" data-reveal style="--rd:500ms">
+          <div class="work__slot" loading="lazy">
+            <video class="work__media" controls preload="none" playsinline muted loop
+                   data-autoplay poster="/assets/videos/wabi-sabi-poster.webp">
+              <source src="/assets/videos/wabi-sabi.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+              <a href="/assets/videos/wabi-sabi.mp4">Download it instead.</a>
+            </video>
+          </div>
+          <h3 class="work__title">Wabi Sabi</h3>
+          <p class="work__desc">
+            Aesthetic lifestyle piece with AI-generated visuals.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="pf-cta" data-reveal>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+        Book a Free Strategy Call
+        <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer section--dark">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="index.html" aria-label="CERO Studio home">
+        <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
+             alt="CERO Studio" loading="lazy" fetchpriority="low" />
+      </a>
+      <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <p class="footer__h">Explore</p>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#why-us">Why Us</a>
+      <a href="index.html#process">Process</a>
+      <a href="portfolio.html">Our Work</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+
+    <div class="footer__nav">
+      <p class="footer__h">Contact</p>
+      <a href="https://cal.com/cerostudio/free-discovery-call" target="_blank" rel="noopener noreferrer">Book a free strategy call</a>
+      <span class="footer__meta">Dhaka, Bangladesh</span>
+    </div>
+
+    <div class="footer__nav">
+      <p class="footer__h">Social</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/cerostudioco/" aria-label="CERO Studio on Instagram" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/company/cero-studio-co/" aria-label="CERO Studio on LinkedIn" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V17M8 7.4v.1M12 17v-3.6a2.2 2.2 0 0 1 4.4 0V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+        <a href="https://x.com/CeroStudio40" aria-label="CERO Studio on X" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 4h3.9l4 5.6L17.2 4h2.4l-5.9 7.2L20 20h-3.9l-4.3-6-5 6H4.4l6.3-7.6Z" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/cerostudioco" aria-label="CERO Studio on Facebook" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H16.7V3.96A20 20 0 0 0 14.38 3.84c-2.3 0-3.88 1.4-3.88 3.98V10H7.8v3h2.7v8Z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> CERO Studio. All rights reserved.</p>
+    <p>cerostudio.co</p>
+  </div>
+</footer>
+
+<script src="main.min.js?v=1789376229" defer></script>
+</body>
+</html>

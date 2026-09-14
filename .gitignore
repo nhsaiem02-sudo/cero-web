@@ -50,3 +50,13 @@ desktop.ini
 # Probe pages written during layout testing, never part of the site.
 _*.html
 _*.js
+
+# ── Build inputs, never deployed ────────────────────────────
+# Master artwork the scripts/ pipeline reads from. Kept out of assets/ so it is
+# not published: logo.png alone is 83 KB that no page ever requests.
+masters/
+
+# ── Raw video originals — never commit these ────────────────
+# Camera/export masters for the /videos/ web encodes, ~385 MB. Kept locally as
+# the backup to re-encode from; the compressed MP4s in videos/ are what ship.
+videos-raw/

@@ -20,6 +20,11 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
+# Build inputs, kept out of assets/ so the 5.8 MB of full-card artwork never
+# deploys. These four are NOT in the working tree by default; restore them with
+#   git checkout HEAD -- 'assets/service-0*-*.png' && mv assets/service-0*-*.png masters/
+# before re-running this script.
+MASTERS = ROOT / "masters"
 
 SOURCES = [
     "service-01-custom-ai-agents-v2.png",
@@ -69,7 +74,7 @@ def panel_top(img):
 
 def main():
     for name in SOURCES:
-        src = ASSETS / name
+        src = MASTERS / name
         if not src.exists():
             print(f"  SKIP (missing): {name}")
             continue

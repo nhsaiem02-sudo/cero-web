@@ -1,10 +1,14 @@
 # CERO Studio | cerostudio.co
 
-Single-page marketing site. Plain HTML, CSS and vanilla JS, no build step, no framework,
+Marketing site. Plain HTML, CSS and vanilla JS, no build step, no framework,
 no runtime dependencies. Code is ~150 KB; the card artwork adds ~9.3 MB (see below).
 
 ```
-index.html          all markup and copy
+index.html          homepage: all markup and copy
+portfolio.html      /portfolio, the full work grid
+founder.html        /founder, NH Saiem's story
+co-founder.html     /co-founder, Zihadul Islam's story
+assets/videos/      compressed web videos + posters (see "Video pipeline")
 styles.css          design tokens + every style
 main.js             reveals, counters, marquee, nav, FAQ, parallax, cursor
 scripts/            build-logo.py    : logo + favicons from assets/logo.png
@@ -83,25 +87,33 @@ redirects `www` to the apex domain; add the equivalent on other hosts if you use
 
 A short list of things that need your real details:
 
-1. **Email**, `cerostudio40@gmail.com` appears in the final CTA, the footer and the JSON-LD block.
-   Search and replace if that isn't the address you want enquiries at.
+1. **Email**, no longer shown anywhere on the site. `cerostudio40@gmail.com` survives only in
+   the Organization JSON-LD on `index.html`, where it is machine-readable for search engines
+   and never rendered. Enquiries are routed through Cal.com and WhatsApp instead.
 2. **Social links**, Instagram and LinkedIn URLs in the footer and JSON-LD are placeholders
    (`/cerostudio`). Point them at the real profiles.
 3. **Founder photos**, done. The Founder / Co-founder section uses
    `assets/founder-ceo.jpg` and `assets/co-founder-coo.jpg`; the monogram placeholder is gone.
-4. **Booking links**, done. Every CTA points at Cal.com and opens in a new tab:
-   "Book a Free Call" → `/cerostudio/free-discovery-call`, "Book a Free Automation Audit"
-   (navbar, closing CTA, footer) → `/cerostudio/free-automation-audit`. `initAnchors` only
-   intercepts `href^="#"`, so absolute URLs are never hijacked by the smooth-scroll handler.
+4. **Booking links**, done. There is exactly **one** booking pathway across the whole site:
+   every CTA reads "Book a Free Call" and points at `/cerostudio/free-discovery-call`, opening
+   in a new tab. The old `/cerostudio/free-automation-audit` link and every "Automation Audit"
+   label are gone; do not reintroduce a second pathway. `initAnchors` only intercepts
+   `href^="#"`, so absolute URLs are never hijacked by the smooth-scroll handler.
 5. **OG image**, social platforms do not render SVG share cards. Convert once and update the
    two `og:image` / `twitter:image` tags to the `.png`:
    ```bash
    rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png
    # or: npx sharp-cli -i assets/og-image.svg -o assets/og-image.png resize 1200 630
    ```
-6. **Stats**, the four numbers in the stats bar are labelled as targets, not results, and the
-   note underneath says so explicitly. Once you have real pilot data, replace the `data-count`
-   values and drop the "Goal" tags.
+6. **Founder video**, the "Meet the Founder" section on `index.html` expects two files that are
+   not in the repo yet: `assets/videos/founder-intro.mp4` and
+   `assets/videos/founder-intro-poster.jpg`. Until
+   they land the frame renders as an empty player, which is expected. Remux the mp4 with
+   faststart (see `scripts/build-videos.py`) so playback starts before the whole file arrives.
+7. **Portfolio**, `portfolio.html` ships with eight empty 16:9 slots marked "In Production".
+   Each one becomes a real card by dropping a `<video>` into the slot and deleting the badge;
+   the paste-in markup is in a comment at the top of the section. The stats bar that used to
+   sit under the hero is gone, replaced by the founder video CTA.
 
 ## Notes on the build
 
@@ -179,11 +191,44 @@ no visible change.
 
 ## Our Work
 
-Two case studies, each a real HTML5 player. `.work__slot` owns the 16:9 box, the
-rounding and the gold hairline, so the player inherits all of it. Two up on
-desktop, stacked below 880px. The section previously held four "coming soon"
-placeholders; the two that had no video were removed rather than left sitting
-next to finished work.
+**All work now lives on `/portfolio`.** The homepage `#work` section is a teaser:
+eyebrow, "See Our Work in Action", one line of copy and a gold button through to
+the portfolio. Nothing else. It takes the standard `--sp-8` padding on both sides
+like the sections around it, so a section that is three elements tall still reads
+as a deliberate band rather than a collapsed one.
+
+The two case-study players that used to sit here are gone, and so are their files
+(see "Deleted video files" below).
+
+`portfolio.html` carries two groups with **two different frame shapes**:
+
+| Group | Ratio | Grid | Card cap |
+| --- | --- | --- | --- |
+| AI Automation Systems | 16:9, screen recordings | 2 up, 1 below 880px | none, fills the column |
+| AI Video Production | 9:16, Reels/Shorts cuts | 3 up, 2 below 1024px, 1 below 620px | 320px, centred in its track |
+
+`.work__slot` owns the box, the rounding and the gold hairline in both, so a player
+dropped inside inherits all of it; only the `aspect-ratio` differs, set by
+`.work-grid--vertical`. The 320px cap on vertical cards is the point of that
+modifier: a 9:16 frame allowed to fill a half-page column towers over everything
+near it and reads as upscaled, where a phone-shaped frame reads as premium.
+
+`.work-grid--vertical` is excluded from the 880px single-column rule via
+`:not()`, not by source order, so it can step 3 → 2 → 1 on its own breakpoints
+without the shared rule collapsing it early.
+
+Empty slots use `.work__slot--empty`: same box, hairline turned dashed, shadow
+dropped, one "In Production" badge centred inside. They read as a frame waiting to
+be filled rather than a player that failed to load. Turning one into a real card is
+dropping a `<video>` in and deleting the badge; the paste-in markup is in a comment
+at the top of the section.
+
+### Deleted video files
+
+`custom-ai-agent.mp4`, `ai-commercial-oreo.mp4` and both their posters were removed
+when the homepage cards went. **The two masters in `assets/` are untouched**, so
+re-running `scripts/build-videos.py` regenerates the web versions and the posters in
+one command. The notes below describe that pipeline and still apply.
 
 `scripts/build-videos.py` prepares the sources. Two things had to change before
 these could ship:
@@ -207,9 +252,12 @@ Posters are frame one of each source, so a card shows the opening frame rather
 than a black box. `preload="metadata"` is deliberate: without it every visitor
 pays for both files on load whether or not they press play.
 
-**The two originals are still in `assets/`, 81 MB between them, and nothing
-references them.** They will be uploaded with everything else if the folder is
-deployed as is. Move them out of `assets/` before shipping.
+**The two originals are still in `assets/`, 81 MB between them.** Nothing on the
+site links to them; they are the masters `scripts/build-videos.py` reads, and now
+the only way back to the deleted web versions, so do not delete them casually. They
+will still be uploaded with everything else if the folder is deployed as is, so move
+them out of `assets/` before shipping rather than removing them.
+
 ## Cursor dot
 
 `#cursorDot` is a 9px semi-transparent gold dot that eases toward the pointer

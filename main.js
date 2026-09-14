@@ -274,10 +274,12 @@
   function initSplash() {
     var el = $('#splash');
     if (!el || !document.documentElement.classList.contains('splash-on')) return;
+    // Must outlast the CSS: splash-out ends at 400ms + 240ms. A little margin
+    // on top, then the node leaves the tree.
     setTimeout(function () {
       document.documentElement.classList.remove('splash-on');
       if (el.parentNode) el.parentNode.removeChild(el);
-    }, 1400);
+    }, 700);
   }
 
   /* ── Scroll position across the /founder round trip ─────────
@@ -358,6 +360,57 @@
     });
   }
 
+  /* ── Reels-style autoplay for the vertical portfolio videos ──
+     Each [data-autoplay] player starts when it is meaningfully on screen and
+     pauses when it leaves, so the vertical grid behaves like a feed rather than
+     a wall of thumbnails waiting to be clicked.
+
+     Four things this has to get right:
+
+     - The markup carries `muted`, and that is not optional. Every browser blocks
+       autoplay with sound, and the play() below would reject.
+     - play() returns a promise that rejects on a blocked autoplay (a data-saver
+       mode, a battery-saver mode, iOS Low Power Mode). Swallow it: the poster
+       stays up and the controls still work, which is a fine outcome.
+     - The players are preload="none", so nothing is fetched for a video that is
+       never scrolled to. Entering the viewport is what triggers the first byte.
+     - A visitor who pauses by hand means it. `pause()` fires a pause event just
+       like a manual one, so the observer marks its own pauses and treats any
+       other as a decision to stop bothering that player.
+
+     Threshold 0.5 rather than a sliver: on a phone, one card is nearly the whole
+     screen, and a lower bar would start two videos at once mid-scroll. */
+  function initReelAutoplay() {
+    var vids = $$('video[data-autoplay]');
+    if (!vids.length || reduced || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (v.dataset.userPaused === '1') return;
+
+        if (e.isIntersecting) {
+          var p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+        } else if (!v.paused) {
+          v.dataset.autoPausing = '1';
+          v.pause();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    vids.forEach(function (v) {
+      v.addEventListener('pause', function () {
+        // Our own pause, not the visitor's: clear the marker and move on.
+        if (v.dataset.autoPausing === '1') { delete v.dataset.autoPausing; return; }
+        v.dataset.userPaused = '1';
+      });
+      // Pressing play by hand hands control back to the observer.
+      v.addEventListener('play', function () { delete v.dataset.userPaused; });
+      io.observe(v);
+    });
+  }
+
   /* ── Boot ──────────────────────────────────────────────── */
   function init() {
     var onNavScroll = initNav();
@@ -368,7 +421,7 @@
        the parallax once already: a single ReferenceError in the middle of
        this list silently killed everything below it. */
     [initReveal, initCounters, initMarquee, initFaq, initAnchors, initSplash,
-     initScrollMemory, initBackLinks].forEach(function (fn) {
+     initScrollMemory, initBackLinks, initReelAutoplay].forEach(function (fn) {
       try { fn(); } catch (e) { if (window.console) console.error(e); }
     });
     initScrollLoop([onNavScroll, onParallax]);

@@ -21,7 +21,9 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "assets" / "logo.png"
+# The master lives outside assets/ so it is never deployed: it is a build input,
+# not a site asset, and at 1000x1000 it would ship 83 KB nobody requests.
+SRC = ROOT / "masters" / "logo.png"
 OUT = ROOT / "assets"
 
 # Element bounds measured from the 1000x1000 master.
