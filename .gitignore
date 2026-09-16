@@ -56,6 +56,11 @@ _*.js
 # not published: logo.png alone is 83 KB that no page ever requests.
 masters/
 
+# Service card source artwork, ~8.3 MB of PNG/JPEG dropped into assets/ to be
+# converted. Only the generated service-0N-banner-{800,1200}.webp files ship.
+assets/new-service-*.png
+assets/new-service-*.jpeg
+
 # ── Raw video originals — never commit these ────────────────
 # Camera/export masters for the /videos/ web encodes, ~385 MB. Kept locally as
 # the backup to re-encode from; the compressed MP4s in videos/ are what ship.
