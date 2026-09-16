@@ -20,9 +20,9 @@ rewriting headings and body copy, titles and meta descriptions, schema/structure
 - **No prices.** Never publish fixed prices or price ranges. Use a "What affects the cost"
   section instead.
 - **CTA link is always** `https://cal.com/cerostudio/free-discovery-call`.
-- **Plain buyer language**, not jargon: "AI receptionist" and "answering service", not
-  "voice agent" or "lead follow-up automation". The reader is a business owner, not a
-  developer.
+- Use the keyword targets in the Target keywords section of SEO-PLAN.md. Plain buyer
+  language over jargon: never use 'voice agent' or 'lead follow-up automation' in
+  headings.
 - **Service pages follow the fixed section order**: keyword H1 hero → problem → how it
   works → use cases for local businesses → what affects the cost → FAQ → CTA.
 - **Every new page ships with three things**: an entry in `sitemap.xml`, a link in the

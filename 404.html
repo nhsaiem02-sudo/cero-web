@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Page not found | CERO Studio Co.</title>
+<meta name="description" content="That page doesn't exist. Head back to the CERO Studio Co. homepage or see our work." />
+
+<!-- No canonical tag: this page answers on every URL that has no file behind
+     it, so there is no one address it could honestly point at. noindex keeps
+     it out of the index if a crawler reaches it through a stale link. -->
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#0A1128" />
+
+<link rel="icon" href="/assets/favicon-16.png" sizes="16x16" type="image/png" />
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="/assets/favicon-512.png" sizes="512x512" type="image/png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+<!-- Every path on this page is root-absolute. Netlify serves this file for any
+     404, /a/b/c included, and a relative path would resolve against that made-up
+     directory and 404 in turn, leaving an unstyled page. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts/schibsted-grotesk-var-latin.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts/manrope-var-latin.woff2" />
+
+<link rel="stylesheet" href="/styles.min.css?v=1789376229" />
+</head>
+
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="logo" href="/" aria-label="CERO Studio home">
+      <img class="logo__img" src="/assets/logo-navbar.webp" width="286" height="80"
+           alt="CERO Studio" fetchpriority="high" />
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="/#services" class="nav__link">Services</a>
+      <a href="/#why-us" class="nav__link">Why Us</a>
+      <a href="/#process" class="nav__link">Process</a>
+      <a href="/portfolio" class="nav__link">Our Work</a>
+      <a href="/#faq" class="nav__link">FAQ</a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- No [data-reveal] anywhere on this page. The reveal gate hides those until
+     main.js boots, and a 404 is the one page that has to read instantly even
+     when something on the site is already broken. -->
+<section class="section section--alt section--pagehead">
+  <div class="container">
+    <header class="sec-head sec-head--center">
+      <p class="eyebrow eyebrow--dark"><span class="eyebrow__dot" aria-hidden="true"></span>404</p>
+      <h1 class="sec-title">This page doesn't exist</h1>
+      <p class="sec-sub">
+        The link may be out of date, or the address may have a typo in it.
+        Everything else is still where you left it.
+      </p>
+    </header>
+
+    <div class="hero__actions">
+      <a href="/" class="btn btn--gold btn--lg">Back to the homepage</a>
+      <a href="/portfolio" class="btn btn--ghost btn--lg">
+        Our Work
+        <svg viewBox="0 0 20 20" class="btn__icon" aria-hidden="true"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--ghost btn--lg" target="_blank" rel="noopener noreferrer">Book a free discovery call</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer section--dark">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="/" aria-label="CERO Studio home">
+        <img class="logo__img" src="/assets/logo-navbar.webp" width="286" height="80"
+             alt="CERO Studio" loading="lazy" fetchpriority="low" />
+      </a>
+      <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <p class="footer__h">Explore</p>
+      <a href="/#services">Services</a>
+      <a href="/#why-us">Why Us</a>
+      <a href="/#process">Process</a>
+      <a href="/portfolio">Our Work</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+
+    <div class="footer__nav">
+      <p class="footer__h">Contact</p>
+      <a href="https://cal.com/cerostudio/free-discovery-call" target="_blank" rel="noopener noreferrer">Book a free strategy call</a>
+      <span class="footer__meta">Dhaka, Bangladesh</span>
+    </div>
+
+    <div class="footer__nav">
+      <p class="footer__h">Social</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/cerostudioco/" aria-label="CERO Studio on Instagram" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/company/cero-studio-co/" aria-label="CERO Studio on LinkedIn" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V17M8 7.4v.1M12 17v-3.6a2.2 2.2 0 0 1 4.4 0V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+        <a href="https://x.com/CeroStudio40" aria-label="CERO Studio on X" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 4h3.9l4 5.6L17.2 4h2.4l-5.9 7.2L20 20h-3.9l-4.3-6-5 6H4.4l6.3-7.6Z" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/cerostudioco" aria-label="CERO Studio on Facebook" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H16.7V3.96A20 20 0 0 0 14.38 3.84c-2.3 0-3.88 1.4-3.88 3.98V10H7.8v3h2.7v8Z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> CERO Studio. All rights reserved.</p>
+    <p>cerostudio.co</p>
+  </div>
+</footer>
+
+<script src="/main.min.js?v=1789376229" defer></script>
+
+</body>
+</html>
