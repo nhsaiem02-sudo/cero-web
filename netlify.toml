@@ -37,3 +37,31 @@
   to = "https://cerostudio.co/:splat"
   status = 301
   force = true
+
+# Canonical URL form: the extensionless one, which is what canonical tags,
+# og:url and sitemap.xml all declare. Listed one by one on purpose. A wildcard
+# would also catch google7aa936a6fd430f8b.html, and Search Console needs that
+# file to stay reachable at its exact URL or verification breaks.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/portfolio.html"
+  to = "/portfolio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/founder.html"
+  to = "/founder"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/co-founder.html"
+  to = "/co-founder"
+  status = 301
+  force = true
