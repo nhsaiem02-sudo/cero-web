@@ -26,7 +26,17 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "portfolio.html", "founder.html", "co-founder.html"]
+# Every HTML file that links the stylesheet or the script. A page missing
+# from this list keeps the previous ?v= stamp and silently stops getting the
+# cache bust the others get, so add new pages here as they are created.
+PAGES = [
+    "index.html",
+    "portfolio.html",
+    "founder.html",
+    "co-founder.html",
+    "404.html",
+    "ai-automation.html",
+]
 
 
 def minify_css(src: str) -> str:
@@ -110,6 +120,24 @@ def minify_js(src: str) -> str:
     return text.strip()
 
 
+def repoint(path: Path, css: str, js: str, stamp: str) -> int:
+    """Rewrite one page's stylesheet and script references. Returns how many it
+    matched, which the caller checks.
+
+    The leading slash is captured and put back rather than assumed away: 404.html
+    references "/styles.min.css" because Netlify serves it at any depth, and a
+    pattern anchored on "styles" skipped that file silently while the script
+    still reported success.
+    """
+    s = path.read_text(encoding="utf-8")
+    s, a = re.subn(r'href="(/?)styles(?:\.min)?\.css\?v=\d+"',
+                   lambda m: f'href="{m.group(1)}{css}?v={stamp}"', s)
+    s, b = re.subn(r'src="(/?)main(?:\.min)?\.js\?v=\d+"',
+                   lambda m: f'src="{m.group(1)}{js}?v={stamp}"', s)
+    path.write_text(s, encoding="utf-8")
+    return a + b
+
+
 def report(label: str, before: bytes, after: bytes) -> None:
     gz_b = len(gzip.compress(before))
     gz_a = len(gzip.compress(after))
@@ -141,11 +169,9 @@ def main() -> int:
 
     stamp = str(int(time.time()))
     for name in PAGES:
-        p = ROOT / name
-        s = p.read_text(encoding="utf-8")
-        s = re.sub(r'href="styles(?:\.min)?\.css\?v=\d+"', f'href="styles.min.css?v={stamp}"', s)
-        s = re.sub(r'src="main(?:\.min)?\.js\?v=\d+"', f'src="main.min.js?v={stamp}"', s)
-        p.write_text(s, encoding="utf-8")
+        n = repoint(ROOT / name, "styles.min.css", "main.min.js", stamp)
+        if n != 2:
+            print(f"  WARNING: {name} matched {n}/2 references, expected 2")
     print(f"\nwrote styles.min.css + main.min.js; {len(PAGES)} pages repointed at ?v={stamp}")
     print("source files untouched. Run scripts/build-min.py --restore to go back to sources.")
     return 0
@@ -155,11 +181,9 @@ def restore() -> int:
     """Point the HTML back at the readable sources, for local debugging."""
     stamp = str(int(time.time()))
     for name in PAGES:
-        p = ROOT / name
-        s = p.read_text(encoding="utf-8")
-        s = re.sub(r'href="styles(?:\.min)?\.css\?v=\d+"', f'href="styles.css?v={stamp}"', s)
-        s = re.sub(r'src="main(?:\.min)?\.js\?v=\d+"', f'src="main.js?v={stamp}"', s)
-        p.write_text(s, encoding="utf-8")
+        n = repoint(ROOT / name, "styles.css", "main.js", stamp)
+        if n != 2:
+            print(f"  WARNING: {name} matched {n}/2 references, expected 2")
     print(f"{len(PAGES)} pages repointed at the unminified sources (?v={stamp})")
     return 0
 

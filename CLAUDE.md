@@ -25,14 +25,40 @@ rewriting headings and body copy, titles and meta descriptions, schema/structure
   headings.
 - **Service pages follow the fixed section order**: keyword H1 hero → problem → how it
   works → use cases for local businesses → what affects the cost → FAQ → CTA.
-- **Every new page ships with three things**: an entry in `sitemap.xml`, a link in the
-  homepage services section, and a link in the footer. A page is not done without all three.
+- **Every new page ships with six things.** A page is not done until all six exist:
+  1. an entry in `sitemap.xml`
+  2. a link in the homepage services section
+  3. a link in the footer (see the footer rule below)
+  4. a `[[redirects]]` block in `netlify.toml`, `.html` -> extensionless, 301, `force = true`
+  5. a line in `_redirects`, `/<page>.html /<page> 301`
+  6. two blocks in `_headers`, one for `/<page>` and one for `/<page>.html`, both
+     `Cache-Control: public, max-age=0, must-revalidate`
+
+  Items 4-6 are three separate files because the site is mid-migration: `netlify.toml`
+  serves cerostudio.co until DNS moves, `_redirects` and `_headers` serve Cloudflare
+  Pages. Cloudflare ignores `netlify.toml` entirely, and Netlify ignores the other two.
+  `_headers` needs both the extensionless and the `.html` path because Cloudflare allows
+  only one splat per pattern, so `/*.html` matches nothing and every file that needs a
+  cache policy has to be named. Miss the `_headers` blocks and the page still loads, just
+  on Cloudflare's default - which is the same value, so nothing visibly breaks; add them
+  anyway so the policy is enforced by the file rather than inherited by luck.
+- **New service pages start as a copy of `ai-automation.html`.** It is the template: each
+  section is commented with what to edit, and it uses only existing CSS classes, so a new
+  page needs no stylesheet changes. Use `.svc-rows--compact` for the use-case list.
+- **Each new service page gets one line in the footer Services column**, and that line goes
+  in *every* HTML file, not just the new one. The footer is copied per page, so a link added
+  in one place only exists on one page.
+- **After editing `styles.css` or `main.js`, run `python3 scripts/build-min.py`.** The pages
+  load the minified files, so an unbuilt change does nothing. Add any new page to `PAGES` in
+  that script or it keeps a stale `?v=` stamp.
 
 If a request conflicts with SEO-PLAN.md, say so and ask before deviating — don't silently
 override the plan.
 
 ## Site facts
 
-- Domain: cerostudio.co, deployed on Netlify.
+- Domain: cerostudio.co, currently served by Netlify and moving to Cloudflare Pages,
+  which is already live at `cero-web.pages.dev` from `main`. Until the move lands,
+  redirect and header changes go in `netlify.toml` *and* `_redirects`/`_headers`.
 - Audience: local businesses in the UK, US, Canada and Europe; all industries.
 - Primary language English; German pages land later under `/de/`.

@@ -31,6 +31,12 @@
 /portfolio.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/ai-automation
+  Cache-Control: public, max-age=0, must-revalidate
+
+/ai-automation.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 /founder
   Cache-Control: public, max-age=0, must-revalidate
 

@@ -14,6 +14,7 @@
 # in netlify.toml. A wildcard would also catch google7aa936a6fd430f8b.html.
 /index.html / 301
 /portfolio.html /portfolio 301
+/ai-automation.html /ai-automation 301
 /founder.html /founder 301
 /co-founder.html /co-founder 301
 

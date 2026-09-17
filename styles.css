@@ -802,6 +802,28 @@ picture{display:contents}
   background:rgba(236,196,64,.18);border-color:rgba(236,196,64,.5);
 }
 
+/* Compact use-case rows, for service pages.
+
+   The homepage cards carry banner artwork and a headline-scale title, which is
+   right for four flagship services and far too heavy for a service page
+   listing five or six things a visitor is scanning. This keeps the same card
+   shell and every other rule, and only pulls the type and padding down so each
+   row reads as a list item rather than a hero.
+
+   Scoped to .svc-rows--compact, so the homepage is untouched. The title
+   selector is deliberately (0,3,0): ".svc-row .svc-row__title" above is
+   (0,2,0) and would otherwise win on source order alone. */
+.svc-rows--compact{gap:var(--sp-4)}
+.svc-rows--compact .svc-row__body{
+  grid-template-columns:minmax(190px,.75fr) 1.25fr;
+  gap:clamp(4px,1.4vw,30px);
+  padding:clamp(19px,2.1vw,26px) clamp(20px,2.2vw,30px);
+}
+.svc-rows--compact .svc-row .svc-row__title{
+  font-size:clamp(20px,.5vw + 18px,23.5px);letter-spacing:-.02em;
+}
+.svc-rows--compact .svc-row__text{font-size:clamp(15px,.35vw + 14.2px,16.4px)}
+
 /* ── Our Work: video placeholder slots ───────────────────────
    .work__slot owns the 16:9 box, the rounding and the gold hairline, so the
    player dropped inside it inherits all of that and needs no styling of its
@@ -1227,7 +1249,11 @@ picture{display:contents}
 /* ── Footer ──────────────────────────────────────────────── */
 .footer{color:var(--on-dark);padding-top:clamp(52px,6vw,74px)}
 .footer__inner{
-  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,3.4vw,48px);
+  /* brand + Services + Explore + Contact + Social. The Services column
+     grows by one line per service page; see CLAUDE.md. Below 1024px this
+     collapses to two columns and then one, so the extra column never
+     crowds a narrow viewport. */
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:clamp(28px,3.4vw,48px);
   padding-bottom:clamp(38px,4.4vw,54px);
 }
 .footer__tag{margin-top:16px;font-size:14.4px;line-height:1.62;color:var(--on-dark-3);max-width:34ch}
@@ -1316,6 +1342,7 @@ picture{display:contents}
   .img-grid,
   .work-grid:not(.work-grid--vertical){grid-template-columns:1fr}
   .svc-row__body{grid-template-columns:1fr;gap:14px}
+  .svc-rows--compact .svc-row__body{grid-template-columns:1fr;gap:7px}
   .nav__toggle{display:flex}
   .nav__links{
     position:fixed;inset:0 0 auto;top:0;
