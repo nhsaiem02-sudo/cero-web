@@ -1,0 +1,35 @@
+# Cloudflare Pages redirects. Mirrors the [[redirects]] blocks in netlify.toml,
+# which stays untouched for as long as Netlify is still serving cerostudio.co.
+#
+# Format: <from> <to> <status>. First match wins, so order matters.
+#
+# Cloudflare Pages already strips .html and trailing slashes on its own, with a
+# 308. The rules below exist to pin that behaviour to the 301 netlify.toml
+# declares, rather than leaving the canonical form to a platform default that
+# could change under us. They are loop-safe either way: each target is an
+# extensionless URL that serves a 200 and is matched by no rule here.
+
+# Canonical URL form: the extensionless one, which is what canonical tags,
+# og:url and sitemap.xml all declare. Listed one by one on purpose, exactly as
+# in netlify.toml. A wildcard would also catch google7aa936a6fd430f8b.html.
+/index.html / 301
+/portfolio.html /portfolio 301
+/founder.html /founder 301
+/co-founder.html /co-founder 301
+
+# NOT redirected here, on purpose:
+#
+# google7aa936a6fd430f8b.html - the Search Console verification file. Netlify
+# left it at its exact URL. Cloudflare Pages strips the .html unconditionally
+# and a _redirects rule cannot stop it: Pages supports no 200-status rewrite,
+# so there is no way to serve that path without a redirect. The 308 it issues
+# stays on the same host and the token is served intact, which Search Console
+# accepts, so verification holds. Moving that property to DNS TXT verification
+# once the nameservers are on Cloudflare removes the dependency entirely.
+#
+# www.cerostudio.co -> cerostudio.co - netlify.toml handles this with a
+# force'd host redirect. Cloudflare Pages _redirects cannot match on hostname
+# (domain-level redirects are unsupported), so this one does not survive as a
+# file. It has to be recreated in the dashboard as a Redirect Rule on the zone
+# before cerostudio.co cuts over, or the apex and www both answer and split
+# the canonical host.
