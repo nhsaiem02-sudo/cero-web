@@ -55,6 +55,12 @@
   force = true
 
 [[redirects]]
+  from = "/ai-automation.html"
+  to = "/ai-automation"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/founder.html"
   to = "/founder"
   status = 301
