@@ -1,14 +1,63 @@
+# Cloudflare Pages headers. Mirrors the [[headers]] blocks in netlify.toml,
+# which stays untouched for as long as Netlify is still serving cerostudio.co.
+#
+# Paths are matched literally apart from a single trailing splat. Cloudflare
+# allows only one splat per pattern, so Netlify-style extension globs like
+# /*.css or /*.html do not match anything here and every file that needs a
+# cache policy has to be named. A page added to the site without a line in
+# this file still loads; it just falls back to the Pages default of
+# max-age=0, must-revalidate, which is the safe direction for HTML.
+
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-/*.html
+# HTML must never be cached hard: it is the file that points at every versioned
+# asset, so a stale copy pins a visitor to an old build. netlify.toml says this
+# with /*.html. Here each page is listed twice, under the extensionless URL it
+# is actually served at and under the .html one, so the policy is enforced by
+# this file rather than inherited from a platform default that could change.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/portfolio
+  Cache-Control: public, max-age=0, must-revalidate
+
+/portfolio.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/founder
+  Cache-Control: public, max-age=0, must-revalidate
+
+/founder.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/co-founder
+  Cache-Control: public, max-age=0, must-revalidate
+
+/co-founder.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
   Cache-Control: public, max-age=0, must-revalidate
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# The minified pair is what every page actually links, and it carries a ?v=
+# stamp from scripts/build-min.py so a 7-day cache is safe. The unminified
+# sources are listed too: nothing in the site references them, but they deploy
+# alongside and a stray hit should not be treated as uncacheable HTML.
+/styles.min.css
+  Cache-Control: public, max-age=604800
+
+/main.min.js
+  Cache-Control: public, max-age=604800
 
 /styles.css
   Cache-Control: public, max-age=604800
