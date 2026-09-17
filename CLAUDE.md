@@ -27,6 +27,15 @@ rewriting headings and body copy, titles and meta descriptions, schema/structure
   works → use cases for local businesses → what affects the cost → FAQ → CTA.
 - **Every new page ships with three things**: an entry in `sitemap.xml`, a link in the
   homepage services section, and a link in the footer. A page is not done without all three.
+- **New service pages start as a copy of `ai-automation.html`.** It is the template: each
+  section is commented with what to edit, and it uses only existing CSS classes, so a new
+  page needs no stylesheet changes. Use `.svc-rows--compact` for the use-case list.
+- **Each new service page gets one line in the footer Services column**, and that line goes
+  in *every* HTML file, not just the new one. The footer is copied per page, so a link added
+  in one place only exists on one page.
+- **After editing `styles.css` or `main.js`, run `python3 scripts/build-min.py`.** The pages
+  load the minified files, so an unbuilt change does nothing. Add any new page to `PAGES` in
+  that script or it keeps a stale `?v=` stamp.
 
 If a request conflicts with SEO-PLAN.md, say so and ask before deviating — don't silently
 override the plan.
