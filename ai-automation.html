@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SERVICE PAGE TEMPLATE
+     ═══════════════════════════════════════════════════════════════════════
+     Copy this file to build the next service page. Everything that changes
+     per page is marked EDIT; everything else is shared chrome and should be
+     kept byte-identical across pages so the header, footer, fonts and colours
+     stay in sync.
+
+     Section order is fixed by CLAUDE.md and must not be reordered:
+       hero (keyword H1) -> problem -> how it works -> use cases
+       -> what affects the cost -> FAQ -> CTA
+
+     Rules that apply to every service page:
+       - No prices. Ever. The "what affects the cost" section replaces them.
+       - CTA always points at https://cal.com/cerostudio/free-discovery-call
+       - Plain buyer language in headings. See SEO-PLAN.md target keywords.
+
+     Checklist for a new page, none of it optional:
+       1. entry in sitemap.xml
+       2. 301 for /<slug>.html -> /<slug> in netlify.toml
+       3. link from the matching homepage service card
+       4. link in the footer of EVERY html page
+     ══════════════════════════════════════════════════════════════════════ -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<!-- EDIT: title, description, canonical -->
+<title>AI Automation Services for Local Businesses | CERO Studio</title>
+<meta name="description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<link rel="canonical" href="https://cerostudio.co/ai-automation" />
+<meta name="theme-color" content="#0A1128" />
+
+<!-- Open Graph / social. EDIT url, title, description and image:alt.
+     The shared og-image is reused deliberately: no per-page artwork exists,
+     and a missing image renders far worse than a generic one. -->
+<meta property="og:site_name" content="CERO Studio Co." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cerostudio.co/ai-automation" />
+<meta property="og:title" content="AI Automation Services for Local Businesses | CERO Studio" />
+<meta property="og:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta property="og:image" content="https://cerostudio.co/assets/og-image.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="CERO Studio Co. AI automation services for local businesses." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Automation Services for Local Businesses | CERO Studio" />
+<meta name="twitter:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta name="twitter:image" content="https://cerostudio.co/assets/og-image.jpg" />
+
+<!-- Shared chrome from here down: do not edit per page. -->
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+<!-- Fonts are self-hosted, see the @font-face block at the top of styles.css.
+     Preloaded because the stylesheet only reveals them once it has parsed, and
+     these two are on the critical path for text. crossorigin is required on a
+     font preload even same-origin: fonts are fetched in CORS mode, and without
+     it the browser downloads the file twice. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/schibsted-grotesk-var-latin.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/fonts/manrope-var-latin.woff2" />
+
+<!-- Reveal gate. Every [data-reveal] element starts invisible and main.js is
+     what makes it visible. That means any failure to load or execute main.js,
+     a bad deploy, a blocked request, an extension, leaves the page blank except
+     for the navbar, which is the one block carrying no data-reveal.
+
+     Two independent safety nets, because main.js cannot rescue itself:
+       - the .js class: without scripting the hiding rule never applies at all
+       - a 2.5s timer: if main.js has not taken over by then, show everything.
+         main.js clears this the moment it boots, so a healthy page still gets
+         its scroll reveals. -->
+<script>
+(function () {
+  var d = document.documentElement;
+  d.className += ' js';
+  window.__revealFailsafe = setTimeout(function () {
+    d.className += ' reveal-fallback';
+  }, 2500);
+})();
+</script>
+<noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
+
+<link rel="stylesheet" href="styles.min.css?v=1789376229" />
+
+<!-- ─── Structured data ──────────────────────────────────────────────────
+     Three blocks, all EDIT per page:
+       Service       what this page sells, hung off the homepage Organization
+       FAQPage       must mirror the on-page FAQ word for word
+       BreadcrumbList Home > this page
+     The provider @id points at the Organization defined on the homepage
+     rather than redeclaring it, so the whole site describes one company. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://cerostudio.co/ai-automation#service",
+  "name": "AI Automation Services for Local Businesses",
+  "serviceType": "AI automation",
+  "description": "AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses.",
+  "url": "https://cerostudio.co/ai-automation",
+  "provider": { "@id": "https://cerostudio.co/#organization" },
+  "areaServed": [
+    { "@type": "Country", "name": "United Kingdom" },
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" }
+  ],
+  "audience": { "@type": "Audience", "audienceType": "Local businesses" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "What we automate for local businesses",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI receptionist" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI chatbots" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Appointment booking and reminders" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead follow-up" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Admin automations" } }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://cerostudio.co/ai-automation#faq",
+  "isPartOf": { "@id": "https://cerostudio.co/#organization" },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need technical knowledge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We build, connect and maintain everything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it work with my current tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually yes: most calendars, CRMs, WhatsApp Business and website platforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does setup take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most single automations go live within a few weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where are you based?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our team is in Dhaka, Bangladesh, and we work remotely with businesses in the UK, US and Canada. Calls are scheduled in your time zone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the AI gets something wrong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We test every automation with real scenarios before launch, then review conversations after go-live and correct anything the AI handles badly."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://cerostudio.co/ai-automation#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cerostudio.co/" },
+    { "@type": "ListItem", "position": 2, "name": "AI Automation", "item": "https://cerostudio.co/ai-automation" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Same single fixed ground as the homepage. See the "Page background" note in
+     README. Nothing on this page paints its own background either. -->
+<div class="page-bg" aria-hidden="true">
+  <div class="page-bg__glow page-bg__glow--a" data-parallax="0.05"></div>
+  <div class="page-bg__glow page-bg__glow--b"></div>
+  <div class="page-bg__veins"></div>
+  <div class="page-bg__sparkle"></div>
+  <div class="page-bg__grain"></div>
+</div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════
+     Shared chrome. Every in-page anchor is prefixed with / because this is a
+     separate document: a bare #services would scroll to nothing here. No link
+     carries .is-active, since service pages are not in the primary nav. -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="logo" href="/" aria-label="CERO Studio home">
+      <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
+           alt="CERO Studio" fetchpriority="high" />
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="/#services" class="nav__link">Services</a>
+      <a href="/#why-us" class="nav__link">Why Us</a>
+      <a href="/#process" class="nav__link">Process</a>
+      <a href="/portfolio" class="nav__link">Our Work</a>
+      <a href="/#faq" class="nav__link">FAQ</a>
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════ 1. HERO ═══════════════════
+     EDIT: eyebrow, H1, sub. The H1 is the page's keyword target and is the
+     only H1 on the page. Button text and href never change. -->
+<section class="section section--alt section--pagehead">
+  <div class="container">
+    <header class="sec-head sec-head--center">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>AI Automation</p>
+      <h1 class="sec-title" data-reveal style="--rd:80ms">AI Automation Services for Local Businesses</h1>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        We build AI receptionists, chatbots and automations that answer customers, book
+        appointments and follow up on leads, so you stop losing work to slow replies.
+      </p>
+      <div class="cta__actions" data-reveal style="--rd:200ms">
+        <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+          Book a free discovery call
+        </a>
+      </div>
+    </header>
+  </div>
+</section>
+
+<!-- ═══════════════════ 2. PROBLEM ═══════════════════
+     EDIT: H2 and the paragraph. Name the loss in the reader's own terms
+     before offering anything. No product talk in this section. -->
+<section class="section section--dark">
+  <div class="container container--narrow">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>The problem</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Where local businesses lose customers</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        Most local businesses don't lose customers to competitors. They lose them to missed
+        calls, late replies and forgotten follow-ups. A caller who reaches voicemail rings the
+        next business on Google. A website enquiry answered the next morning is already booked
+        elsewhere. Hiring more staff to cover every hour is expensive, so the gaps stay open.
+      </p>
+    </header>
+  </div>
+</section>
+
+<!-- ═══════════════════ 3. HOW IT WORKS ═══════════════════
+     EDIT: the four steps. Reuses the homepage .steps timeline, so a step is
+     always a numbered marker plus a title and one sentence. Add or remove
+     <li> freely; the connecting rule is drawn by CSS, not markup. -->
+<section class="section section--alt">
+  <div class="container container--narrow">
+    <header class="sec-head sec-head--tight">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Process</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">How it works</h2>
+    </header>
+
+    <ol class="steps">
+      <li class="steps__item" data-reveal style="--rd:80ms">
+        <span class="steps__num" aria-hidden="true">01</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Free discovery call</h3>
+          <p class="steps__text">We look at where enquiries come in and where they get lost.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:180ms">
+        <span class="steps__num" aria-hidden="true">02</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Automation plan</h3>
+          <p class="steps__text">We recommend the one or two automations that recover the most work first.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:280ms">
+        <span class="steps__num" aria-hidden="true">03</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Build and test</h3>
+          <p class="steps__text">We connect them to the tools you already use (calendar, CRM, WhatsApp, website) and test with real scenarios.</p>
+        </div>
+      </li>
+      <li class="steps__item" data-reveal style="--rd:380ms">
+        <span class="steps__num" aria-hidden="true">04</span>
+        <div class="steps__body">
+          <h3 class="steps__title">Launch and improve</h3>
+          <p class="steps__text">We monitor results and adjust what the AI says and does.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════════════ 4. USE CASES ═══════════════════
+     EDIT: the list items. Reuses the homepage service-card shell (.svc-row)
+     with the banner omitted, so each entry is a light card carrying a title
+     and one line. No artwork is needed, which is why service pages can ship
+     without commissioning images. -->
+<section class="section section--dark">
+  <div class="container">
+    <header class="sec-head sec-head--center sec-head--tight">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Use cases</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">What we automate for local businesses</h2>
+    </header>
+
+    <ul class="svc-rows">
+      <li class="svc-row" data-reveal>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">AI receptionist</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Answers every call 24/7, handles common questions and books appointments.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:90ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">AI chatbots</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Instant replies on your website, WhatsApp and Facebook Messenger, day or night, so no enquiry waits until morning.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:180ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Appointment booking and reminders</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Fewer no-shows, less back-and-forth.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:270ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Lead follow-up</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Every enquiry gets a reply and a follow-up, automatically.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:360ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Admin automations</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Invoices, reports and data entry between your tools.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ 5. WHAT AFFECTS THE COST ═══════════════════
+     EDIT: the paragraph only. This section exists so the page can answer the
+     price question without publishing a number. Never add a figure, a range,
+     a "from" price or a currency symbol here. -->
+<section class="section section--alt section--tight">
+  <div class="container container--narrow">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Cost</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">What affects the cost</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        Every project is priced after the discovery call, based on how many automations you
+        need, which tools we connect to, call and message volume, languages, and whether you
+        want ongoing monitoring and updates.
+      </p>
+    </header>
+  </div>
+</section>
+
+<!-- ═══════════════════ 6. FAQ ═══════════════════
+     EDIT: the questions and answers. Same accordion as the homepage, driven
+     by initFaq() in main.js purely from these class names, so no JS changes
+     are needed for a new page.
+
+     The answers are real HTML, not injected by script: the panel starts with
+     the `hidden` attribute and main.js only toggles it. Keep it that way, and
+     keep this copy identical to the FAQPage block in the head, or the
+     structured data stops matching what the visitor sees.
+
+     Ids must be unique within the page: q1/a1, q2/a2 and so on. -->
+<section class="section section--alt section--faq" id="faq">
+  <div class="container container--narrow">
+    <header class="sec-head">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>FAQ</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Frequently asked questions</h2>
+    </header>
+
+    <div class="faq" id="faqList">
+
+      <div class="faq__item" data-reveal>
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1" id="q1">
+            <span>Do I need technical knowledge?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="a1" role="region" aria-labelledby="q1" hidden>
+          <div class="faq__a-inner">
+            <p>No. We build, connect and maintain everything.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:60ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2" id="q2">
+            <span>Will it work with my current tools?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="a2" role="region" aria-labelledby="q2" hidden>
+          <div class="faq__a-inner">
+            <p>Usually yes: most calendars, CRMs, WhatsApp Business and website platforms.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:120ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3" id="q3">
+            <span>How long does setup take?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="a3" role="region" aria-labelledby="q3" hidden>
+          <div class="faq__a-inner">
+            <p>Most single automations go live within a few weeks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:180ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4" id="q4">
+            <span>Where are you based?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="a4" role="region" aria-labelledby="q4" hidden>
+          <div class="faq__a-inner">
+            <p>Our team is in Dhaka, Bangladesh, and we work remotely with businesses in the UK, US and Canada. Calls are scheduled in your time zone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal style="--rd:240ms">
+        <h3>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5" id="q5">
+            <span>What if the AI gets something wrong?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="a5" role="region" aria-labelledby="q5" hidden>
+          <div class="faq__a-inner">
+            <p>We test every automation with real scenarios before launch, then review conversations after go-live and correct anything the AI handles badly.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 7. FINAL CTA ═══════════════════
+     EDIT: the H2 only. The link and its label are fixed across the site. -->
+<section class="cta section--dark" id="contact">
+  <div class="container container--narrow cta__inner">
+    <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Let's talk</p>
+    <h2 class="cta__title" data-reveal style="--rd:80ms">
+      Find out which automation would<br class="br-md" />
+      <span class="gold-text">save you the most</span>
+    </h2>
+    <div class="cta__actions" data-reveal style="--rd:160ms">
+      <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+        Book a free discovery call
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════
+     Shared chrome, repeated verbatim in every HTML file. Changing a link here
+     means changing it in all of them; see the stack notes in SEO-PLAN.md. -->
+<footer class="footer section--dark">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="/" aria-label="CERO Studio home">
+        <img class="logo__img" src="assets/logo-navbar.webp" width="286" height="80"
+             alt="CERO Studio" loading="lazy" fetchpriority="low" />
+      </a>
+      <p class="footer__tag">AI that answers, follows up, and shows up, so you don't have to.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <p class="footer__h">Explore</p>
+      <a href="/#services">Services</a>
+      <a href="/ai-automation">AI Automation</a>
+      <a href="/#why-us">Why Us</a>
+      <a href="/#process">Process</a>
+      <a href="/portfolio">Our Work</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+
+    <div class="footer__nav">
+      <p class="footer__h">Contact</p>
+      <a href="https://cal.com/cerostudio/free-discovery-call" target="_blank" rel="noopener noreferrer">Book a free strategy call</a>
+      <span class="footer__meta">Dhaka, Bangladesh</span>
+    </div>
+
+    <div class="footer__nav">
+      <p class="footer__h">Social</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/cerostudioco/" aria-label="CERO Studio on Instagram" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/company/cero-studio-co/" aria-label="CERO Studio on LinkedIn" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V17M8 7.4v.1M12 17v-3.6a2.2 2.2 0 0 1 4.4 0V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+        <a href="https://x.com/CeroStudio40" aria-label="CERO Studio on X" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 4h3.9l4 5.6L17.2 4h2.4l-5.9 7.2L20 20h-3.9l-4.3-6-5 6H4.4l6.3-7.6Z" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/cerostudioco" aria-label="CERO Studio on Facebook" rel="me noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H16.7V3.96A20 20 0 0 0 14.38 3.84c-2.3 0-3.88 1.4-3.88 3.98V10H7.8v3h2.7v8Z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> CERO Studio. All rights reserved.</p>
+    <p>cerostudio.co</p>
+  </div>
+</footer>
+
+<script src="main.min.js?v=1789376229" defer></script>
+</body>
+</html>
