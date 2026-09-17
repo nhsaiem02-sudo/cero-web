@@ -1249,7 +1249,11 @@ picture{display:contents}
 /* ── Footer ──────────────────────────────────────────────── */
 .footer{color:var(--on-dark);padding-top:clamp(52px,6vw,74px)}
 .footer__inner{
-  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,3.4vw,48px);
+  /* brand + Services + Explore + Contact + Social. The Services column
+     grows by one line per service page; see CLAUDE.md. Below 1024px this
+     collapses to two columns and then one, so the extra column never
+     crowds a narrow viewport. */
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:clamp(28px,3.4vw,48px);
   padding-bottom:clamp(38px,4.4vw,54px);
 }
 .footer__tag{margin-top:16px;font-size:14.4px;line-height:1.62;color:var(--on-dark-3);max-width:34ch}
