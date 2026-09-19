@@ -38,6 +38,7 @@ PAGES = [
     "ai-automation.html",
     "ai-receptionist.html",
     "website-chatbot.html",
+    "whatsapp-chatbot.html",
 ]
 
 
