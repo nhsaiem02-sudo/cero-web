@@ -43,6 +43,12 @@
 /ai-receptionist.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/website-chatbot
+  Cache-Control: public, max-age=0, must-revalidate
+
+/website-chatbot.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 /founder
   Cache-Control: public, max-age=0, must-revalidate
 

@@ -2,42 +2,38 @@
 <html lang="en">
 <head>
 <!-- ═══════════════════════════════════════════════════════════════════════
-     SERVICE PAGE TEMPLATE
+     /website-chatbot
      ═══════════════════════════════════════════════════════════════════════
-     Copy this file to build the next service page. Everything that changes
-     per page is marked EDIT; everything else is shared chrome and should be
-     kept byte-identical across pages so the header, footer, fonts and colours
-     stay in sync.
+     Built from ai-receptionist.html. ai-automation.html is the template of
+     record; copy that one for the next page.
 
-     Section order is fixed by CLAUDE.md and must not be reordered:
-       hero (keyword H1) -> problem -> how it works -> use cases
-       -> what affects the cost -> FAQ -> CTA
+     This is the chatbot on the client's own website. /whatsapp-chatbot is a
+     separate page and is never mentioned here: the two compete if either
+     describes the other's channel. The problem section is website visitors
+     leaving unanswered, deliberately not missed phone calls, which belongs
+     to /ai-receptionist.
 
-     Rules that apply to every service page:
-       - No prices. Ever. The "what affects the cost" section replaces them.
-       - CTA always points at https://cal.com/cerostudio/free-discovery-call
-       - Plain buyer language in headings. See SEO-PLAN.md target keywords.
+     Keyword target from SEO-PLAN.md is "ai chatbot for website". Bare
+     "chatbot" must not appear in any heading: Ahrefs shows that term is
+     dominated by people looking for ChatGPT, so it only ever appears inside
+     the full phrase. It is fine in body copy and button labels.
 
-     Checklist for a new page, none of it optional. CLAUDE.md is the
-     authority; this copy is here so it travels with the template:
-       1. entry in sitemap.xml
-       2. link from the matching homepage service card
-       3. link in the footer of EVERY html page, not just the new one
-       4. line in _redirects: /<slug>.html /<slug> 301
-       5. two blocks in _headers, /<slug> and /<slug>.html, both
-          Cache-Control: public, max-age=0, must-revalidate
+     Nothing on this page asserts a fixed feature set. What the chatbot
+     knows, what it does with an enquiry and how it is installed are all
+     scoped per client, so the copy says what we build to your spec rather
+     than what "it does". Do not add a capability claim here without
+     checking it is true of every build.
 
-     _headers needs both paths spelled out because Cloudflare allows one
-     splat per pattern, so /*.html matches nothing and every file that
-     needs a cache policy has to be named.
+     The FAQ and the FAQPage block in the head were generated together from
+     one source and must stay identical word for word.
      ══════════════════════════════════════════════════════════════════════ -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
 <!-- EDIT: title, description, canonical -->
-<title>AI Automation Services for Local Businesses | CERO Studio</title>
-<meta name="description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
-<link rel="canonical" href="https://cerostudio.co/ai-automation" />
+<title>AI Chatbot for Your Website | CERO Studio</title>
+<meta name="description" content="An AI chatbot for your website that answers what visitors actually ask, built to handle exactly what you want it handling. Book a free discovery call." />
+<link rel="canonical" href="https://cerostudio.co/website-chatbot" />
 <meta name="theme-color" content="#0A1128" />
 
 <!-- Open Graph / social. EDIT url, title, description and image:alt.
@@ -45,17 +41,17 @@
      and a missing image renders far worse than a generic one. -->
 <meta property="og:site_name" content="CERO Studio Co." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://cerostudio.co/ai-automation" />
-<meta property="og:title" content="AI Automation Services for Local Businesses | CERO Studio" />
-<meta property="og:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta property="og:url" content="https://cerostudio.co/website-chatbot" />
+<meta property="og:title" content="AI Chatbot for Your Website | CERO Studio" />
+<meta property="og:description" content="An AI chatbot for your website that answers what visitors actually ask, built to handle exactly what you want it handling. Book a free discovery call." />
 <meta property="og:image" content="https://cerostudio.co/assets/og-image.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="CERO Studio Co. AI automation services for local businesses." />
+<meta property="og:image:alt" content="CERO Studio Co. AI chatbot for your website, for local businesses." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI Automation Services for Local Businesses | CERO Studio" />
-<meta name="twitter:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta name="twitter:title" content="AI Chatbot for Your Website | CERO Studio" />
+<meta name="twitter:description" content="An AI chatbot for your website that answers what visitors actually ask, built to handle exactly what you want it handling. Book a free discovery call." />
 <meta name="twitter:image" content="https://cerostudio.co/assets/og-image.jpg" />
 
 <!-- Shared chrome from here down: do not edit per page. -->
@@ -108,11 +104,11 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://cerostudio.co/ai-automation#service",
-  "name": "AI Automation Services for Local Businesses",
-  "serviceType": "AI automation",
-  "description": "AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses.",
-  "url": "https://cerostudio.co/ai-automation",
+  "@id": "https://cerostudio.co/website-chatbot#service",
+  "name": "AI Chatbot for Your Website",
+  "serviceType": "AI website chatbot",
+  "description": "An AI chatbot for a business website that answers visitor questions and is built to the scope each client sets.",
+  "url": "https://cerostudio.co/website-chatbot",
   "provider": {
     "@id": "https://cerostudio.co/#organization"
   },
@@ -136,76 +132,48 @@
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "What we automate for local businesses",
+    "name": "What we build it to do",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "AI receptionist"
+          "name": "Answer the questions that decide a sale"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Website chatbot"
+          "name": "Qualify before you spend time"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "WhatsApp chatbot"
+          "name": "Take details when someone's ready"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Missed-call text back"
+          "name": "Point people to the right page"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Appointment booking and reminders"
+          "name": "Cover the hours nobody's watching"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Lead follow-up and nurture"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Google review requests after a job"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Quote and estimate requests"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Invoice and payment chasing"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "CRM data entry and syncing"
+          "name": "Hand over when it should"
         }
       }
     ]
@@ -216,49 +184,49 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://cerostudio.co/ai-automation#faq",
+  "@id": "https://cerostudio.co/website-chatbot#faq",
   "isPartOf": {
     "@id": "https://cerostudio.co/#organization"
   },
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What can actually be automated in my business?",
+      "name": "How does it know what to say about my business?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you."
+        "text": "We decide that with you before anything is built. It can work from what's already on your site, from a set of questions and answers we write together, or both. Settling which is part of the discovery call, because it's what determines how well it answers."
       }
     },
     {
       "@type": "Question",
-      "name": "Will it work with the tools I already use?",
+      "name": "Who decides what it can and can't do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then."
+        "text": "You do. We don't ship a fixed product with a feature list. You tell us what it should handle and what it should never touch, and that scope is what we build. If you want it answering questions and nothing else, that's a perfectly good build."
       }
     },
     {
       "@type": "Question",
-      "name": "What happens if an automation breaks?",
+      "name": "Can it handle more than one language?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped."
+        "text": "Yes. We build it in the languages you need rather than defaulting to English and adding the rest later. Which languages is one of the things we confirm on the discovery call, because it shapes both the build and what it takes to run."
       }
     },
     {
       "@type": "Question",
-      "name": "Who pays for the tools the automation runs on?",
+      "name": "How long does it take to build?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built."
+        "text": "It depends on the scope you set, which is why we don't put a timeline on it before the discovery call. A chatbot covering a handful of known questions is a much shorter build than one that has to handle a wide range and pass enquiries into your systems. We give you a date once we know which one you are asking for."
       }
     },
     {
       "@type": "Question",
-      "name": "What affects the cost of an AI automation?",
+      "name": "Does it work with my website platform?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need."
+        "text": "We handle installation, so this is our problem rather than yours. Tell us what your site is built on when we speak and we'll confirm it before you commit to anything."
       }
     }
   ]
@@ -268,10 +236,20 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://cerostudio.co/ai-automation#breadcrumb",
+  "@id": "https://cerostudio.co/website-chatbot#breadcrumb",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cerostudio.co/" },
-    { "@type": "ListItem", "position": 2, "name": "AI Automation", "item": "https://cerostudio.co/ai-automation" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://cerostudio.co/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Website Chatbot",
+      "item": "https://cerostudio.co/website-chatbot"
+    }
   ]
 }
 </script>
@@ -324,11 +302,12 @@
 <section class="section section--alt section--pagehead">
   <div class="container">
     <header class="sec-head sec-head--center">
-      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>AI Automation</p>
-      <h1 class="sec-title" data-reveal style="--rd:80ms">AI Automation Services for Local Businesses</h1>
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Website Chatbot</p>
+      <h1 class="sec-title" data-reveal style="--rd:80ms">Answer Every Website Visitor Before They Leave</h1>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        We build AI receptionists, chatbots and automations that answer customers, book
-        appointments and follow up on leads, so you stop losing work to slow replies.
+        A visitor with one unanswered question is a job you never hear about. We build an AI
+        chatbot for your website that answers what people actually ask before they buy, scoped
+        to exactly what you want it handling and nothing you don't.
       </p>
       <div class="cta__actions" data-reveal style="--rd:200ms">
         <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
@@ -341,60 +320,69 @@
 
 <!-- ═══════════════════ 2. PROBLEM ═══════════════════
      EDIT: H2 and the paragraph. Name the loss in the reader's own terms
-     before offering anything. No product talk in this section. -->
+     before offering anything. No product talk in this section.
+
+     This page's problem is website visitors leaving unanswered. Keep phone
+     calls out of it: that is /ai-receptionist's problem, and the two pages
+     compete if they describe the same loss. -->
 <section class="section section--dark">
   <div class="container container--narrow">
     <header class="sec-head">
       <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>The problem</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">Where local businesses lose customers</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Where website enquiries go cold</h2>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        Most local businesses don't lose customers to competitors. They lose them to missed
-        calls, late replies and forgotten follow-ups. A caller who reaches voicemail rings the
-        next business on Google. A website enquiry answered the next morning is already booked
-        elsewhere. Hiring more staff to cover every hour is expensive, so the gaps stay open.
+        Most people who land on your site leave without telling you they were there. They have
+        one question, do you cover my area, do you take on this kind of job, how soon could you
+        start, and the answer isn't on the page they're reading. There's a contact form, but
+        filling one in means waiting until tomorrow for a reply, so they go back to the search
+        results and open the next tab instead. You never see that enquiry, because it never
+        became one. The traffic reports as a visit and nothing else.
       </p>
     </header>
   </div>
 </section>
 
 <!-- ═══════════════════ 3. HOW IT WORKS ═══════════════════
-     EDIT: the four steps. Reuses the homepage .steps timeline, so a step is
-     always a numbered marker plus a title and one sentence. Add or remove
-     <li> freely; the connecting rule is drawn by CSS, not markup. -->
+     EDIT: the four steps. Reuses the homepage .steps timeline.
+
+     The H2 carries the "ai chatbot for website" target from SEO-PLAN.md.
+     Bare "chatbot" must not appear in any heading on this page: that term
+     is dominated by people looking for ChatGPT, so it only ever appears
+     inside the full phrase. -->
 <section class="section section--alt">
   <div class="container container--narrow">
     <header class="sec-head sec-head--tight">
       <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Process</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">How it works</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">How we build an AI chatbot for your website</h2>
     </header>
 
     <ol class="steps">
       <li class="steps__item" data-reveal style="--rd:80ms">
         <span class="steps__num" aria-hidden="true">01</span>
         <div class="steps__body">
-          <h3 class="steps__title">Find where the work leaks</h3>
-          <p class="steps__text">We go through your phone, website, WhatsApp and inbox and count what comes in, what gets answered, and what goes cold.</p>
+          <h3 class="steps__title">We start from your real questions</h3>
+          <p class="steps__text">We go through what people actually ask you before they buy, and which of those answers are already somewhere on your site.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:180ms">
         <span class="steps__num" aria-hidden="true">02</span>
         <div class="steps__body">
-          <h3 class="steps__title">Pick one job to automate</h3>
-          <p class="steps__text">We start with the single task costing you the most work, and write down what it should do and when it should hand over to you.</p>
+          <h3 class="steps__title">You decide what it handles</h3>
+          <p class="steps__text">What it should answer, what it should never touch, and what happens when someone is ready to act. That scope is the build.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:280ms">
         <span class="steps__num" aria-hidden="true">03</span>
         <div class="steps__body">
-          <h3 class="steps__title">Build it on your own tools</h3>
-          <p class="steps__text">We connect it to the calendar, phone and CRM you already use, then test it against real enquiries from the last few months, not made-up examples.</p>
+          <h3 class="steps__title">We build it and put it live</h3>
+          <p class="steps__text">We handle installation. You don't need a developer, and you don't need to rebuild anything you already have.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:380ms">
         <span class="steps__num" aria-hidden="true">04</span>
         <div class="steps__body">
-          <h3 class="steps__title">Run it beside you first</h3>
-          <p class="steps__text">It handles a small share of the real volume while you watch every message, and we tune the wording until you'd have sent it yourself.</p>
+          <h3 class="steps__title">We read what visitors asked and tighten it</h3>
+          <p class="steps__text">After launch we go through how it's handling real questions and adjust the answers until the common ones are covered well.</p>
         </div>
       </li>
     </ol>
@@ -402,115 +390,75 @@
 </section>
 
 <!-- ═══════════════════ 4. USE CASES ═══════════════════
-     EDIT: the list items. Reuses the homepage service-card shell (.svc-row)
-     with the banner omitted, so each entry is a light card carrying a title
-     and one line. No artwork is needed, which is why service pages can ship
-     without commissioning images. -->
+     EDIT: the list items.
+
+     Framed as what we build it to do, not what it does. Scope is decided
+     per client, so the page must not assert a fixed feature set. -->
 <section class="section section--dark">
   <div class="container">
     <header class="sec-head sec-head--center sec-head--tight">
       <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Use cases</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">What we automate for local businesses</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">What we build it to do</h2>
     </header>
 
     <ul class="svc-rows svc-rows--compact">
       <li class="svc-row" data-reveal>
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist">AI receptionist</a></h3>
+            <h3 class="svc-row__title">Answer the questions that decide a sale</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Answers every call, day or night, takes the details you need and puts the job straight into your calendar.</p>
+            <p class="svc-row__text">Do you cover my area, do you take on this kind of job, how soon could you start.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:45ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/website-chatbot">Website chatbot</a></h3>
+            <h3 class="svc-row__title">Qualify before you spend time</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Replies to questions on your website the moment they're asked, so nobody leaves because they waited.</p>
+            <p class="svc-row__text">Ask the two or three things you need to know before a job is worth quoting.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:90ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/whatsapp-chatbot">WhatsApp chatbot</a></h3>
+            <h3 class="svc-row__title">Take details when someone's ready</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Answers WhatsApp messages the way a good member of staff would, and passes anything unusual to you.</p>
+            <p class="svc-row__text">Name, contact and what they need, passed to you however you want to receive it.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:135ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist#missed-call-text-back">Missed-call text back</a></h3>
+            <h3 class="svc-row__title">Point people to the right page</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">If a call goes unanswered, the caller gets a text within seconds asking what they need, before they ring someone else.</p>
+            <p class="svc-row__text">Send a visitor to the service, the example or the form that actually answers them.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:180ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist#appointment-booking">Appointment booking and reminders</a></h3>
+            <h3 class="svc-row__title">Cover the hours nobody's watching</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Customers pick a slot themselves, and a reminder goes out before the day so fewer people forget.</p>
+            <p class="svc-row__text">Evenings and weekends, when your site still gets traffic and nobody is at a desk.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:225ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">Lead follow-up and nurture</h3>
+            <h3 class="svc-row__title">Hand over when it should</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Every enquiry gets a reply, then a polite nudge a few days later if they've gone quiet.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:270ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Google review requests after a job</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Asks happy customers for a review at the moment the work is fresh, so your rating climbs without you chasing.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:315ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Quote and estimate requests</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Collects what you need to price a job, sends the quote out, and tells you when it's been opened.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:360ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Invoice and payment chasing</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Sends the invoice, then chases it politely until it's paid, so you're not the one asking twice.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:405ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">CRM data entry and syncing</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">New enquiries land in your system with the details already filled in, so nothing gets typed twice or lost in a notebook.</p>
+            <p class="svc-row__text">Some questions shouldn't be answered by software. You decide which, and it passes those to you.</p>
           </div>
         </div>
       </li>
@@ -519,34 +467,27 @@
 </section>
 
 <!-- ═══════════════════ 5. WHAT AFFECTS THE COST ═══════════════════
-     EDIT: the paragraph only. This section exists so the page can answer the
-     price question without publishing a number. Never add a figure, a range,
-     a "from" price or a currency symbol here. -->
+     EDIT: the paragraph only. Never add a figure, a range, a "from" price
+     or a currency symbol here. -->
 <section class="section section--alt section--tight">
   <div class="container container--narrow">
     <header class="sec-head">
       <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Cost</p>
       <h2 class="sec-title" data-reveal style="--rd:80ms">What affects the cost</h2>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        Every project is priced after the discovery call, based on how many automations you
-        need, which tools we connect to, call and message volume, languages, and whether you
-        want ongoing monitoring and updates.
+        Every project is priced after the discovery call. What moves it: how much it has to know
+        before it can answer well, how many questions you want it covering, whether it only
+        answers or also takes details and passes them on, how many languages, and whether you
+        want us reviewing and improving it after launch.
       </p>
     </header>
   </div>
 </section>
 
 <!-- ═══════════════════ 6. FAQ ═══════════════════
-     EDIT: the questions and answers. Same accordion as the homepage, driven
-     by initFaq() in main.js purely from these class names, so no JS changes
-     are needed for a new page.
-
-     The answers are real HTML, not injected by script: the panel starts with
-     the `hidden` attribute and main.js only toggles it. Keep it that way, and
-     keep this copy identical to the FAQPage block in the head, or the
-     structured data stops matching what the visitor sees.
-
-     Ids must be unique within the page: q1/a1, q2/a2 and so on. -->
+     EDIT: the questions and answers. Keep this copy identical to the
+     FAQPage block in the head, or the structured data stops matching what
+     the visitor sees. Ids must be unique: q1/a1, q2/a2 and so on. -->
 <section class="section section--alt section--faq" id="faq">
   <div class="container container--narrow">
     <header class="sec-head">
@@ -559,13 +500,13 @@
       <div class="faq__item" data-reveal>
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1" id="q1">
-            <span>What can actually be automated in my business?</span>
+            <span>How does it know what to say about my business?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a1" role="region" aria-labelledby="q1" hidden>
           <div class="faq__a-inner">
-            <p>The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you.</p>
+            <p>We decide that with you before anything is built. It can work from what's already on your site, from a set of questions and answers we write together, or both. Settling which is part of the discovery call, because it's what determines how well it answers.</p>
           </div>
         </div>
       </div>
@@ -573,13 +514,13 @@
       <div class="faq__item" data-reveal style="--rd:60ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2" id="q2">
-            <span>Will it work with the tools I already use?</span>
+            <span>Who decides what it can and can't do?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a2" role="region" aria-labelledby="q2" hidden>
           <div class="faq__a-inner">
-            <p>Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then.</p>
+            <p>You do. We don't ship a fixed product with a feature list. You tell us what it should handle and what it should never touch, and that scope is what we build. If you want it answering questions and nothing else, that's a perfectly good build.</p>
           </div>
         </div>
       </div>
@@ -587,13 +528,13 @@
       <div class="faq__item" data-reveal style="--rd:120ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3" id="q3">
-            <span>What happens if an automation breaks?</span>
+            <span>Can it handle more than one language?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a3" role="region" aria-labelledby="q3" hidden>
           <div class="faq__a-inner">
-            <p>We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped.</p>
+            <p>Yes. We build it in the languages you need rather than defaulting to English and adding the rest later. Which languages is one of the things we confirm on the discovery call, because it shapes both the build and what it takes to run.</p>
           </div>
         </div>
       </div>
@@ -601,13 +542,13 @@
       <div class="faq__item" data-reveal style="--rd:180ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4" id="q4">
-            <span>Who pays for the tools the automation runs on?</span>
+            <span>How long does it take to build?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a4" role="region" aria-labelledby="q4" hidden>
           <div class="faq__a-inner">
-            <p>Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built.</p>
+            <p>It depends on the scope you set, which is why we don't put a timeline on it before the discovery call. A chatbot covering a handful of known questions is a much shorter build than one that has to handle a wide range and pass enquiries into your systems. We give you a date once we know which one you are asking for.</p>
           </div>
         </div>
       </div>
@@ -615,13 +556,13 @@
       <div class="faq__item" data-reveal style="--rd:240ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5" id="q5">
-            <span>What affects the cost of an AI automation?</span>
+            <span>Does it work with my website platform?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a5" role="region" aria-labelledby="q5" hidden>
           <div class="faq__a-inner">
-            <p>The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need.</p>
+            <p>We handle installation, so this is our problem rather than yours. Tell us what your site is built on when we speak and we'll confirm it before you commit to anything.</p>
           </div>
         </div>
       </div>
@@ -636,8 +577,8 @@
   <div class="container container--narrow cta__inner">
     <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Let's talk</p>
     <h2 class="cta__title" data-reveal style="--rd:80ms">
-      Find out which automation would<br class="br-md" />
-      <span class="gold-text">save you the most</span>
+      Find out what your website<br class="br-md" />
+      <span class="gold-text">is letting walk away</span>
     </h2>
     <div class="cta__actions" data-reveal style="--rd:160ms">
       <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
