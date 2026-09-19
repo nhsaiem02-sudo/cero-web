@@ -96,8 +96,12 @@
      portfolio groups, so retuning the gap between sections through them
      would silently resize the cards as well. Twice these values is what a
      reader actually crosses between one section and the next. */
-  --sp-section:clamp(54px,6.6vw,88px);
-  --sp-section-tight:clamp(40px,4.8vw,62px);
+  --sp-section:clamp(44px,5.4vw,72px);
+  --sp-section-tight:clamp(32px,3.8vw,50px);
+  /* Gap under a section header, its own token for the same reason: --sp-6
+     had exactly one consumer, .sec-head, and changing it would have moved a
+     step of the shared scale to tune one rule. */
+  --sp-sec-head:clamp(24px,2.8vw,36px);
   --r-sm:10px;
   --r:16px;
   --r-lg:22px;
@@ -274,8 +278,19 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
 .sec-head--center .eyebrow{justify-content:center}
 .sec-head--center .sec-sub{margin-inline:auto}
 /* The stacking pin already centres its cards inside a full viewport, which puts
-   a lot of air under a normal section header. This pulls the two together. */
-.sec-head--tight{margin-bottom:var(--sp-2)}
+   a lot of air under a normal section header. This pulls the two together.
+
+   (0,2,0) on purpose. At (0,1,0) this rule lost to the plain .sec-head
+   declaration further down the file, which is also (0,1,0) and wins on source
+   order, so the variant never applied and all nine "tight" headers rendered at
+   the full margin. Doubling the class fixes that without moving the rule away
+   from the comment explaining it. 18px rather than the original 10: the value
+   was written for the homepage stacking pin, and 10px under a heading that
+   sits above a card list or a step timeline reads as collapsed.
+
+   .sec-head:last-child is also (0,2,0) and is declared after this, so a tight
+   header with nothing under it still gets zero. */
+.sec-head.sec-head--tight{margin-bottom:18px}
 
 
 /* Gold text renders as the brand gradient, matching .gold-text. Only elements
@@ -315,7 +330,13 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
 
 
 /* section headings */
-.sec-head{max-width:720px;margin-bottom:var(--sp-6)}
+.sec-head{max-width:720px;margin-bottom:var(--sp-sec-head)}
+/* A .sec-head that is the only thing in its container - the problem and the
+   cost sections on every service page - has nothing to space itself from. Its
+   margin lands between the last line of copy and the section's own bottom
+   padding, so the two stack and the section reads as having run out rather
+   than ended. 10 of the 30 section headers on the site are in that position. */
+.sec-head:last-child{margin-bottom:0}
 .sec-title{font-size:clamp(30px,4.1vw,50px);margin-bottom:16px}
 .sec-sub{color:var(--ink-2);font-size:clamp(16px,.5vw + 15px,18.5px);max-width:60ch}
 .section--dark .sec-sub{color:var(--on-dark-2)}
@@ -1011,7 +1032,7 @@ picture{display:contents}
    real one by dropping a <video> into the slot and nothing else changes. */
 
 /* A page whose first block is a heading rather than the hero has to clear the
-   fixed 74px navbar on its own. --sp-section bottoms out at 54px, which is
+   fixed 74px navbar on its own. --sp-section bottoms out at 44px, which is
    under the navbar, so the floor is stated outright and the max() always wins
    (same reasoning as .section--story). Tightening section rhythm must never
    pull this below 122px; the token is kept in the max() to record intent, not
