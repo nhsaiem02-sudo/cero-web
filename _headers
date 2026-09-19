@@ -37,6 +37,12 @@
 /ai-automation.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/ai-receptionist
+  Cache-Control: public, max-age=0, must-revalidate
+
+/ai-receptionist.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 /founder
   Cache-Control: public, max-age=0, must-revalidate
 

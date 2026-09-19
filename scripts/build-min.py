@@ -36,6 +36,7 @@ PAGES = [
     "co-founder.html",
     "404.html",
     "ai-automation.html",
+    "ai-receptionist.html",
 ]
 
 

@@ -91,6 +91,13 @@
   --sp-6:clamp(34px,4vw,52px);
   --sp-7:clamp(54px,6.4vw,84px);
   --sp-8:clamp(76px,10vw,128px);
+  /* Section rhythm, deliberately its own pair rather than --sp-7/--sp-8.
+     Those two also space the service-card stack (.svc-rows) and the
+     portfolio groups, so retuning the gap between sections through them
+     would silently resize the cards as well. Twice these values is what a
+     reader actually crosses between one section and the next. */
+  --sp-section:clamp(54px,6.6vw,88px);
+  --sp-section-tight:clamp(40px,4.8vw,62px);
   --r-sm:10px;
   --r:16px;
   --r-lg:22px;
@@ -289,16 +296,16 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
 /* No overflow:hidden here: it would become the scroll container for the
    sticky process pin and stop it sticking. Nothing needs clipping now that
    the per-section glows are gone. */
-.section{position:relative;padding:var(--sp-8) 0}
-.section--tight{padding:var(--sp-7) 0}
+.section{position:relative;padding:var(--sp-section) 0}
+.section--tight{padding:var(--sp-section-tight) 0}
 /* The stack pin carries its own bottom padding, so the section does not
    need a full step underneath it as well. */
-#process{padding-bottom:var(--sp-7)}
+#process{padding-bottom:var(--sp-section-tight)}
 /* The homepage #work section is a header and one button now, so it takes the
-   standard --sp-8 on both sides like the sections around it; a tightened top
-   would read as collapsed rather than deliberate. The portfolio's grid section
+   standard --sp-section on both sides like the sections around it; a tightened
+   top would read as collapsed rather than deliberate. The portfolio's grid section
    keeps a shorter run-in instead, see .section--pfwork. */
-.section--pfwork{padding-top:var(--sp-7)}
+.section--pfwork{padding-top:var(--sp-section-tight)}
 
 .section--dark{color:var(--on-dark)}
 .section--dark h1,.section--dark h2,.section--dark h3{color:#fff}
@@ -993,11 +1000,13 @@ picture{display:contents}
    real one by dropping a <video> into the slot and nothing else changes. */
 
 /* A page whose first block is a heading rather than the hero has to clear the
-   fixed 74px navbar on its own. --sp-8 bottoms out at 76px, two pixels of
-   clearance, so the floor is stated outright (same reasoning as
-   .section--story). */
+   fixed 74px navbar on its own. --sp-section bottoms out at 54px, which is
+   under the navbar, so the floor is stated outright and the max() always wins
+   (same reasoning as .section--story). Tightening section rhythm must never
+   pull this below 122px; the token is kept in the max() to record intent, not
+   because it can currently be the larger value. */
 .section--pagehead{
-  padding-top:max(122px,var(--sp-8));
+  padding-top:max(122px,var(--sp-section));
   padding-bottom:var(--sp-5);
 }
 .section--pagehead .sec-head{margin-bottom:0}
@@ -1249,7 +1258,7 @@ picture{display:contents}
 }
 
 /* ── FAQ ─────────────────────────────────────────────────── */
-.section--faq{padding-top:clamp(60px,7vw,96px)}
+.section--faq{padding-top:clamp(44px,5vw,68px)}
 .faq{
   border-radius:var(--r-lg);overflow:hidden;background:var(--surface);
   border:1px solid var(--paper-line);box-shadow:var(--shadow);
@@ -1485,7 +1494,7 @@ picture{display:contents}
    outright instead. */
 .section--story{
   padding-top:max(104px,calc(var(--sp-5) + 62px));
-  padding-bottom:var(--sp-7);
+  padding-bottom:var(--sp-section-tight);
 }
 
 /* The story hero is the heading and nothing else. The grid placement, z-index
