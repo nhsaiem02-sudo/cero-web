@@ -98,6 +98,10 @@
      reader actually crosses between one section and the next. */
   --sp-section:clamp(54px,6.6vw,88px);
   --sp-section-tight:clamp(40px,4.8vw,62px);
+  /* Gap under a section header, its own token for the same reason: --sp-6
+     had exactly one consumer, .sec-head, and changing it would have moved a
+     step of the shared scale to tune one rule. */
+  --sp-sec-head:clamp(24px,2.8vw,36px);
   --r-sm:10px;
   --r:16px;
   --r-lg:22px;
@@ -315,7 +319,13 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
 
 
 /* section headings */
-.sec-head{max-width:720px;margin-bottom:var(--sp-6)}
+.sec-head{max-width:720px;margin-bottom:var(--sp-sec-head)}
+/* A .sec-head that is the only thing in its container - the problem and the
+   cost sections on every service page - has nothing to space itself from. Its
+   margin lands between the last line of copy and the section's own bottom
+   padding, so the two stack and the section reads as having run out rather
+   than ended. 10 of the 30 section headers on the site are in that position. */
+.sec-head:last-child{margin-bottom:0}
 .sec-title{font-size:clamp(30px,4.1vw,50px);margin-bottom:16px}
 .sec-sub{color:var(--ink-2);font-size:clamp(16px,.5vw + 15px,18.5px);max-width:60ch}
 .section--dark .sec-sub{color:var(--on-dark-2)}
