@@ -1,25 +1,46 @@
 # CERO Studio SEO Plan
 
-Site: cerostudio.co, hosted on Netlify.
+Site: cerostudio.co, served by Netlify and moving to Cloudflare Pages, which is
+already live at cero-web.pages.dev from main.
 Audience: local businesses across the UK, US, Canada and Europe. We serve all industries, no single niche.
 Primary language: English. German pages come later under /de/.
 
 ## Pages to build
 
-Week 2: /ai-automation, /ai-receptionist, /website-design, /website-chatbot
+Six pages, built in this order. The order is the decision; the week bands are
+guidance and slip together if a page takes longer than planned.
 
-Week 3: /whatsapp-chatbot (also covers Messenger), /missed-calls, /appointment-booking-automation, /ai-avatar (lowest priority)
+1. /ai-receptionist - includes appointment booking as a section (see cuts below)
+2. /website-chatbot
+3. /whatsapp-chatbot - also covers Messenger as a section
+4. /website-design
+5. /missed-calls - ON HOLD, see cuts below. Skip to /ai-avatar if still unchecked.
+6. /ai-avatar - lowest priority
+
+Shipped: /ai-automation (also the template every page below is copied from).
 
 Later: /de/ki-telefonassistent, /de/impressum, /de/datenschutz
 
-/messenger-chatbot is cut. Messenger is a section on /whatsapp-chatbot.
+### Cuts and holds
+
+- /messenger-chatbot is cut. Messenger is a section on /whatsapp-chatbot.
+- /appointment-booking-automation is cut. Appointment booking is a section
+  inside /ai-receptionist, not a page of its own. Nothing else should link to
+  the old slug; it was never built, so no redirect is owed.
+- /missed-calls is deferred until its keyword volume is checked. Do not start
+  it on the strength of the order alone - it is fifth only if the data supports
+  a page. If the volume does not justify one, it becomes a section on
+  /ai-receptionist alongside appointment booking, and the list is five pages.
 
 ## Content rules
 
 - Never show fixed prices or price ranges. Use a "What affects the cost" section instead.
 - Every service page: keyword H1 hero, problem, how it works, use cases for local businesses, what affects the cost, FAQ, CTA.
 - CTA link: https://cal.com/cerostudio/free-discovery-call
-- Every new page must be added to sitemap.xml and linked from the homepage services section and the footer.
+- Every new page ships with the full six-item checklist in CLAUDE.md: sitemap.xml,
+  homepage service card, footer link, netlify.toml redirect, _redirects line and two
+  _headers blocks. CLAUDE.md is the authority on that list; do not work from a
+  shorter version of it.
 
 ## Target keywords (Ahrefs free tool, Sep 2026, volumes are ranges)
 
@@ -37,7 +58,11 @@ Later: /de/ki-telefonassistent, /de/impressum, /de/datenschutz
 - Plain HTML, CSS and vanilla JS. No build step. Do not add a framework.
 - Header and footer are repeated in every HTML page. Update every page when changing nav or footer links.
 - sitemap.xml is updated by hand. Add every new page to it in the same commit.
-- Hosted on Netlify. Don't touch vercel.json or _headers.
+- Hosting is mid-migration, so redirects and headers live in three files at once:
+  netlify.toml serves cerostudio.co until DNS moves, _redirects and _headers serve
+  Cloudflare Pages. A new page needs an entry in all three. _headers is no longer
+  hands-off; that earlier instruction predates the migration. vercel.json is unused
+  and still should not be touched.
 
 ## Timeline
 
