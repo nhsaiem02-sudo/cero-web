@@ -125,7 +125,7 @@ def repoint(path: Path, css: str, js: str, stamp: str) -> int:
     matched, which the caller checks.
 
     The leading slash is captured and put back rather than assumed away: 404.html
-    references "/styles.min.css" because Netlify serves it at any depth, and a
+    references "/styles.min.css" because the host serves it at any depth, and a
     pattern anchored on "styles" skipped that file silently while the script
     still reported success.
     """

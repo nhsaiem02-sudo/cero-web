@@ -1,7 +1,7 @@
 # CERO Studio SEO Plan
 
-Site: cerostudio.co, served by Netlify and moving to Cloudflare Pages, which is
-already live at cero-web.pages.dev from main.
+Site: cerostudio.co, served by Cloudflare Pages from main, previews at
+cero-web.pages.dev.
 Audience: local businesses across the UK, US, Canada and Europe. We serve all industries, no single niche.
 Primary language: English. German pages come later under /de/.
 
@@ -37,10 +37,9 @@ Later: /de/ki-telefonassistent, /de/impressum, /de/datenschutz
 - Never show fixed prices or price ranges. Use a "What affects the cost" section instead.
 - Every service page: keyword H1 hero, problem, how it works, use cases for local businesses, what affects the cost, FAQ, CTA.
 - CTA link: https://cal.com/cerostudio/free-discovery-call
-- Every new page ships with the full six-item checklist in CLAUDE.md: sitemap.xml,
-  homepage service card, footer link, netlify.toml redirect, _redirects line and two
-  _headers blocks. CLAUDE.md is the authority on that list; do not work from a
-  shorter version of it.
+- Every new page ships with the full five-item checklist in CLAUDE.md: sitemap.xml,
+  homepage service card, footer link, _redirects line and two _headers blocks.
+  CLAUDE.md is the authority on that list; do not work from a shorter version of it.
 
 ## Target keywords (Ahrefs free tool, Sep 2026, volumes are ranges)
 
@@ -58,11 +57,10 @@ Later: /de/ki-telefonassistent, /de/impressum, /de/datenschutz
 - Plain HTML, CSS and vanilla JS. No build step. Do not add a framework.
 - Header and footer are repeated in every HTML page. Update every page when changing nav or footer links.
 - sitemap.xml is updated by hand. Add every new page to it in the same commit.
-- Hosting is mid-migration, so redirects and headers live in three files at once:
-  netlify.toml serves cerostudio.co until DNS moves, _redirects and _headers serve
-  Cloudflare Pages. A new page needs an entry in all three. _headers is no longer
-  hands-off; that earlier instruction predates the migration. vercel.json is unused
-  and still should not be touched.
+- Redirects and headers live in _redirects and _headers, the only host config in the
+  repo. netlify.toml and vercel.json are deleted: the site is on Cloudflare Pages and
+  neither was read by anything. An earlier note here said _headers was hands-off;
+  that predates the migration and is wrong - a new page must edit it.
 
 ## Timeline
 
@@ -79,5 +77,5 @@ then - every page built, every checklist item closed, everything merged.
 Week 4 ends Oct 13, so the plan has one day of slack against this date. Work
 that needs Claude Code comes first inside each week; anything that can be done
 by hand later (copy edits, keyword checks, the blog) gives way if a week slips.
-The two open decisions both cost code time and should be settled early rather
-than late: the /missed-calls keyword check, and whether vercel.json is deleted.
+The one open decision that costs code time is the /missed-calls keyword check;
+settle it early rather than late.

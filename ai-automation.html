@@ -23,16 +23,13 @@
        1. entry in sitemap.xml
        2. link from the matching homepage service card
        3. link in the footer of EVERY html page, not just the new one
-       4. 301 for /<slug>.html -> /<slug> in netlify.toml, force = true
-       5. line in _redirects: /<slug>.html /<slug> 301
-       6. two blocks in _headers, /<slug> and /<slug>.html, both
+       4. line in _redirects: /<slug>.html /<slug> 301
+       5. two blocks in _headers, /<slug> and /<slug>.html, both
           Cache-Control: public, max-age=0, must-revalidate
 
-     Items 4-6 are three files because the site is mid-migration:
-     netlify.toml serves cerostudio.co until DNS moves, _redirects and
-     _headers serve Cloudflare Pages, and neither host reads the other's
-     config. _headers needs both paths spelled out because Cloudflare
-     allows one splat per pattern, so /*.html matches nothing.
+     _headers needs both paths spelled out because Cloudflare allows one
+     splat per pattern, so /*.html matches nothing and every file that
+     needs a cache policy has to be named.
      ══════════════════════════════════════════════════════════════════════ -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

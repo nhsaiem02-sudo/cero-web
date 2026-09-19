@@ -14,9 +14,8 @@ main.js             reveals, counters, marquee, nav, FAQ, parallax, cursor
 scripts/            build-logo.py    : logo + favicons from assets/logo.png
                     build-banners.py : service banners from the full card art
 assets/og-image.svg social share card (1200×630), see "Before launch"
-netlify.toml        Netlify config (headers, caching, www → apex redirect)
-vercel.json         Vercel config (headers, caching)
-_headers            Cloudflare Pages config
+_redirects          Cloudflare Pages redirects (.html → extensionless, 301)
+_headers            Cloudflare Pages headers (security, caching)
 robots.txt, sitemap.xml
 ```
 
@@ -65,23 +64,36 @@ Two things worth knowing:
 
 ## Run locally
 
-Any static server works, since there is nothing to compile:
+Any static server works for looking at the pages, since there is nothing to compile:
 
 ```bash
 python3 -m http.server 5173
 # → http://localhost:5173
 ```
 
+That server knows nothing about `_redirects` or `_headers`, so `/portfolio` 404s and
+every cache header is wrong. To exercise the real routing, run the Cloudflare Pages
+emulator instead:
+
+```bash
+npx wrangler pages dev . --port 8788
+# → http://127.0.0.1:8788
+```
+
+It parses both files on startup and reports how many rules it read, which is the
+quickest way to catch a malformed rule. Local state lands in `.wrangler/`, gitignored.
+
 ## Deploy
 
-| Host | Steps |
-| --- | --- |
-| **Netlify** | Drag the folder onto the dashboard, or `netlify deploy --prod --dir .` |
-| **Vercel** | `vercel --prod`, framework preset "Other", output directory `.` |
-| **Cloudflare Pages** | New project → connect repo → build command empty, output `/` |
+The site is on **Cloudflare Pages**, deployed from `main`, with no build step: connect
+the repo, leave the build command empty and set the output directory to `/`. Previews
+build at `cero-web.pages.dev`; `cerostudio.co` is the production domain.
 
-Then point `cerostudio.co` at the deployment and enable HTTPS. The Netlify config already
-redirects `www` to the apex domain; add the equivalent on other hosts if you use `www`.
+`www` → apex is a Redirect Rule on the Cloudflare zone, not a file in this repo, because
+`_redirects` cannot match on hostname. Routing and headers come from `_redirects` and
+`_headers`; nothing else in the repo configures the host.
+
+For a local server that honours those two files, see "Local preview" above.
 
 ## Before launch
 
@@ -332,10 +344,11 @@ Two things differ from `index.html` and must stay that way:
 The page has no intro quote card. It opens on the `<h1>` lede, and the founder's
 quote lives only on the homepage, so the two cannot drift apart.
 
-The URL is `/founder`, not `/founder.html`: `cleanUrls` is already set in
-`vercel.json` and Netlify serves pretty URLs by default. Links in the markup
-point at `founder.html` so the page also works from the filesystem and the local
-preview server; the hosts redirect the `.html` form to the clean one.
+The URL is `/founder`, not `/founder.html`: Cloudflare Pages strips `.html`
+automatically, and our `_redirects` rules override its default 308 with a 301 to
+the extensionless form. Links in the markup point at `founder.html` so the page
+also works from the filesystem and the local preview server; the host redirects
+the `.html` form to the clean one.
 
 **Layout.** `.story` is a vertical timeline with a spine down the centre.
 Chapters carrying a photograph (`.story__ch--media`) are two columns and
@@ -590,10 +603,11 @@ Two things differ from `index.html` and must stay that way:
 The page has no intro quote card. It opens on the `<h1>` lede, and the founder's
 quote lives only on the homepage, so the two cannot drift apart.
 
-The URL is `/founder`, not `/founder.html`: `cleanUrls` is already set in
-`vercel.json` and Netlify serves pretty URLs by default. Links in the markup
-point at `founder.html` so the page also works from the filesystem and the local
-preview server; the hosts redirect the `.html` form to the clean one.
+The URL is `/founder`, not `/founder.html`: Cloudflare Pages strips `.html`
+automatically, and our `_redirects` rules override its default 308 with a 301 to
+the extensionless form. Links in the markup point at `founder.html` so the page
+also works from the filesystem and the local preview server; the host redirects
+the `.html` form to the clean one.
 
 **Layout.** `.story` is a vertical timeline with a spine down the centre.
 Chapters carrying a photograph (`.story__ch--media`) are two columns and
@@ -865,10 +879,11 @@ Two things differ from `index.html` and must stay that way:
 The page has no intro quote card. It opens on the `<h1>` lede, and the founder's
 quote lives only on the homepage, so the two cannot drift apart.
 
-The URL is `/founder`, not `/founder.html`: `cleanUrls` is already set in
-`vercel.json` and Netlify serves pretty URLs by default. Links in the markup
-point at `founder.html` so the page also works from the filesystem and the local
-preview server; the hosts redirect the `.html` form to the clean one.
+The URL is `/founder`, not `/founder.html`: Cloudflare Pages strips `.html`
+automatically, and our `_redirects` rules override its default 308 with a 301 to
+the extensionless form. Links in the markup point at `founder.html` so the page
+also works from the filesystem and the local preview server; the host redirects
+the `.html` form to the clean one.
 
 **Layout.** `.story` is a vertical timeline with a spine down the centre.
 Chapters carrying a photograph (`.story__ch--media`) are two columns and

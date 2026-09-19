@@ -25,18 +25,14 @@ rewriting headings and body copy, titles and meta descriptions, schema/structure
   headings.
 - **Service pages follow the fixed section order**: keyword H1 hero → problem → how it
   works → use cases for local businesses → what affects the cost → FAQ → CTA.
-- **Every new page ships with six things.** A page is not done until all six exist:
+- **Every new page ships with five things.** A page is not done until all five exist:
   1. an entry in `sitemap.xml`
   2. a link in the homepage services section
   3. a link in the footer (see the footer rule below)
-  4. a `[[redirects]]` block in `netlify.toml`, `.html` -> extensionless, 301, `force = true`
-  5. a line in `_redirects`, `/<page>.html /<page> 301`
-  6. two blocks in `_headers`, one for `/<page>` and one for `/<page>.html`, both
+  4. a line in `_redirects`, `/<page>.html /<page> 301`
+  5. two blocks in `_headers`, one for `/<page>` and one for `/<page>.html`, both
      `Cache-Control: public, max-age=0, must-revalidate`
 
-  Items 4-6 are three separate files because the site is mid-migration: `netlify.toml`
-  serves cerostudio.co until DNS moves, `_redirects` and `_headers` serve Cloudflare
-  Pages. Cloudflare ignores `netlify.toml` entirely, and Netlify ignores the other two.
   `_headers` needs both the extensionless and the `.html` path because Cloudflare allows
   only one splat per pattern, so `/*.html` matches nothing and every file that needs a
   cache policy has to be named. Miss the `_headers` blocks and the page still loads, just
@@ -57,8 +53,11 @@ override the plan.
 
 ## Site facts
 
-- Domain: cerostudio.co, currently served by Netlify and moving to Cloudflare Pages,
-  which is already live at `cero-web.pages.dev` from `main`. Until the move lands,
-  redirect and header changes go in `netlify.toml` *and* `_redirects`/`_headers`.
+- Domain: cerostudio.co, served by Cloudflare Pages from `main`, with previews at
+  `cero-web.pages.dev`. Routing and headers live in `_redirects` and `_headers`; those
+  two files are the only host config in the repo. `www` -> apex is a Redirect Rule on
+  the Cloudflare zone, not a file here, because `_redirects` cannot match on hostname.
+- Local server is `npx wrangler pages dev . --port 8788`, which reads `_redirects` and
+  `_headers` the way production does. A plain static server does not.
 - Audience: local businesses in the UK, US, Canada and Europe; all industries.
 - Primary language English; German pages land later under `/de/`.
