@@ -779,6 +779,60 @@ picture{display:contents}
   font-size:clamp(25px,2.5vw + 12px,38px);letter-spacing:-.03em;
   color:#0A1128;text-wrap:balance;
 }
+
+/* Linked use-case titles. A title that is a link has to look like one before
+   it is hovered, because the list is scanned, not read: the chevron is the
+   at-rest signal and the underline is the confirmation on hover.
+
+   Two decisions worth recording. The underline is drawn as a background
+   rather than a ::after bar, so it survives a title wrapping to two lines,
+   which the absolutely-positioned .nav__link::after would not. And it is a
+   flat --gold-1 rather than --gold-grad: the gradient runs through #FFFF95
+   at its midpoint, which reads on the navy navbar and washes out to nothing
+   on this card's #FBFBF9. The chevron takes the deep amber the chips on this
+   same card already use, so it carries real contrast on a light background
+   where gold text would not.
+
+   Sized in em throughout, so it tracks the compact title clamp on service
+   pages and the full-size homepage clamp without a second rule. Only titles
+   that actually contain an <a> are affected; plain titles are untouched. */
+.svc-row__title a{
+  background-image:linear-gradient(var(--gold-1),var(--gold-1));
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:0 2px;
+  transition:background-size 320ms var(--ease);
+}
+.svc-row__title a::after{
+  content:"";display:inline-block;
+  width:.3em;height:.3em;margin-left:.42em;
+  border-top:.085em solid #8A6D14;
+  border-right:.085em solid #8A6D14;
+  rotate:45deg;
+  translate:0 -.05em;
+  transition:translate 260ms var(--ease),border-color 260ms var(--ease);
+}
+
+/* Hover on the card, not just the text: the whole row already lifts on
+   .svc-row:hover, so the title should answer at the same moment rather than
+   waiting for the pointer to find the words. :focus-visible is included so
+   the keyboard gets the same signal, on top of the global gold focus ring. */
+.svc-row:hover .svc-row__title a,
+.svc-row__title a:hover,
+.svc-row__title a:focus-visible{
+  background-size:100% 2px;
+}
+.svc-row:hover .svc-row__title a::after,
+.svc-row__title a:hover::after,
+.svc-row__title a:focus-visible::after{
+  translate:.2em -.05em;
+  border-color:var(--gold-1);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .svc-row__title a,
+  .svc-row__title a::after{transition:none}
+}
 .svc-row__text{
   color:#43506E;font-size:clamp(15.5px,.5vw + 14.5px,17.5px);
   line-height:1.66;max-width:56ch;text-wrap:pretty;
