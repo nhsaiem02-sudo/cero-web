@@ -844,6 +844,17 @@ picture{display:contents}
   color:#43506E;font-size:clamp(15.5px,.5vw + 14.5px,17.5px);
   line-height:1.66;max-width:56ch;text-wrap:pretty;
 }
+/* Pill row under a service card. Flex rather than inline so a card can carry
+   more than one pill without them colliding: .btn is inline-flex, so plain
+   siblings would be separated by collapsed whitespace, about 4px, and two gold
+   pills that close read as a mistake. Wrapping as a unit matters on mobile,
+   where two pills exceed the card width and the gap has to space them
+   vertically too. Mirrors .cta__actions at the smaller button size; the
+   margin-top was an inline style repeated on all four cards until now. */
+.svc-row__more{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  margin-top:clamp(16px,1.6vw,22px);
+}
 .svc-row__chips{
   display:flex;flex-wrap:wrap;gap:10px;
   margin-top:clamp(18px,1.8vw,24px);
