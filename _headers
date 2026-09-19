@@ -55,6 +55,12 @@
 /whatsapp-chatbot.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/website-design
+  Cache-Control: public, max-age=0, must-revalidate
+
+/website-design.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 /founder
   Cache-Control: public, max-age=0, must-revalidate
 

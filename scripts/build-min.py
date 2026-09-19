@@ -39,6 +39,7 @@ PAGES = [
     "ai-receptionist.html",
     "website-chatbot.html",
     "whatsapp-chatbot.html",
+    "website-design.html",
 ]
 
 
