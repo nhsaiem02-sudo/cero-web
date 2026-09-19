@@ -95,7 +95,7 @@
 </script>
 <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
-<link rel="stylesheet" href="styles.min.css?v=1789643865" />
+<link rel="stylesheet" href="styles.min.css?v=1789819369" />
 
 <!-- ─── Structured data ──────────────────────────────────────────────────
      Three blocks, all EDIT per page:
@@ -113,22 +113,101 @@
   "serviceType": "AI automation",
   "description": "AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses.",
   "url": "https://cerostudio.co/ai-automation",
-  "provider": { "@id": "https://cerostudio.co/#organization" },
+  "provider": {
+    "@id": "https://cerostudio.co/#organization"
+  },
   "areaServed": [
-    { "@type": "Country", "name": "United Kingdom" },
-    { "@type": "Country", "name": "United States" },
-    { "@type": "Country", "name": "Canada" }
+    {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    {
+      "@type": "Country",
+      "name": "United States"
+    },
+    {
+      "@type": "Country",
+      "name": "Canada"
+    }
   ],
-  "audience": { "@type": "Audience", "audienceType": "Local businesses" },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Local businesses"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "What we automate for local businesses",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI receptionist" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI chatbots" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Appointment booking and reminders" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead follow-up" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Admin automations" } }
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI receptionist"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website chatbot"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "WhatsApp chatbot"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Missed-call text back"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Appointment booking and reminders"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lead follow-up and nurture"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Google review requests after a job"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Quote and estimate requests"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Invoice and payment chasing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "CRM data entry and syncing"
+        }
+      }
     ]
   }
 }
@@ -138,46 +217,48 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "@id": "https://cerostudio.co/ai-automation#faq",
-  "isPartOf": { "@id": "https://cerostudio.co/#organization" },
+  "isPartOf": {
+    "@id": "https://cerostudio.co/#organization"
+  },
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do I need technical knowledge?",
+      "name": "What can actually be automated in my business?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. We build, connect and maintain everything."
+        "text": "The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you."
       }
     },
     {
       "@type": "Question",
-      "name": "Will it work with my current tools?",
+      "name": "Will it work with the tools I already use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Usually yes: most calendars, CRMs, WhatsApp Business and website platforms."
+        "text": "Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then."
       }
     },
     {
       "@type": "Question",
-      "name": "How long does setup take?",
+      "name": "What happens if an automation breaks?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most single automations go live within a few weeks."
+        "text": "We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped."
       }
     },
     {
       "@type": "Question",
-      "name": "Where are you based?",
+      "name": "Who pays for the tools the automation runs on?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our team is in Dhaka, Bangladesh, and we work remotely with businesses in the UK, US and Canada. Calls are scheduled in your time zone."
+        "text": "Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built."
       }
     },
     {
       "@type": "Question",
-      "name": "What if the AI gets something wrong?",
+      "name": "What affects the cost of an AI automation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We test every automation with real scenarios before launch, then review conversations after go-live and correct anything the AI handles badly."
+        "text": "The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need."
       }
     }
   ]
@@ -291,29 +372,29 @@
       <li class="steps__item" data-reveal style="--rd:80ms">
         <span class="steps__num" aria-hidden="true">01</span>
         <div class="steps__body">
-          <h3 class="steps__title">Free discovery call</h3>
-          <p class="steps__text">We look at where enquiries come in and where they get lost.</p>
+          <h3 class="steps__title">Find where the work leaks</h3>
+          <p class="steps__text">We go through your phone, website, WhatsApp and inbox and count what comes in, what gets answered, and what goes cold.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:180ms">
         <span class="steps__num" aria-hidden="true">02</span>
         <div class="steps__body">
-          <h3 class="steps__title">Automation plan</h3>
-          <p class="steps__text">We recommend the one or two automations that recover the most work first.</p>
+          <h3 class="steps__title">Pick one job to automate</h3>
+          <p class="steps__text">We start with the single task costing you the most work, and write down what it should do and when it should hand over to you.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:280ms">
         <span class="steps__num" aria-hidden="true">03</span>
         <div class="steps__body">
-          <h3 class="steps__title">Build and test</h3>
-          <p class="steps__text">We connect them to the tools you already use (calendar, CRM, WhatsApp, website) and test with real scenarios.</p>
+          <h3 class="steps__title">Build it on your own tools</h3>
+          <p class="steps__text">We connect it to the calendar, phone and CRM you already use, then test it against real enquiries from the last few months, not made-up examples.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:380ms">
         <span class="steps__num" aria-hidden="true">04</span>
         <div class="steps__body">
-          <h3 class="steps__title">Launch and improve</h3>
-          <p class="steps__text">We monitor results and adjust what the AI says and does.</p>
+          <h3 class="steps__title">Run it beside you first</h3>
+          <p class="steps__text">It handles a small share of the real volume while you watch every message, and we tune the wording until you'd have sent it yourself.</p>
         </div>
       </li>
     </ol>
@@ -336,20 +417,40 @@
       <li class="svc-row" data-reveal>
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">AI receptionist</h3>
+            <h3 class="svc-row__title"><a href="/ai-receptionist">AI receptionist</a></h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Answers every call 24/7, handles common questions and books appointments.</p>
+            <p class="svc-row__text">Answers every call, day or night, takes the details you need and puts the job straight into your calendar.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:45ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title"><a href="/website-chatbot">Website chatbot</a></h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Replies to questions on your website the moment they're asked, so nobody leaves because they waited.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:90ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">AI chatbots</h3>
+            <h3 class="svc-row__title"><a href="/whatsapp-chatbot">WhatsApp chatbot</a></h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Instant replies on your website, WhatsApp and Facebook Messenger, day or night, so no enquiry waits until morning.</p>
+            <p class="svc-row__text">Answers WhatsApp messages the way a good member of staff would, and passes anything unusual to you.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:135ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title"><a href="/ai-receptionist">Missed-call text back</a></h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">If a call goes unanswered, the caller gets a text within seconds asking what they need, before they ring someone else.</p>
           </div>
         </div>
       </li>
@@ -359,27 +460,57 @@
             <h3 class="svc-row__title">Appointment booking and reminders</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Fewer no-shows, less back-and-forth.</p>
+            <p class="svc-row__text">Customers pick a slot themselves, and a reminder goes out before the day so fewer people forget.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:225ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Lead follow-up and nurture</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Every enquiry gets a reply, then a polite nudge a few days later if they've gone quiet.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:270ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">Lead follow-up</h3>
+            <h3 class="svc-row__title">Google review requests after a job</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Every enquiry gets a reply and a follow-up, automatically.</p>
+            <p class="svc-row__text">Asks happy customers for a review at the moment the work is fresh, so your rating climbs without you chasing.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:315ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Quote and estimate requests</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Collects what you need to price a job, sends the quote out, and tells you when it's been opened.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:360ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">Admin automations</h3>
+            <h3 class="svc-row__title">Invoice and payment chasing</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Invoices, reports and data entry between your tools.</p>
+            <p class="svc-row__text">Sends the invoice, then chases it politely until it's paid, so you're not the one asking twice.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:405ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">CRM data entry and syncing</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">New enquiries land in your system with the details already filled in, so nothing gets typed twice or lost in a notebook.</p>
           </div>
         </div>
       </li>
@@ -428,13 +559,13 @@
       <div class="faq__item" data-reveal>
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1" id="q1">
-            <span>Do I need technical knowledge?</span>
+            <span>What can actually be automated in my business?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a1" role="region" aria-labelledby="q1" hidden>
           <div class="faq__a-inner">
-            <p>No. We build, connect and maintain everything.</p>
+            <p>The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you.</p>
           </div>
         </div>
       </div>
@@ -442,13 +573,13 @@
       <div class="faq__item" data-reveal style="--rd:60ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2" id="q2">
-            <span>Will it work with my current tools?</span>
+            <span>Will it work with the tools I already use?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a2" role="region" aria-labelledby="q2" hidden>
           <div class="faq__a-inner">
-            <p>Usually yes: most calendars, CRMs, WhatsApp Business and website platforms.</p>
+            <p>Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then.</p>
           </div>
         </div>
       </div>
@@ -456,13 +587,13 @@
       <div class="faq__item" data-reveal style="--rd:120ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3" id="q3">
-            <span>How long does setup take?</span>
+            <span>What happens if an automation breaks?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a3" role="region" aria-labelledby="q3" hidden>
           <div class="faq__a-inner">
-            <p>Most single automations go live within a few weeks.</p>
+            <p>We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped.</p>
           </div>
         </div>
       </div>
@@ -470,13 +601,13 @@
       <div class="faq__item" data-reveal style="--rd:180ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4" id="q4">
-            <span>Where are you based?</span>
+            <span>Who pays for the tools the automation runs on?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a4" role="region" aria-labelledby="q4" hidden>
           <div class="faq__a-inner">
-            <p>Our team is in Dhaka, Bangladesh, and we work remotely with businesses in the UK, US and Canada. Calls are scheduled in your time zone.</p>
+            <p>Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built.</p>
           </div>
         </div>
       </div>
@@ -484,13 +615,13 @@
       <div class="faq__item" data-reveal style="--rd:240ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5" id="q5">
-            <span>What if the AI gets something wrong?</span>
+            <span>What affects the cost of an AI automation?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a5" role="region" aria-labelledby="q5" hidden>
           <div class="faq__a-inner">
-            <p>We test every automation with real scenarios before launch, then review conversations after go-live and correct anything the AI handles badly.</p>
+            <p>The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need.</p>
           </div>
         </div>
       </div>
@@ -572,6 +703,6 @@
   </div>
 </footer>
 
-<script src="main.min.js?v=1789643865" defer></script>
+<script src="main.min.js?v=1789819369" defer></script>
 </body>
 </html>
