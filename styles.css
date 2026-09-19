@@ -278,8 +278,19 @@ body{caret-color:var(--gold-2);-webkit-tap-highlight-color:rgba(236,196,64,.22)}
 .sec-head--center .eyebrow{justify-content:center}
 .sec-head--center .sec-sub{margin-inline:auto}
 /* The stacking pin already centres its cards inside a full viewport, which puts
-   a lot of air under a normal section header. This pulls the two together. */
-.sec-head--tight{margin-bottom:var(--sp-2)}
+   a lot of air under a normal section header. This pulls the two together.
+
+   (0,2,0) on purpose. At (0,1,0) this rule lost to the plain .sec-head
+   declaration further down the file, which is also (0,1,0) and wins on source
+   order, so the variant never applied and all nine "tight" headers rendered at
+   the full margin. Doubling the class fixes that without moving the rule away
+   from the comment explaining it. 18px rather than the original 10: the value
+   was written for the homepage stacking pin, and 10px under a heading that
+   sits above a card list or a step timeline reads as collapsed.
+
+   .sec-head:last-child is also (0,2,0) and is declared after this, so a tight
+   header with nothing under it still gets zero. */
+.sec-head.sec-head--tight{margin-bottom:18px}
 
 
 /* Gold text renders as the brand gradient, matching .gold-text. Only elements
