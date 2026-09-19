@@ -26,6 +26,7 @@ out/
 .parcel-cache/
 .vercel/
 .netlify/
+.wrangler/
 
 # ── Tooling noise ───────────────────────────────────────────
 __pycache__/
