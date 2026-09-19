@@ -2,42 +2,38 @@
 <html lang="en">
 <head>
 <!-- ═══════════════════════════════════════════════════════════════════════
-     SERVICE PAGE TEMPLATE
+     /ai-receptionist
      ═══════════════════════════════════════════════════════════════════════
-     Copy this file to build the next service page. Everything that changes
-     per page is marked EDIT; everything else is shared chrome and should be
-     kept byte-identical across pages so the header, footer, fonts and colours
-     stay in sync.
+     Built from ai-automation.html, which is the template. This is not the
+     template; copy that file, not this one.
 
-     Section order is fixed by CLAUDE.md and must not be reordered:
-       hero (keyword H1) -> problem -> how it works -> use cases
-       -> what affects the cost -> FAQ -> CTA
+     Two sections sit outside the fixed order in CLAUDE.md, both approved:
+     appointment booking and missed-call text back. The separate
+     /appointment-booking-automation page was cut and folded in here, see
+     SEO-PLAN.md. Use-case cards on /ai-automation link straight to the two
+     ids, so #appointment-booking and #missed-call-text-back must not be
+     renamed without fixing those links too.
 
-     Rules that apply to every service page:
-       - No prices. Ever. The "what affects the cost" section replaces them.
-       - CTA always points at https://cal.com/cerostudio/free-discovery-call
-       - Plain buyer language in headings. See SEO-PLAN.md target keywords.
+     Keyword targets from SEO-PLAN.md: the H1 takes "ai receptionist", the
+     how-it-works H2 takes "ai answering service for business", and
+     "ai receptionist for small business" sits in the problem copy.
+     "AI voice agent" is body text in the FAQ only, never a heading.
 
-     Checklist for a new page, none of it optional. CLAUDE.md is the
-     authority; this copy is here so it travels with the template:
-       1. entry in sitemap.xml
-       2. link from the matching homepage service card
-       3. link in the footer of EVERY html page, not just the new one
-       4. line in _redirects: /<slug>.html /<slug> 301
-       5. two blocks in _headers, /<slug> and /<slug>.html, both
-          Cache-Control: public, max-age=0, must-revalidate
+     The FAQ and the FAQPage block in the head were generated together from
+     one source and must stay identical word for word.
 
-     _headers needs both paths spelled out because Cloudflare allows one
-     splat per pattern, so /*.html matches nothing and every file that
-     needs a cache policy has to be named.
+     Three facts that must not drift: we build on Vapi or Retell and choose
+     per project; the AI transfers to a person only if the caller asks and
+     only inside working hours; outside hours it explains and takes the
+     enquiry instead.
      ══════════════════════════════════════════════════════════════════════ -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
 <!-- EDIT: title, description, canonical -->
-<title>AI Automation Services for Local Businesses | CERO Studio</title>
-<meta name="description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
-<link rel="canonical" href="https://cerostudio.co/ai-automation" />
+<title>AI Answering Service &amp; AI Receptionist | CERO Studio</title>
+<meta name="description" content="An AI receptionist that answers every call, books appointments and texts back the ones you miss. Works evenings, weekends and breaks. Book a free discovery call." />
+<link rel="canonical" href="https://cerostudio.co/ai-receptionist" />
 <meta name="theme-color" content="#0A1128" />
 
 <!-- Open Graph / social. EDIT url, title, description and image:alt.
@@ -45,17 +41,17 @@
      and a missing image renders far worse than a generic one. -->
 <meta property="og:site_name" content="CERO Studio Co." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://cerostudio.co/ai-automation" />
-<meta property="og:title" content="AI Automation Services for Local Businesses | CERO Studio" />
-<meta property="og:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta property="og:url" content="https://cerostudio.co/ai-receptionist" />
+<meta property="og:title" content="AI Answering Service &amp; AI Receptionist | CERO Studio" />
+<meta property="og:description" content="An AI receptionist that answers every call, books appointments and texts back the ones you miss. Works evenings, weekends and breaks. Book a free discovery call." />
 <meta property="og:image" content="https://cerostudio.co/assets/og-image.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="CERO Studio Co. AI automation services for local businesses." />
+<meta property="og:image:alt" content="CERO Studio Co. AI receptionist and answering service for local businesses." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI Automation Services for Local Businesses | CERO Studio" />
-<meta name="twitter:description" content="AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses. Book a free discovery call." />
+<meta name="twitter:title" content="AI Answering Service &amp; AI Receptionist | CERO Studio" />
+<meta name="twitter:description" content="An AI receptionist that answers every call, books appointments and texts back the ones you miss. Works evenings, weekends and breaks. Book a free discovery call." />
 <meta name="twitter:image" content="https://cerostudio.co/assets/og-image.jpg" />
 
 <!-- Shared chrome from here down: do not edit per page. -->
@@ -108,11 +104,11 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://cerostudio.co/ai-automation#service",
-  "name": "AI Automation Services for Local Businesses",
-  "serviceType": "AI automation",
-  "description": "AI receptionists, chatbots, booking and follow-up automations that answer customers and win back lost work for local businesses.",
-  "url": "https://cerostudio.co/ai-automation",
+  "@id": "https://cerostudio.co/ai-receptionist#service",
+  "name": "AI Receptionist and AI Answering Service",
+  "serviceType": "AI receptionist",
+  "description": "An AI receptionist that answers every call, books appointments into your calendar and texts back missed calls, for local businesses.",
+  "url": "https://cerostudio.co/ai-receptionist",
   "provider": {
     "@id": "https://cerostudio.co/#organization"
   },
@@ -136,76 +132,48 @@
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "What we automate for local businesses",
+    "name": "What the receptionist handles",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "AI receptionist"
+          "name": "New enquiry calls"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Website chatbot"
+          "name": "Booking and rescheduling"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "WhatsApp chatbot"
+          "name": "Your most common questions"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Missed-call text back"
+          "name": "Out-of-hours and weekend calls"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Appointment booking and reminders"
+          "name": "Overflow when the line is busy"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Lead follow-up and nurture"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Google review requests after a job"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Quote and estimate requests"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Invoice and payment chasing"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "CRM data entry and syncing"
+          "name": "Transfers when asked"
         }
       }
     ]
@@ -216,49 +184,49 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://cerostudio.co/ai-automation#faq",
+  "@id": "https://cerostudio.co/ai-receptionist#faq",
   "isPartOf": {
     "@id": "https://cerostudio.co/#organization"
   },
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What can actually be automated in my business?",
+      "name": "Will callers know they are talking to an AI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you."
+        "text": "Most will work it out, and we don't try to hide it. It introduces itself as your virtual receptionist, speaks naturally, and never pretends to be a named member of staff. Callers mind far less than owners expect, as long as it answers quickly and actually helps."
       }
     },
     {
       "@type": "Question",
-      "name": "Will it work with the tools I already use?",
+      "name": "What happens if a caller asks to speak to a person?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then."
+        "text": "During your working hours it transfers them to whoever you nominate. Outside those hours, at weekends and on breaks it doesn't try to put the call through to nobody: it explains politely that the team isn't available, takes the enquiry in full, and passes it to you for when you're back."
       }
     },
     {
       "@type": "Question",
-      "name": "What happens if an automation breaks?",
+      "name": "Can it use my existing phone number?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped."
+        "text": "Most businesses forward their existing number to the receptionist, so customers keep calling the number they already have. What's possible depends on your phone provider, so we check that on the discovery call before anything is set up."
       }
     },
     {
       "@type": "Question",
-      "name": "Who pays for the tools the automation runs on?",
+      "name": "How many calls can it answer at the same time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built."
+        "text": "As many as come in. That's the part a human receptionist can't match: five people ringing at nine on Monday all get answered on the first ring, instead of four of them hearing a busy tone."
       }
     },
     {
       "@type": "Question",
-      "name": "What affects the cost of an AI automation?",
+      "name": "What software does the receptionist run on?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need."
+        "text": "We build on Vapi or Retell and choose between them per project, based on which one handles your call patterns, languages and integrations better. Both are AI voice agent platforms; we aren't tied to either, so the choice is made on what suits your calls rather than what we happen to prefer."
       }
     }
   ]
@@ -268,10 +236,20 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://cerostudio.co/ai-automation#breadcrumb",
+  "@id": "https://cerostudio.co/ai-receptionist#breadcrumb",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cerostudio.co/" },
-    { "@type": "ListItem", "position": 2, "name": "AI Automation", "item": "https://cerostudio.co/ai-automation" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://cerostudio.co/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "AI Receptionist",
+      "item": "https://cerostudio.co/ai-receptionist"
+    }
   ]
 }
 </script>
@@ -324,11 +302,12 @@
 <section class="section section--alt section--pagehead">
   <div class="container">
     <header class="sec-head sec-head--center">
-      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>AI Automation</p>
-      <h1 class="sec-title" data-reveal style="--rd:80ms">AI Automation Services for Local Businesses</h1>
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>AI Receptionist</p>
+      <h1 class="sec-title" data-reveal style="--rd:80ms">AI Receptionist That Answers Every Call</h1>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        We build AI receptionists, chatbots and automations that answer customers, book
-        appointments and follow up on leads, so you stop losing work to slow replies.
+        Every call answered on the first ring, day or night. It takes the details, books the job
+        into your calendar, and texts back anyone you miss, so a ringing phone stops deciding
+        whether you win the work.
       </p>
       <div class="cta__actions" data-reveal style="--rd:200ms">
         <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
@@ -346,12 +325,14 @@
   <div class="container container--narrow">
     <header class="sec-head">
       <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>The problem</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">Where local businesses lose customers</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">What a missed call actually costs</h2>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        Most local businesses don't lose customers to competitors. They lose them to missed
-        calls, late replies and forgotten follow-ups. A caller who reaches voicemail rings the
-        next business on Google. A website enquiry answered the next morning is already booked
-        elsewhere. Hiring more staff to cover every hour is expensive, so the gaps stay open.
+        Most local businesses lose work at the phone, not the pitch. You're on a job, driving, or
+        with a customer, and the call goes to voicemail. Most callers don't leave one, they ring
+        the next business on Google. Evenings and weekends are worse, because that's when people
+        have time to call. Hiring someone to cover every hour is out of reach for most, so the
+        phone keeps ringing out. That's the gap an AI receptionist for small business owners
+        fills: it answers on the first ring, at 9pm on a Sunday, for every caller at once.
       </p>
     </header>
   </div>
@@ -360,41 +341,45 @@
 <!-- ═══════════════════ 3. HOW IT WORKS ═══════════════════
      EDIT: the four steps. Reuses the homepage .steps timeline, so a step is
      always a numbered marker plus a title and one sentence. Add or remove
-     <li> freely; the connecting rule is drawn by CSS, not markup. -->
+     <li> freely; the connecting rule is drawn by CSS, not markup.
+
+     The H2 carries the "ai answering service for business" target from
+     SEO-PLAN.md. "AI voice agent" stays out of every heading on this page
+     and appears only in FAQ body copy, which is what that plan specifies. -->
 <section class="section section--alt">
   <div class="container container--narrow">
     <header class="sec-head sec-head--tight">
       <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Process</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">How it works</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">How an AI answering service for business works</h2>
     </header>
 
     <ol class="steps">
       <li class="steps__item" data-reveal style="--rd:80ms">
         <span class="steps__num" aria-hidden="true">01</span>
         <div class="steps__body">
-          <h3 class="steps__title">Find where the work leaks</h3>
-          <p class="steps__text">We go through your phone, website, WhatsApp and inbox and count what comes in, what gets answered, and what goes cold.</p>
+          <h3 class="steps__title">We learn how your phone is answered today</h3>
+          <p class="steps__text">We listen to how you and your team answer, what callers ask most, and which questions actually decide whether someone books.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:180ms">
         <span class="steps__num" aria-hidden="true">02</span>
         <div class="steps__body">
-          <h3 class="steps__title">Pick one job to automate</h3>
-          <p class="steps__text">We start with the single task costing you the most work, and write down what it should do and when it should hand over to you.</p>
+          <h3 class="steps__title">We write what it can and cannot say</h3>
+          <p class="steps__text">Your greeting, the questions it asks, and the line it never crosses: it transfers to a person only when the caller asks, and only inside your working hours.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:280ms">
         <span class="steps__num" aria-hidden="true">03</span>
         <div class="steps__body">
-          <h3 class="steps__title">Build it on your own tools</h3>
-          <p class="steps__text">We connect it to the calendar, phone and CRM you already use, then test it against real enquiries from the last few months, not made-up examples.</p>
+          <h3 class="steps__title">We build it on Vapi or Retell</h3>
+          <p class="steps__text">We use both and choose per project, based on which handles your call patterns, languages and integrations better. You are not locked into whichever one we prefer.</p>
         </div>
       </li>
       <li class="steps__item" data-reveal style="--rd:380ms">
         <span class="steps__num" aria-hidden="true">04</span>
         <div class="steps__body">
-          <h3 class="steps__title">Run it beside you first</h3>
-          <p class="steps__text">It handles a small share of the real volume while you watch every message, and we tune the wording until you'd have sent it yourself.</p>
+          <h3 class="steps__title">We listen to real calls and tune it</h3>
+          <p class="steps__text">It goes live taking a share of your calls while you hear the recordings, and we adjust the wording until it sounds like your business.</p>
         </div>
       </li>
     </ol>
@@ -410,107 +395,67 @@
   <div class="container">
     <header class="sec-head sec-head--center sec-head--tight">
       <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Use cases</p>
-      <h2 class="sec-title" data-reveal style="--rd:80ms">What we automate for local businesses</h2>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">What the receptionist handles</h2>
     </header>
 
     <ul class="svc-rows svc-rows--compact">
       <li class="svc-row" data-reveal>
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist">AI receptionist</a></h3>
+            <h3 class="svc-row__title">New enquiry calls</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Answers every call, day or night, takes the details you need and puts the job straight into your calendar.</p>
+            <p class="svc-row__text">Takes the caller's name, number, job and address, and puts it straight into your system.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:45ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/website-chatbot">Website chatbot</a></h3>
+            <h3 class="svc-row__title">Booking and rescheduling</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Replies to questions on your website the moment they're asked, so nobody leaves because they waited.</p>
+            <p class="svc-row__text">Offers real slots from your calendar and confirms by text.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:90ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/whatsapp-chatbot">WhatsApp chatbot</a></h3>
+            <h3 class="svc-row__title">Your most common questions</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Answers WhatsApp messages the way a good member of staff would, and passes anything unusual to you.</p>
+            <p class="svc-row__text">Opening hours, areas covered, what you do and don't take on, answered the same way every time.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:135ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist#missed-call-text-back">Missed-call text back</a></h3>
+            <h3 class="svc-row__title">Out-of-hours and weekend calls</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">If a call goes unanswered, the caller gets a text within seconds asking what they need, before they ring someone else.</p>
+            <p class="svc-row__text">Explains that the team isn't available, takes the enquiry in full, and sends it to you for the morning.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:180ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title"><a href="/ai-receptionist#appointment-booking">Appointment booking and reminders</a></h3>
+            <h3 class="svc-row__title">Overflow when the line is busy</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Customers pick a slot themselves, and a reminder goes out before the day so fewer people forget.</p>
+            <p class="svc-row__text">Picks up the calls your team can't reach, so nobody hears a busy tone.</p>
           </div>
         </div>
       </li>
       <li class="svc-row" data-reveal style="--rd:225ms">
         <div class="svc-row__body">
           <div class="svc-row__head">
-            <h3 class="svc-row__title">Lead follow-up and nurture</h3>
+            <h3 class="svc-row__title">Transfers when asked</h3>
           </div>
           <div class="svc-row__detail">
-            <p class="svc-row__text">Every enquiry gets a reply, then a polite nudge a few days later if they've gone quiet.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:270ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Google review requests after a job</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Asks happy customers for a review at the moment the work is fresh, so your rating climbs without you chasing.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:315ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Quote and estimate requests</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Collects what you need to price a job, sends the quote out, and tells you when it's been opened.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:360ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">Invoice and payment chasing</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">Sends the invoice, then chases it politely until it's paid, so you're not the one asking twice.</p>
-          </div>
-        </div>
-      </li>
-      <li class="svc-row" data-reveal style="--rd:405ms">
-        <div class="svc-row__body">
-          <div class="svc-row__head">
-            <h3 class="svc-row__title">CRM data entry and syncing</h3>
-          </div>
-          <div class="svc-row__detail">
-            <p class="svc-row__text">New enquiries land in your system with the details already filled in, so nothing gets typed twice or lost in a notebook.</p>
+            <p class="svc-row__text">If the caller asks for a person and it's inside working hours, it puts them through.</p>
           </div>
         </div>
       </li>
@@ -518,7 +463,109 @@
   </div>
 </section>
 
-<!-- ═══════════════════ 5. WHAT AFFECTS THE COST ═══════════════════
+<!-- ═══════════════════ 5. APPOINTMENT BOOKING ═══════════════════
+     Not in the template's fixed order. /appointment-booking-automation was
+     cut as a page and folded in here (see SEO-PLAN.md), and the use-case card
+     on /ai-automation links to this id, so the anchor must not be renamed.
+     Sits after use cases and before cost: the reader has just seen what the
+     receptionist does and this is the part they want detail on first. -->
+<section class="section section--alt" id="appointment-booking">
+  <div class="container">
+    <header class="sec-head sec-head--center sec-head--tight">
+      <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Appointment booking</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Booking appointments while you work</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        It doesn't just take a message. It reads your live calendar, offers the slots you actually
+        have, and writes the booking in while the caller is still on the phone.
+      </p>
+    </header>
+
+    <ul class="svc-rows svc-rows--compact">
+      <li class="svc-row" data-reveal>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Real availability</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Only slots that are free in your calendar, so two customers never get the same time.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:45ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Confirmation and reminders</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">A confirmation straight away and a reminder before the day, which is what cuts no-shows.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:90ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Rescheduling without phone tag</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">If someone needs to move, they can do it on the call or by replying to the reminder.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ 6. MISSED-CALL TEXT BACK ═══════════════════
+     Also outside the fixed order, and also linked by id from a use-case card
+     on /ai-automation. Keep the id. -->
+<section class="section section--dark" id="missed-call-text-back">
+  <div class="container">
+    <header class="sec-head sec-head--center sec-head--tight">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Missed-call text back</p>
+      <h2 class="sec-title" data-reveal style="--rd:80ms">Every missed call gets a text back</h2>
+      <p class="sec-sub" data-reveal style="--rd:140ms">
+        If a call isn't answered for any reason, the caller gets a text within seconds asking what
+        they need. Most people reply to a text when they wouldn't leave a voicemail, so the
+        enquiry survives instead of going to the next business on the list.
+      </p>
+    </header>
+
+    <ul class="svc-rows svc-rows--compact">
+      <li class="svc-row" data-reveal>
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Sent in seconds</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Fast enough that the caller is still thinking about you rather than dialling someone else.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:45ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">A real conversation</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">They can reply with what they need and book from the text thread, not just leave a name.</p>
+          </div>
+        </div>
+      </li>
+      <li class="svc-row" data-reveal style="--rd:90ms">
+        <div class="svc-row__body">
+          <div class="svc-row__head">
+            <h3 class="svc-row__title">Nothing lost at busy times</h3>
+          </div>
+          <div class="svc-row__detail">
+            <p class="svc-row__text">Works when the line is engaged, when you're on a job, and outside hours.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ 7. WHAT AFFECTS THE COST ═══════════════════
      EDIT: the paragraph only. This section exists so the page can answer the
      price question without publishing a number. Never add a figure, a range,
      a "from" price or a currency symbol here. -->
@@ -528,15 +575,17 @@
       <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Cost</p>
       <h2 class="sec-title" data-reveal style="--rd:80ms">What affects the cost</h2>
       <p class="sec-sub" data-reveal style="--rd:140ms">
-        Every project is priced after the discovery call, based on how many automations you
-        need, which tools we connect to, call and message volume, languages, and whether you
-        want ongoing monitoring and updates.
+        Every project is priced after the discovery call. What moves it: how many calls come in,
+        how many languages you need, how much the receptionist has to know before it can answer
+        well, whether it books into your calendar or only takes messages, whether it covers every
+        hour or only the ones you miss, and whether you want us monitoring and improving it
+        afterwards.
       </p>
     </header>
   </div>
 </section>
 
-<!-- ═══════════════════ 6. FAQ ═══════════════════
+<!-- ═══════════════════ 8. FAQ ═══════════════════
      EDIT: the questions and answers. Same accordion as the homepage, driven
      by initFaq() in main.js purely from these class names, so no JS changes
      are needed for a new page.
@@ -559,13 +608,13 @@
       <div class="faq__item" data-reveal>
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1" id="q1">
-            <span>What can actually be automated in my business?</span>
+            <span>Will callers know they are talking to an AI?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a1" role="region" aria-labelledby="q1" hidden>
           <div class="faq__a-inner">
-            <p>The parts that repeat and follow a pattern: answering calls and messages, booking jobs in, chasing quotes and invoices, asking for reviews, and keeping your records up to date. A good test is whether you could write the steps down for a new member of staff. Anything that genuinely needs your judgement stays with you.</p>
+            <p>Most will work it out, and we don't try to hide it. It introduces itself as your virtual receptionist, speaks naturally, and never pretends to be a named member of staff. Callers mind far less than owners expect, as long as it answers quickly and actually helps.</p>
           </div>
         </div>
       </div>
@@ -573,13 +622,13 @@
       <div class="faq__item" data-reveal style="--rd:60ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2" id="q2">
-            <span>Will it work with the tools I already use?</span>
+            <span>What happens if a caller asks to speak to a person?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a2" role="region" aria-labelledby="q2" hidden>
           <div class="faq__a-inner">
-            <p>Usually yes. We connect to most calendars, CRMs, phone systems, WhatsApp Business and website platforms, and we check yours on the discovery call rather than after you have committed. If something genuinely will not connect, we tell you then.</p>
+            <p>During your working hours it transfers them to whoever you nominate. Outside those hours, at weekends and on breaks it doesn't try to put the call through to nobody: it explains politely that the team isn't available, takes the enquiry in full, and passes it to you for when you're back.</p>
           </div>
         </div>
       </div>
@@ -587,13 +636,13 @@
       <div class="faq__item" data-reveal style="--rd:120ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3" id="q3">
-            <span>What happens if an automation breaks?</span>
+            <span>Can it use my existing phone number?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a3" role="region" aria-labelledby="q3" hidden>
           <div class="faq__a-inner">
-            <p>We watch the automations we run for you, so in most cases we spot a problem before you do. Nothing disappears silently either way: if something can't be handled, it falls back to a person. An unanswered call still rings your phone, a message the chatbot can't answer still lands in your inbox, and a failed step gets flagged to us rather than quietly skipped.</p>
+            <p>Most businesses forward their existing number to the receptionist, so customers keep calling the number they already have. What's possible depends on your phone provider, so we check that on the discovery call before anything is set up.</p>
           </div>
         </div>
       </div>
@@ -601,13 +650,13 @@
       <div class="faq__item" data-reveal style="--rd:180ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4" id="q4">
-            <span>Who pays for the tools the automation runs on?</span>
+            <span>How many calls can it answer at the same time?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a4" role="region" aria-labelledby="q4" hidden>
           <div class="faq__a-inner">
-            <p>Either you or us - you choose at the start. If you set the tool accounts up yourself, they bill you directly each month and everything built in them stays in your accounts. If we set them up on our side, you pay us one monthly amount that covers those subscriptions instead. We go through both options on the discovery call so you know what you're choosing before anything gets built.</p>
+            <p>As many as come in. That's the part a human receptionist can't match: five people ringing at nine on Monday all get answered on the first ring, instead of four of them hearing a busy tone.</p>
           </div>
         </div>
       </div>
@@ -615,13 +664,13 @@
       <div class="faq__item" data-reveal style="--rd:240ms">
         <h3>
           <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5" id="q5">
-            <span>What affects the cost of an AI automation?</span>
+            <span>What software does the receptionist run on?</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </button>
         </h3>
         <div class="faq__a" id="a5" role="region" aria-labelledby="q5" hidden>
           <div class="faq__a-inner">
-            <p>The size of the job more than anything else. One automation connected to one tool is a much smaller piece of work than several running together across phone, website and WhatsApp, in more than one language, with us monitoring them afterwards. We give you a figure after the discovery call, once we know which of those you need.</p>
+            <p>We build on Vapi or Retell and choose between them per project, based on which one handles your call patterns, languages and integrations better. Both are AI voice agent platforms; we aren't tied to either, so the choice is made on what suits your calls rather than what we happen to prefer.</p>
           </div>
         </div>
       </div>
@@ -630,14 +679,14 @@
   </div>
 </section>
 
-<!-- ═══════════════════ 7. FINAL CTA ═══════════════════
+<!-- ═══════════════════ 9. FINAL CTA ═══════════════════
      EDIT: the H2 only. The link and its label are fixed across the site. -->
 <section class="cta section--dark" id="contact">
   <div class="container container--narrow cta__inner">
     <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Let's talk</p>
     <h2 class="cta__title" data-reveal style="--rd:80ms">
-      Find out which automation would<br class="br-md" />
-      <span class="gold-text">save you the most</span>
+      Find out what every missed call<br class="br-md" />
+      <span class="gold-text">is costing you</span>
     </h2>
     <div class="cta__actions" data-reveal style="--rd:160ms">
       <a href="https://cal.com/cerostudio/free-discovery-call" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
