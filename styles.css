@@ -96,7 +96,7 @@
      portfolio groups, so retuning the gap between sections through them
      would silently resize the cards as well. Twice these values is what a
      reader actually crosses between one section and the next. */
-  --sp-section:clamp(54px,6.6vw,88px);
+  --sp-section:clamp(44px,5.4vw,72px);
   --sp-section-tight:clamp(40px,4.8vw,62px);
   /* Gap under a section header, its own token for the same reason: --sp-6
      had exactly one consumer, .sec-head, and changing it would have moved a
@@ -1021,7 +1021,7 @@ picture{display:contents}
    real one by dropping a <video> into the slot and nothing else changes. */
 
 /* A page whose first block is a heading rather than the hero has to clear the
-   fixed 74px navbar on its own. --sp-section bottoms out at 54px, which is
+   fixed 74px navbar on its own. --sp-section bottoms out at 44px, which is
    under the navbar, so the floor is stated outright and the max() always wins
    (same reasoning as .section--story). Tightening section rhythm must never
    pull this below 122px; the token is kept in the max() to record intent, not
