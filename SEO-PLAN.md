@@ -70,3 +70,14 @@ Later: /de/ki-telefonassistent, /de/impressum, /de/datenschutz
 - Week 2 (Sep 23-29): service pages.
 - Week 3 (Sep 30-Oct 6): use-case pages and case study.
 - Week 4 (Oct 7-13): authority and blog.
+
+### Hard deadline: Oct 14 2026
+
+Claude Code access ends Oct 14 2026. All code work must be complete before
+then - every page built, every checklist item closed, everything merged.
+
+Week 4 ends Oct 13, so the plan has one day of slack against this date. Work
+that needs Claude Code comes first inside each week; anything that can be done
+by hand later (copy edits, keyword checks, the blog) gives way if a week slips.
+The two open decisions both cost code time and should be settled early rather
+than late: the /missed-calls keyword check, and whether vercel.json is deleted.
